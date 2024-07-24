@@ -137,7 +137,7 @@ nav ul li a:hover {
 
 .award-container img {
     height: 60px;
-    filter: brightness(0) invert(1);
+
 }
 
 .award-container p {
@@ -577,79 +577,138 @@ footer {
 }
 
 
-/* Estilos responsivos */
 @media (max-width: 768px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        height: auto;
-        padding: 5rem 0;
+    body {
+        font-size: 14px;
     }
 
-    .hero-content {
-        width: 100%;
-        padding: 2rem 5%;
+    .container {
+        width: 95%;
+        padding: 0 10px;
     }
 
-    .hero-image {
+    header {
+        padding: 10px 0;
+    }
+
+    nav {
         position: relative;
-        right: 0;
-        bottom: 0;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    /* Hamburger menu styles */
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 1001;
+    }
+
+    nav ul {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
-        margin-top: 2rem;
+        background-color: rgba(30, 30, 30, 0.95);
+        padding: 10px 0;
     }
 
-    .steps {
-        flex-direction: column;
+    nav ul.show {
+        display: block;
     }
 
-    .step {
-        margin-bottom: 2rem;
-    }
-
-    .feature-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-content {
-        flex-direction: column;
+    nav ul li {
+        margin: 10px 0;
         text-align: center;
     }
 
-    .footer-logo, .footer-links, .social-links {
+    .hero {
+        padding: 3rem 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
         margin-bottom: 1rem;
     }
 
-    .stats-container {
-        flex-direction: column;
+    .app-stores {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
     }
-    
-    .stat-item {
+
+    .store-button img {
+        height: 40px;
+    }
+
+    .hero-image {
+        margin-top: 1rem;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Hide or adjust the background text */
+    .background-text {
+        display: none;
+    }
+
+    /* Adjust spacing for all sections */
+    .section {
+        padding: 2rem 0;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .steps, .feature-grid, .challenge-slider, .testimonial-carousel {
+        gap: 1rem;
+    }
+
+    .step, .feature, .challenge-card, .testimonial-card {
         padding: 1rem;
     }
 
-
-    .award-container {
-        flex-direction: column;
+    .faq-question {
+        padding: 1rem;
+        font-size: 1rem;
     }
 
-    .testimonial-carousel {
-        overflow-x: scroll;
-        -webkit-overflow-scrolling: touch;
-        scroll-snap-type: x mandatory;
+    .contact form {
+        gap: 0.5rem;
     }
 
-    .testimonial-card {
-        flex: 0 0 80%;
+    .contact input, .contact textarea, .contact button {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+    nav ul li a,
+    .view-more-btn,
+    .contact button,
+    .faq-question {
+        padding: 0.8rem 1rem;
     }
 
-    .challenge-slider {
-        grid-template-columns: 1fr;
-    }
-
-    .popup-content {
-        width: 95%;
-        max-height: 95vh;
+    .close-popup {
+        padding: 0.5rem;
     }
 }
 
@@ -721,7 +780,8 @@ a:focus, button:focus, input:focus, textarea:focus {
 /* Mejoras para dispositivos de alta resolución */
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
     .hero-image img,
-    .challenge-card img {
+    .challenge-card img,
+    .award-container img {
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
     }

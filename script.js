@@ -346,3 +346,21 @@ function forceReload() {
 
 // Llamar a la función cuando la página se carga
 window.addEventListener('load', forceReload);
+
+
+
+// Funcionalidad del menú hamburguesa
+const menuToggle = document.querySelector('.menu-toggle');
+const navUl = document.querySelector('nav ul');
+
+menuToggle.addEventListener('click', () => {
+    navUl.classList.toggle('show');
+});
+
+// Cerrar el menú al hacer clic en un enlace
+const navLinks = document.querySelectorAll('nav ul li a');
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        navUl.classList.remove('show');
+    });
+});
