@@ -603,16 +603,18 @@ footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding-top: 2rem;
+		
     }
     .hero-content {
         order: 1;
         width: 100%;
     }
+	
     .hero h1 {
         font-size: 2.2rem;
         line-height: 1.2;
         margin-bottom: 1rem;
+		padding-top: 20px;
     }
     .hero p {
         font-size: 1rem;
@@ -626,8 +628,9 @@ footer {
         margin-bottom: 2rem;
     }
     .store-button img {
-        height: 150px;
+        height: 170px;
     }
+	
     .hero-image {
         order: 2;
         width: 100%;

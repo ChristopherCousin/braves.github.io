@@ -19,14 +19,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Animación de la sección hero
     gsap.from(".hero-content", {
         opacity: 0,
-        y: 50,
+        y: 5,
         duration: 1,
         delay: 0.5
     });
 
     gsap.from(".hero-image", {
         opacity: 0,
-        x: 100,
+        x: 10,
         duration: 1,
         delay: 1
     });
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const scrollPosition = window.pageYOffset;
         const heroImage = document.querySelector('.hero-image');
         if (heroImage) {
-            heroImage.style.transform = `translateY(${scrollPosition * 0.4}px)`;
+            heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
         }
     });
 
