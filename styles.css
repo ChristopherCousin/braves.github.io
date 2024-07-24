@@ -586,25 +586,64 @@ footer {
     body {
         font-size: 16px;
     }
-
     .container {
-        width: 90%;
-        padding: 0 15px;
+        width: 100%;
+        padding: 0 20px;
     }
-
     header {
         padding: 15px 0;
     }
+    .logo img {
+        height: 30px;
+    }
 
+    /* Hero section improvements */
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 2rem;
+    }
+    .hero-content {
+        order: 1;
+        width: 100%;
+    }
+    .hero h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+    }
+    .hero p {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+    }
+    .app-stores {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-bottom: 2rem;
+    }
+    .store-button img {
+        height: 150px;
+    }
+    .hero-image {
+        order: 2;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* Navigation improvements */
     nav {
         position: relative;
     }
-
-    .logo img {
-        height: 35px;
-    }
-
-    /* Hamburger menu styles */
     .menu-toggle {
         display: block;
         position: absolute;
@@ -617,7 +656,6 @@ footer {
         color: var(--text-color);
         cursor: pointer;
     }
-
     nav ul {
         display: none;
         position: absolute;
@@ -627,85 +665,27 @@ footer {
         background-color: rgba(30, 30, 30, 0.95);
         padding: 15px 0;
     }
-
     nav ul.show {
         display: block;
     }
-
     nav ul li {
         margin: 15px 0;
         text-align: center;
     }
 
-    .hero {
-        text-align: left;
-    }
-
-    .hero h1 {
-        font-size: 2.0rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-    }
-
-    .hero p {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
-    }
-
-    .app-stores {
-        flex-direction: row;
-        justify-content: flex-start;
-        gap: 15px;
-        margin-bottom: 2rem;
-    }
-
-    .store-button img {
-        height: 120px;
-    }
-
-    .hero-image {
-        margin-top: 2rem;
-        text-align: center;
-    }
-
-    .hero-image img {
-        max-width: 100%;
-        height: auto;
-		margin-right:1rem;
-		padding-bottom:5rem;
-    }
-
-    /* Adjust spacing for all sections */
+    /* General improvements */
     .section {
         padding: 3rem 0;
     }
-
     h2 {
         font-size: 2rem;
         margin-bottom: 2rem;
     }
-
     .steps, .feature-grid, .challenge-slider, .testimonial-carousel {
         gap: 1.5rem;
     }
-
     .step, .feature, .challenge-card, .testimonial-card {
         padding: 1.5rem;
-    }
-
-    .faq-question {
-        padding: 1.2rem;
-        font-size: 1.1rem;
-    }
-
-    .contact form {
-        gap: 1rem;
-    }
-
-    .contact input, .contact textarea, .contact button {
-        padding: 1rem;
-        font-size: 1.1rem;
     }
 
     /* Improve touch targets */
