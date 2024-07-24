@@ -577,18 +577,19 @@ footer {
 }
 
 
+/* Mobile-specific styles */
 @media (max-width: 768px) {
     body {
-        font-size: 14px;
+        font-size: 16px;
     }
 
     .container {
-        width: 95%;
-        padding: 0 10px;
+        width: 90%;
+        padding: 0 15px;
     }
 
     header {
-        padding: 10px 0;
+        padding: 15px 0;
     }
 
     nav {
@@ -596,7 +597,7 @@ footer {
     }
 
     .logo img {
-        height: 30px;
+        height: 35px;
     }
 
     /* Hamburger menu styles */
@@ -604,8 +605,13 @@ footer {
         display: block;
         position: absolute;
         right: 15px;
-        top: 15px;
-        z-index: 1001;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 24px;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        cursor: pointer;
     }
 
     nav ul {
@@ -615,7 +621,7 @@ footer {
         left: 0;
         width: 100%;
         background-color: rgba(30, 30, 30, 0.95);
-        padding: 10px 0;
+        padding: 15px 0;
     }
 
     nav ul.show {
@@ -623,92 +629,99 @@ footer {
     }
 
     nav ul li {
-        margin: 10px 0;
+        margin: 15px 0;
         text-align: center;
     }
 
     .hero {
-        padding: 3rem 0;
+        padding: 7rem 0;
+        text-align: left;
     }
 
     .hero h1 {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
+        font-size: 2.5rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
     }
 
     .hero p {
-        font-size: 1rem;
-        margin-bottom: 1rem;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
     }
 
     .app-stores {
         flex-direction: row;
-        justify-content: center;
-        gap: 10px;
+        justify-content: flex-start;
+        gap: 15px;
+        margin-bottom: 2rem;
     }
 
     .store-button img {
-        height: 40px;
+        height: 50px;
     }
 
     .hero-image {
-        margin-top: 1rem;
+        margin-top: 2rem;
+        text-align: center;
     }
 
     .hero-image img {
-        max-width: 100%;
+        max-width: 80%;
         height: auto;
-    }
-
-    /* Hide or adjust the background text */
-    .background-text {
-        display: none;
     }
 
     /* Adjust spacing for all sections */
     .section {
-        padding: 2rem 0;
+        padding: 3rem 0;
     }
 
     h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        margin-bottom: 2rem;
     }
 
     .steps, .feature-grid, .challenge-slider, .testimonial-carousel {
-        gap: 1rem;
+        gap: 1.5rem;
     }
 
     .step, .feature, .challenge-card, .testimonial-card {
-        padding: 1rem;
+        padding: 1.5rem;
     }
 
     .faq-question {
-        padding: 1rem;
-        font-size: 1rem;
+        padding: 1.2rem;
+        font-size: 1.1rem;
     }
 
     .contact form {
-        gap: 0.5rem;
+        gap: 1rem;
     }
 
     .contact input, .contact textarea, .contact button {
-        padding: 0.8rem;
-        font-size: 1rem;
+        padding: 1rem;
+        font-size: 1.1rem;
     }
-}
 
-/* Improve touch targets for mobile */
-@media (max-width: 768px) {
+    /* Improve touch targets */
     nav ul li a,
     .view-more-btn,
     .contact button,
-    .faq-question {
-        padding: 0.8rem 1rem;
-    }
-
+    .faq-question,
     .close-popup {
-        padding: 0.5rem;
+        padding: 12px 20px;
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Mejoras para dispositivos de alta resolución */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-image img,
+    .challenge-card img,
+    .award-container img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
     }
 }
 
@@ -775,14 +788,4 @@ footer {
 a:focus, button:focus, input:focus, textarea:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
-}
-
-/* Mejoras para dispositivos de alta resolución */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .hero-image img,
-    .challenge-card img,
-    .award-container img {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
 }
