@@ -634,18 +634,17 @@ footer {
     }
 
     .hero {
-        padding: 7rem 0;
         text-align: left;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.0rem;
         line-height: 1.2;
         margin-bottom: 1rem;
     }
 
     .hero p {
-        font-size: 1.1rem;
+        font-size: 0.9rem;
         line-height: 1.5;
         margin-bottom: 1.5rem;
     }
@@ -667,8 +666,10 @@ footer {
     }
 
     .hero-image img {
-        max-width: 80%;
+        max-width: 100%;
         height: auto;
+		margin-right:1rem;
+		padding-bottom:5rem;
     }
 
     /* Adjust spacing for all sections */
