@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Braves - Desafía tus Habilidades, Gana Dinero Real</title>
+    <meta name="description" content="Braves es una plataforma innovadora donde puedes participar en desafíos únicos, demostrar tu destreza y ganar dinero real. ¡Únete a la revolución de los juegos de habilidad!">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="assets/braves-logo.png" alt="Braves Logo">
+            </div>
+            <ul>
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#how-it-works">Cómo Funciona</a></li>
+                <li><a href="#features">Características</a></li>
+                <li><a href="#challenges">Desafíos</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>Braves: Desafía tus Habilidades, Gana Dinero Real</h1>
+                <p>Participa en desafíos únicos, demuestra tu destreza y gana recompensas en efectivo. ¡La competencia del futuro está aquí!</p>
+                <div class="app-stores">
+                    <a href="#" class="store-button">
+                        <img src="assets/app-store.svg" alt="Descargar en App Store">
+                    </a>
+                    <a href="#" class="store-button">
+                        <img src="assets/google-play.svg" alt="Disponible en Google Play">
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="assets/braves-app-mockup.png" alt="Braves App en acción">
+            </div>
+        </section>
+
+        <section id="awards" class="awards">
+            <h2>Reconocimientos</h2>
+            <div class="award-container">
+                <img src="assets/logo_ANDE.png" alt="Logo ANDE">
+                <img src="assets/logo_ANII.png" alt="Logo ANII">
+                <p>Ganadores del Premio de Innovación otorgado por ANDE (Agencia Nacional de Desarrollo) y ANII (Agencia Nacional de Investigación e Innovación) de Uruguay.</p>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="how-it-works">
+            <h2>Cómo Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon">1</div>
+                    <h3>Elige un Desafío</h3>
+                    <p>Explora una variedad de retos virtuales y reales, y selecciona el que más te interese.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">2</div>
+                    <h3>Participa</h3>
+                    <p>Paga la entrada y demuestra tus habilidades en tiempo real, ya sea en juegos virtuales o desafíos físicos.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">3</div>
+                    <h3>Gana Dinero</h3>
+                    <p>Alcanza el objetivo y comparte el premio en efectivo con otros ganadores. ¡Tu habilidad determina tu recompensa!</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <h2>Características Únicas</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Desafíos Virtuales y Reales</h3>
+                    <p>Desde juegos virtuales hasta retos físicos, Braves ofrece una experiencia de juego diversa y emocionante.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📹</div>
+                    <h3>Verificación por Video</h3>
+                    <p>Usa la cámara de tu móvil para grabar y verificar tus logros en desafíos reales.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Seguridad y Privacidad</h3>
+                    <p>Implementamos medidas avanzadas para proteger tu información y garantizar una experiencia segura, respaldadas por la experiencia de nuestro cofundador Christopher Cousin, con 4 años en el equipo de ciberseguridad del Banco Santander.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Recompensas Justas</h3>
+                    <p>Gana dinero basándote únicamente en tu habilidad, sin elementos de azar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="demo-video" class="demo-video">
+            <h2>Ve Braves en Acción</h2>
+            <div class="video-container">
+                <video controls poster="assets/video-thumbnail.jpg">
+                    <source src="assets/braves-demo.mp4" type="video/mp4">
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </section>
+
+        <section id="statistics" class="statistics">
+            <h2>Números de Braves</h2>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3 id="userCount">0</h3>
+                    <p>Usuarios Activos</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="challengeCount">0</h3>
+                    <p>Desafíos Completados</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="prizeCount">0</h3>
+                    <p>Dinero entregado</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="challenges" class="challenges">
+            <h2>Desafíos</h2>
+            <div class="challenge-slider">
+                <!-- Los desafíos se generarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <section id="testimonials" class="testimonials">
+            <h2>Lo que Dicen Nuestros Usuarios</h2>
+            <div class="testimonial-carousel">
+                <!-- Los testimonios se generarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <section id="faq" class="faq">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <!-- Las preguntas frecuentes se generarán dinámicamente con JavaScript -->
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <h2>Contacto</h2>
+            <form id="contact-form">
+                <input type="text" name="name" placeholder="Tu nombre" required>
+                <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                <textarea name="message" placeholder="Tu mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+	<footer>
+		<div class="footer-content">
+			<div class="footer-links">
+				<a href="#">Términos y Condiciones</a>
+				<a href="#">Política de Privacidad</a>
+				<a href="#">FAQ</a>
+			</div>
+			<div class="social-links">
+				<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+				<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+			</div>
+		</div>
+		<div class="copyright">
+			© 2024 Braves. Todos los derechos reservados.
+		</div>
+	</footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
