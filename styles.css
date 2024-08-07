@@ -26,11 +26,13 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding-top: 60px; /* Espacio para el header fijo */
 }
 
 header {
     background-color: rgba(30, 30, 30, 0.95);
     position: fixed;
+    top: 0; /* Fijar el header en la parte superior */
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease;
@@ -95,11 +97,6 @@ nav ul li a:hover {
     max-width: 600px;
 }
 
-
-
-
-
-
 .hero-image {
     flex: 1;
     display: flex;
@@ -137,7 +134,6 @@ nav ul li a:hover {
 
 .award-container img {
     height: 60px;
-
 }
 
 .award-container p {
@@ -183,15 +179,15 @@ h2 {
 .step-icon {
     width: 80px;
     height: 80px;
-
-    color: var(--text-color);
-    font-size: 2rem;
-    font-weight: 700;
-    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto 1rem;
+}
+
+.step-icon img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .feature-grid {
@@ -214,9 +210,17 @@ h2 {
 }
 
 .feature-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 1rem;
+}
+
+.feature-icon img {
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .demo-video {
@@ -243,17 +247,10 @@ h2 {
 }
 
 .testimonial-carousel {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    gap: 2rem;
-    padding: 2rem 0;
-    -webkit-overflow-scrolling: touch;
+    /* Estilos para Owl Carousel */
 }
 
 .testimonial-card {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
     background-color: #333333;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
@@ -274,6 +271,20 @@ h2 {
 
 .testimonial-card h4 {
     color: var(--primary-color);
+}
+
+.testimonial-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+}
+
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .faq {
@@ -330,10 +341,7 @@ h2 {
 }
 
 .challenge-slider {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    padding: 2rem 0;
+    /* Estilos para Owl Carousel */
 }
 
 .challenge-card {
@@ -356,7 +364,7 @@ h2 {
     width: 100%;
     height: 200px;
     overflow: hidden;
-	padding:10px;
+    padding: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -389,6 +397,13 @@ h2 {
     font-size: 1rem;
     color: #CCCCCC;
     margin-bottom: 1rem;
+}
+
+.challenge-card .prize,
+.challenge-card .type {
+    font-size: 0.9rem;
+    color: #CCCCCC;
+    margin-bottom: 0.5rem;
 }
 
 .view-more-btn {
@@ -497,6 +512,8 @@ footer {
     background-color: #1E1E1E;
     color: var(--text-color);
     padding: 3rem 0;
+    position: relative; /* Para que el copyright quede encima */
+    margin-top: 50px; /* Espacio extra debajo del contenido */
 }
 
 .footer-content {
@@ -523,7 +540,10 @@ footer {
 
 .copyright {
     text-align: center;
-    margin-top: 2rem;
+    position: absolute; /* Fijar el copyright en la parte inferior */
+    bottom: 10px;
+    left: 0;
+    width: 100%;
     font-size: 0.9rem;
     opacity: 0.7;
 }
@@ -568,8 +588,7 @@ footer {
 
 .store-button img {
   height: 250px;
-  transition: transform 0.3s ease;
-  
+  transition: transform 0.3s ease;  
 }
 
 .store-button:hover img {
@@ -603,18 +622,16 @@ footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-		
     }
     .hero-content {
         order: 1;
         width: 100%;
     }
-	
     .hero h1 {
         font-size: 2.2rem;
         line-height: 1.2;
         margin-bottom: 1rem;
-		padding-top: 20px;
+        padding-top: 20px;
     }
     .hero p {
         font-size: 1rem;
@@ -630,7 +647,6 @@ footer {
     .store-button img {
         height: 170px;
     }
-	
     .hero-image {
         order: 2;
         width: 100%;
@@ -701,8 +717,8 @@ footer {
         min-height: 44px;
         min-width: 44px;
     }
-	
-	    .how-it-works {
+
+    .how-it-works {
         padding: 3rem 0;
     }
 
@@ -721,6 +737,9 @@ footer {
         border-radius: 10px;
     }
 
+    .step-icon {
+        margin-right: 1rem;
+    }
 
     .step-content {
         flex: 1;
@@ -810,4 +829,57 @@ footer {
 a:focus, button:focus, input:focus, textarea:focus {
     outline: 2px solid var(--accent-color);
     outline-offset: 2px;
+}
+
+
+/* Estilos para el menú hamburguesa */
+.menu-toggle {
+    display: none; /* Oculto por defecto en pantallas grandes */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.menu-toggle .hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle .hamburger::before,
+.menu-toggle .hamburger::after {
+    content: '';
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle .hamburger::before {
+    top: -8px;
+}
+
+.menu-toggle .hamburger::after {
+    bottom: -8px;
+}
+
+.menu-toggle.active .hamburger {
+    background-color: transparent;
+}
+
+.menu-toggle.active .hamburger::before {
+    transform: rotate(45deg);
+    top: 0;
+}
+
+.menu-toggle.active .hamburger::after {
+    transform: rotate(-45deg);
+    bottom: 0;
 }

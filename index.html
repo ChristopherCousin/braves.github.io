@@ -6,18 +6,26 @@
     <title>Braves - Desafía tus Habilidades, Gana Dinero Real</title>
     <meta name="description" content="Braves es una plataforma innovadora donde puedes participar en desafíos únicos, demostrar tu destreza y ganar dinero real. ¡Únete a la revolución de los juegos de habilidad!">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js" defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
+    <script src="script.js" defer></script>
 </head>
 <body>
+
     <header>
         <nav>
             <div class="logo">
                 <img src="assets/braves-logo.png" alt="Braves Logo">
             </div>
-			<button class="menu-toggle">☰</button>
-            <ul>
-                <li><a href="#home">Inicio</a></li>
+            <button class="menu-toggle" aria-label="Toggle Navigation">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav-list">
+                <li><a href="#hero">Inicio</a></li>
                 <li><a href="#how-it-works">Cómo Funciona</a></li>
                 <li><a href="#features">Características</a></li>
                 <li><a href="#challenges">Desafíos</a></li>
@@ -30,8 +38,8 @@
     <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h1>Braves: Desafía tus Habilidades, Gana Dinero Real</h1>
-                <p>Participa en desafíos únicos, demuestra tu destreza y gana recompensas en efectivo. ¡La competencia del futuro está aquí!</p>
+                <h1>Gana dinero jugando: Desafía tus habilidades y gana premios en efectivo</h1>
+                <p>Participa en desafíos únicos, demuestra tu destreza y gana recompensas. ¡La competencia del futuro está aquí!</p>
                 <div class="app-stores">
                     <a href="#" class="store-button">
                         <img src="assets/app-store.svg" alt="Descargar en App Store">
@@ -55,53 +63,53 @@
             </div>
         </section>
 
-		<section class="how-it-works">
-			<h2>Cómo Funciona</h2>
-			<div class="steps">
-				<div class="step">
-					<div class="step-icon">1</div>
-					<div class="step-content">
-						<h3>Elige un Desafío</h3>
-						<p>Explora una variedad de retos virtuales y reales, y selecciona el que más te interese.</p>
-					</div>
-				</div>
-				<div class="step">
-					<div class="step-icon">2</div>
-					<div class="step-content">
-						<h3>Participa</h3>
-						<p>Paga la entrada y demuestra tus habilidades en tiempo real, ya sea en juegos virtuales o desafíos físicos.</p>
-					</div>
-				</div>
-				<div class="step">
-					<div class="step-icon">3</div>
-					<div class="step-content">
-						<h3>Gana Dinero</h3>
-						<p>Alcanza el objetivo y comparte el premio. ¡Demuestra tu destreza y obtén recompensas!</p>
-					</div>
-				</div>
-			</div>
-		</section>
+        <section id="how-it-works" class="how-it-works">
+            <h2>Cómo Funciona</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-icon"><img src="assets/icon-joystick.svg" alt="Elige un desafío"></div>
+                    <div class="step-content">
+                        <h3>Elige un Desafío</h3>
+                        <p>Explora una variedad de retos virtuales y reales, y selecciona el que más te interese.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><img src="assets/icon-stopwatch.svg" alt="Participa"></div>
+                    <div class="step-content">
+                        <h3>Participa</h3>
+                        <p>Paga la entrada y demuestra tus habilidades en tiempo real, ya sea en juegos virtuales o desafíos físicos.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-icon"><img src="assets/icon-money.svg" alt="Gana Dinero"></div>
+                    <div class="step-content">
+                        <h3>Gana Dinero</h3>
+                        <p>Alcanza el objetivo y comparte el premio. ¡Demuestra tu destreza y obtén recompensas!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="features" class="features">
             <h2>Características Únicas</h2>
             <div class="feature-grid">
                 <div class="feature">
-                    <div class="feature-icon">🎮</div>
+                    <div class="feature-icon"><img src="assets/icon-vr.svg" alt="Desafíos Virtuales y Reales"></div>
                     <h3>Desafíos Virtuales y Reales</h3>
                     <p>Desde juegos virtuales hasta retos físicos, Braves ofrece una experiencia de juego diversa y emocionante.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">📹</div>
+                    <div class="feature-icon"><img src="assets/icon-video-verification.svg" alt="Verificación por Video"></div>
                     <h3>Verificación por Video</h3>
                     <p>Usa la cámara de tu móvil para grabar y verificar tus logros en desafíos reales.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">🔒</div>
+                    <div class="feature-icon"><img src="assets/icon-security.svg" alt="Seguridad y Privacidad"></div>
                     <h3>Seguridad y Privacidad</h3>
                     <p>Implementamos medidas avanzadas para proteger tu información y garantizar una experiencia segura, respaldadas por la experiencia de nuestro cofundador Christopher Cousin, con 4 años en el equipo de ciberseguridad del Banco Santander.</p>
                 </div>
                 <div class="feature">
-                    <div class="feature-icon">🏆</div>
+                    <div class="feature-icon"><img src="assets/icon-fair-rewards.svg" alt="Recompensas Justas"></div>
                     <h3>Recompensas Justas</h3>
                     <p>Gana dinero basándote únicamente en tu habilidad, sin elementos de azar.</p>
                 </div>
@@ -138,22 +146,19 @@
 
         <section id="challenges" class="challenges">
             <h2>Desafíos</h2>
-            <div class="challenge-slider">
-                <!-- Los desafíos se generarán dinámicamente con JavaScript -->
+            <div class="challenge-slider owl-carousel">
             </div>
         </section>
 
         <section id="testimonials" class="testimonials">
             <h2>Lo que Dicen Nuestros Usuarios</h2>
-            <div class="testimonial-carousel">
-                <!-- Los testimonios se generarán dinámicamente con JavaScript -->
+            <div class="testimonial-carousel owl-carousel">
             </div>
         </section>
 
         <section id="faq" class="faq">
             <h2>Preguntas Frecuentes</h2>
             <div class="faq-container">
-                <!-- Las preguntas frecuentes se generarán dinámicamente con JavaScript -->
             </div>
         </section>
 
@@ -168,24 +173,23 @@
         </section>
     </main>
 
-	<footer>
-		<div class="footer-content">
-			<div class="footer-links">
-				<a href="terminos.html">Términos y Condiciones</a>
-				<a href="privacidad.html">Política de Privacidad</a>
-				<a href="delete_account.html">Eliminar Cuenta</a>
-			</div>
-			<div class="social-links">
-				<a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-				<a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-				<a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-			</div>
-		</div>
-		<div class="copyright">
-			© 2024 Braves. Todos los derechos reservados.
-		</div>
-	</footer>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="terminos.html">Términos y Condiciones</a>
+                <a href="privacidad.html">Política de Privacidad</a>
+                <a href="delete_account.html">Eliminar Cuenta</a>
+            </div>
+            <div class="social-links">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2024 Braves. Todos los derechos reservados.
+        </div>
+    </footer>
 
-    <script src="script.js"></script>
 </body>
 </html>
