@@ -51,8 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Super Bravey", 
             description: "Salta, corre y esquiva enemigos en este trepidante desafío de plataformas lleno de acción y aventura.", 
             image: "assets/dash.png",
-            prize: "$100",
-            type: "Virtual",
             fullDescription: "¡Participa en Super Bravey y demuestra tu habilidad! Navega a través de obstáculos y llega al objetivo para ser uno de los ganadores. Practica tantas veces como necesites antes de tu intento oficial.",
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",
@@ -68,8 +66,6 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Flappy Braves", 
             description: "Esquiva obstáculos y vuela lo más lejos posible en este emocionante juego inspirado en el clásico Flappy Bird.", 
             image: "assets/bird.png",
-            prize: "$50",
-            type: "Virtual",
             fullDescription: "¡Participa en Flappy Braves y demuestra tu habilidad! Navega a través de obstáculos y llega al objetivo para ser uno de los ganadores. Practica tantas veces como necesites antes de tu intento oficial.",
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",
@@ -85,8 +81,6 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Hit the Ball", 
             description: "Pon a prueba tu precisión y reflejos rebotando una pelota de papel en este desafiante juego de habilidad.", 
             image: "assets/ball.png",
-            prize: "$25",
-            type: "Físico",
             fullDescription: "¡Participa en Hit the Ball Challenge y muestra tu destreza! Usa la cámara de tu móvil para grabarte mientras realizas el desafío.",
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",
@@ -113,32 +107,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="challenge-card-content">
                     <h3>${challenge.title}</h3>
                     <p>${challenge.description}</p>
-                    <span class="prize">Premio: ${challenge.prize}</span>
-                    <span class="type">Tipo: ${challenge.type}</span>
                     <button class="view-more-btn" data-challenge-index="${index}">Ver más</button>
                 </div>
             `;
             challengeSlider.appendChild(challengeCard);
-        });
-
-        // Inicializar Owl Carousel para el slider de desafíos
-        $('.challenge-slider').owlCarousel({
-            items: 3, // Mostrar 3 desafíos a la vez
-            loop: true,
-            margin: 10,
-            nav: true, // Mostrar flechas de navegación
-            dots: false, // Ocultar los puntos de navegación
-            responsive: {
-                0: {
-                    items: 1
-                },
-                600: {
-                    items: 2
-                },
-                1000: {
-                    items: 3
-                }
-            }
         });
 
         // Crear el popup
@@ -146,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.classList.add('popup-overlay');
         popupOverlay.innerHTML = `
             <div class="popup-content">
-                <span class="close-popup">×</span>
+                <span class="close-popup">&times;</span>
                 <h3></h3>
                 <p class="full-description"></p>
                 <strong>Cómo Participar:</strong>
@@ -204,11 +176,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Datos de testimonios
     const testimonialData = [
-        { name: "María G.", quote: "Braves ha cambiado la forma en que veo los juegos móviles. ¡Es emocionante y desafiante!", image: "assets/testimonial-1.jpg" },
-        { name: "Carlos R.", quote: "Me encanta cómo Braves combina habilidad y tecnología. Siempre estoy ansioso por el próximo desafío.", image: "assets/testimonial-2.jpg" },
-        { name: "Laura S.", quote: "Los premios son geniales, pero lo mejor es cómo Braves me ha ayudado a mejorar mis habilidades.", image: "assets/testimonial-3.jpg" },
-        { name: "Javier P.", quote: "La verificación por video es genial. Me da confianza saber que todos juegan limpio.", image: "assets/testimonial-4.jpg" },
-        { name: "Ana M.", quote: "He conocido a gente increíble a través de Braves. Es más que una app, es una comunidad.", image: "assets/testimonial-5.jpg" }
+        { name: "María G.", quote: "Braves ha cambiado la forma en que veo los juegos móviles. ¡Es emocionante y desafiante!" },
+        { name: "Carlos R.", quote: "Me encanta cómo Braves combina habilidad y tecnología. Siempre estoy ansioso por el próximo desafío." },
+        { name: "Laura S.", quote: "Los premios son geniales, pero lo mejor es cómo Braves me ha ayudado a mejorar mis habilidades." },
+        { name: "Javier P.", quote: "La verificación por video es genial. Me da confianza saber que todos juegan limpio." },
+        { name: "Ana M.", quote: "He conocido a gente increíble a través de Braves. Es más que una app, es una comunidad." }
     ];
 
     // Generar tarjetas de testimonios
@@ -218,22 +190,10 @@ document.addEventListener('DOMContentLoaded', function() {
             const testimonialCard = document.createElement('div');
             testimonialCard.classList.add('testimonial-card');
             testimonialCard.innerHTML = `
-                <div class="testimonial-image">
-                    <img src="${testimonial.image}" alt="${testimonial.name}">
-                </div>
                 <p>"${testimonial.quote}"</p>
                 <h4>${testimonial.name}</h4>
             `;
             testimonialCarousel.appendChild(testimonialCard);
-        });
-
-        // Inicializar Owl Carousel para el carrusel de testimonios
-        $('.testimonial-carousel').owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            autoplayTimeout: 5000,
-            autoplayHoverPause: true
         });
     } else {
         console.warn('Elemento testimonial-carousel no encontrado.');
@@ -368,23 +328,39 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Página cargada. Animaciones y efectos iniciados.');
 });
 
+// Forzar recarga de recursos
+function forceReload() {
+    const links = document.getElementsByTagName('link');
+    for (let i = 0; i < links.length; i++) {
+        if (links[i].getAttribute('rel') === 'stylesheet') {
+            links[i].href = links[i].href.split('?')[0] + '?id=' + new Date().getMilliseconds();
+        }
+    }
+    const scripts = document.getElementsByTagName('script');
+    for (let i = 0; i < scripts.length; i++) {
+        if (scripts[i].src && !scripts[i].src.includes('livereload.js')) {
+            scripts[i].src = scripts[i].src.split('?')[0] + '?id=' + new Date().getMilliseconds();
+        }
+    }
+}
+
+// Llamar a la función cuando la página se carga
+window.addEventListener('load', forceReload);
+
+
 
 // Funcionalidad del menú hamburguesa
 const menuToggle = document.querySelector('.menu-toggle');
-const navUl = document.querySelector('.nav-list');
+const navUl = document.querySelector('nav ul');
 
 menuToggle.addEventListener('click', () => {
     navUl.classList.toggle('show');
-    menuToggle.classList.toggle('active');
 });
 
-// Cerrar el menú al hacer clic en un enlace (solo en dispositivos móviles)
-const navLinks = document.querySelectorAll('.nav-list li a');
+// Cerrar el menú al hacer clic en un enlace
+const navLinks = document.querySelectorAll('nav ul li a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) { // Solo en pantallas pequeñas
-            navUl.classList.remove('show');
-            menuToggle.classList.remove('active');
-        }
+        navUl.classList.remove('show');
     });
 });
