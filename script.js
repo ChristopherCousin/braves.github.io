@@ -175,13 +175,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Datos de testimonios
-    const testimonialData = [
-        { name: "María G.", quote: "Braves ha cambiado la forma en que veo los juegos móviles. ¡Es emocionante y desafiante!" },
-        { name: "Carlos R.", quote: "Me encanta cómo Braves combina habilidad y tecnología. Siempre estoy ansioso por el próximo desafío." },
-        { name: "Laura S.", quote: "Los premios son geniales, pero lo mejor es cómo Braves me ha ayudado a mejorar mis habilidades." },
-        { name: "Javier P.", quote: "La verificación por video es genial. Me da confianza saber que todos juegan limpio." },
-        { name: "Ana M.", quote: "He conocido a gente increíble a través de Braves. Es más que una app, es una comunidad." }
-    ];
+// Datos de testimonios
+	const testimonialData = [
+		{ name: "María G.", quote: "La verdad, al principio pensé que no iba a ganar mucho, pero en los desafíos competitivos me llevé más de 5 mil pesos en una semana. Está tremendo." },
+		{ name: "Carlos R.", quote: "Me enganché con los desafíos, sobre todo en los competitivos. En uno llegué a ganar 3 mil pesos, pero otros los perdí. Igual, me motiva a seguir mejorando." },
+		{ name: "Laura S.", quote: "He ganado un poco de plata con los juegos, pero más que nada me divierte pasar el rato. Ojalá arreglen algunos bugs porque a veces eso te tira para atrás." },
+		{ name: "Javier P.", quote: "Me encanta que la plata que ganás depende de lo que sabés hacer, no es al azar. En un desafío saqué 7 mil pesos, no lo podía creer." },
+		{ name: "Ana M.", quote: "Conocí a gente piola en la app, y además me gané unos mangos. Aunque algunos desafíos se traban, la idea está genial." },
+		{ name: "Santiago T.", quote: "Saqué un poco más de 4 mil pesos en uno de los desafíos, pero en otros no he ganado nada. Eso sí, la emoción de jugar y competir no se pierde." },
+		{ name: "Lucía F.", quote: "Hay desafíos que están buenísimos y te pueden hacer ganar buena plata, pero algunos tienen errores. Ojalá mejoren eso porque la app tiene mucho potencial." }
+	];
+
 	
 	
     // Generar tarjetas de testimonios
