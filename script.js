@@ -182,7 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "Javier P.", quote: "La verificación por video es genial. Me da confianza saber que todos juegan limpio." },
         { name: "Ana M.", quote: "He conocido a gente increíble a través de Braves. Es más que una app, es una comunidad." }
     ];
-
+	
+	
     // Generar tarjetas de testimonios
     const testimonialCarousel = document.querySelector('.testimonial-carousel');
     if (testimonialCarousel) {
@@ -303,9 +304,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateValue("userCount", 0, 126, 2000);
-                    animateValue("challengeCount", 0, 6, 2500);
-                    animateValue("prizeCount", 0, 5530, 3000);
+                    animateValue("userCount", 0, 426, 2000);
+                    animateValue("challengeCount", 0, 14, 2500);
+                    animateValue("prizeCount", 0, 15530, 3000);
                     observer.unobserve(entry.target);
                 }
             });
@@ -362,5 +363,29 @@ const navLinks = document.querySelectorAll('nav ul li a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navUl.classList.remove('show');
+    });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Show the modal when the App Store button is clicked
+    const appleStoreButton = document.getElementById('apple-store-button');
+    const appleModal = document.getElementById('apple-modal');
+    const closeButton = document.querySelector('.close-button');
+
+    appleStoreButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        appleModal.style.display = 'block'; // Show the modal
+    });
+
+    // Close the modal when the close button is clicked
+    closeButton.addEventListener('click', function() {
+        appleModal.style.display = 'none'; // Hide the modal
+    });
+
+    // Close the modal when the user clicks outside the modal content
+    window.addEventListener('click', function(event) {
+        if (event.target == appleModal) {
+            appleModal.style.display = 'none'; // Hide the modal
+        }
     });
 });
