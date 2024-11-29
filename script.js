@@ -1,6 +1,19 @@
 // Inicializar GSAP
 gsap.registerPlugin(ScrollTrigger);
 
+// Añadir al inicio del archivo después de la línea 2
+const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+
 // Función para asegurarse de que el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
     // Animación del encabezado al desplazarse
@@ -319,15 +332,29 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Animación de paralaje para la imagen del héroe
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', debounce(() => {
         const scrollPosition = window.pageYOffset;
         const heroImage = document.querySelector('.hero-image');
         if (heroImage) {
             heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
         }
-    });
+    }, 10));
 
     console.log('Página cargada. Animaciones y efectos iniciados.');
+
+    // Agregar después de document.addEventListener('DOMContentLoaded'...
+    window.addEventListener('error', function(e) {
+        if (e.target.tagName === 'IMG') {
+            e.target.src = 'assets/placeholder.png';
+            console.error('Error loading image:', e.target.src);
+        }
+    }, true);
+
+    // Agregar función para manejar errores de carga de recursos
+    function handleResourceError(error) {
+        console.error('Resource loading error:', error);
+        // Implementar sistema de telemetría aquí si se desea
+    }
 });
 
 // Forzar recarga de recursos

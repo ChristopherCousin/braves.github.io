@@ -1,0 +1,14 @@
+.app-stores {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.store-button img {
+    height: 250px;
+    transition: transform 0.3s ease;
+}
+
+.store-button:hover img {
+    transform: scale(1.05);
+} 
