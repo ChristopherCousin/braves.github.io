@@ -9,6 +9,11 @@
     --button-color: #007AFF;
 }
 
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
 
 .modal {
     display: none; /* Hidden by default */
@@ -288,11 +293,12 @@ h2 {
 
 .testimonial-carousel {
     display: flex;
-    overflow-x: auto;
+    overflow-x: hidden;
     scroll-snap-type: x mandatory;
     gap: 2rem;
     padding: 2rem 0;
     -webkit-overflow-scrolling: touch;
+    max-width: 100%;
 }
 
 .testimonial-card {
@@ -880,4 +886,15 @@ a:focus, button:focus, input:focus, textarea:focus {
 .skip-to-main-content:focus {
     left: 50%;
     transform: translateX(-50%);
+}
+
+section {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
+main {
+    overflow-x: hidden;
+    width: 100%;
 }
