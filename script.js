@@ -1,3 +1,5 @@
+// script.js
+
 // Inicializar GSAP
 gsap.registerPlugin(ScrollTrigger);
 
@@ -187,8 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Elemento challenge-slider no encontrado.');
     }
 
-// Datos de testimonios
-	const testimonialData = [
+    const testimonialData = [
 		{ name: "María G.", quote: "La verdad, al principio pensé que no iba a ganar mucho, pero en los desafíos competitivos me llevé más pesos de lo que hubiera imaginoado. Está tremendo." },
 		{ name: "Carlos R.", quote: "Me enganché con los desafíos, sobre todo en los competitivos. En uno llegué a ganar 3 mil pesos, pero otros los perdí. Igual, me motiva a seguir mejorando." },
 		{ name: "Laura S.", quote: "He ganado un poco de plata con los juegos, pero más que nada me divierte pasar el rato." },
@@ -196,8 +197,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		{ name: "Santiago T.", quote: "Saqué un poco más de 4 mil pesos en uno de los desafíos, pero en otros no he ganado nada. Eso sí, la emoción de jugar y competir no se pierde." },
 		{ name: "Lucía F.", quote: "Hay desafíos que están buenísimos y te pueden hacer ganar buena plata." }
 	];
-	
-	
+
     // Generar tarjetas de testimonios
     const testimonialCarousel = document.querySelector('.testimonial-carousel');
     if (testimonialCarousel) {
@@ -272,7 +272,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Manejo del formulario de contacto
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
@@ -286,7 +285,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Formulario de contacto no encontrado.');
     }
 
-    // Función para animar valor con comprobación de existencia del elemento
     function animateValue(elementId, start, end, duration) {
         const obj = document.getElementById(elementId);
         if (!obj) {
@@ -306,7 +304,6 @@ document.addEventListener('DOMContentLoaded', function() {
         window.requestAnimationFrame(step);
     }
 
-    // Iniciar animaciones cuando la sección de estadísticas entre en vista
     const statsSection = document.getElementById('statistics');
     if (statsSection) {
         const observerOptions = {
@@ -331,7 +328,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Sección de estadísticas no encontrada. Animaciones no inicializadas.');
     }
 
-    // Animación de paralaje para la imagen del héroe
     window.addEventListener('scroll', debounce(() => {
         const scrollPosition = window.pageYOffset;
         const heroImage = document.querySelector('.hero-image');
@@ -342,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     console.log('Página cargada. Animaciones y efectos iniciados.');
 
-    // Agregar después de document.addEventListener('DOMContentLoaded'...
     window.addEventListener('error', function(e) {
         if (e.target.tagName === 'IMG') {
             e.target.src = 'assets/placeholder.png';
@@ -350,14 +345,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, true);
 
-    // Agregar función para manejar errores de carga de recursos
     function handleResourceError(error) {
         console.error('Resource loading error:', error);
-        // Implementar sistema de telemetría aquí si se desea
     }
 });
 
-// Forzar recarga de recursos
 function forceReload() {
     const links = document.getElementsByTagName('link');
     for (let i = 0; i < links.length; i++) {
@@ -373,10 +365,7 @@ function forceReload() {
     }
 }
 
-// Llamar a la función cuando la página se carga
 window.addEventListener('load', forceReload);
-
-
 
 // Funcionalidad del menú hamburguesa
 const menuToggle = document.querySelector('.menu-toggle');
@@ -386,7 +375,6 @@ menuToggle.addEventListener('click', () => {
     navUl.classList.toggle('show');
 });
 
-// Cerrar el menú al hacer clic en un enlace
 const navLinks = document.querySelectorAll('nav ul li a');
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
@@ -395,25 +383,241 @@ navLinks.forEach(link => {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Show the modal when the App Store button is clicked
     const appleStoreButton = document.getElementById('apple-store-button');
     const appleModal = document.getElementById('apple-modal');
     const closeButton = document.querySelector('.close-button');
 
     appleStoreButton.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
-        appleModal.style.display = 'block'; // Show the modal
+        event.preventDefault();
+        appleModal.style.display = 'block';
     });
 
-    // Close the modal when the close button is clicked
     closeButton.addEventListener('click', function() {
-        appleModal.style.display = 'none'; // Hide the modal
+        appleModal.style.display = 'none';
     });
 
-    // Close the modal when the user clicks outside the modal content
     window.addEventListener('click', function(event) {
         if (event.target == appleModal) {
-            appleModal.style.display = 'none'; // Hide the modal
+            appleModal.style.display = 'none';
         }
+    });
+});
+
+// AÑADIMOS AQUI LA LÓGICA DE DETECCIÓN DE PAÍS Y TRADUCCIÓN
+document.addEventListener('DOMContentLoaded', function() {
+    // Textos en los tres idiomas
+    const texts = {
+        es: {
+            inicio: "Inicio",
+            comoFunciona: "Cómo Funciona",
+            caracteristicas: "Características",
+            desafios: "Desafíos",
+            testimonios: "Testimonios",
+            contacto: "Contacto",
+            heroTitle: "Braves: Demuestra tus Habilidades",
+            heroDesc: "Compite en desafíos emocionantes, ya sean virtuales o físicos, mejora tus habilidades y gana dinero real basándote en tu destreza. ¡La competencia del futuro está aquí!",
+            appStore: "Descargar en App Store",
+            googlePlay: "Disponible en Google Play",
+            reconocimientos: "Reconocimientos",
+            premio: "Ganadores del Premio de Innovación otorgado por ANDE (Agencia Nacional de Desarrollo) y ANII (Agencia Nacional de Investigación e Innovación) de Uruguay.",
+            comoFuncionaTitle: "Cómo Funciona",
+            elige: "Elige un Desafío",
+            eligeDesc: "Explora retos virtuales y físicos. Selecciona el que más te interese y prepárate para la acción.",
+            participa: "Participa",
+            participaDesc: "Paga la entrada, entrena y realiza tu intento oficial. Demuestra de qué estás hecho.",
+            ganaDinero: "Gana Dinero",
+            ganaDineroDesc: "Si alcanzas la meta, compartes el premio. Tu habilidad será recompensada con dinero real.",
+            caracteristicasTitle: "Características Únicas",
+            desafiosCompetitivos: "Desafíos Competitivos",
+            desafiosCompetitivosDesc: "Vive experiencias diversas: desde juegos virtuales de destreza hasta desafíos físicos reales.",
+            verificacionVideo: "Verificación por Video",
+            verificacionVideoDesc: "Graba tus intentos físicos con tu móvil y verifica tu logro ante toda la comunidad.",
+            seguridad: "Seguridad y Privacidad",
+            seguridadDesc: "Protegemos tu información con medidas avanzadas, respaldados por expertos en ciberseguridad.",
+            recompensas: "Recompensas Justas",
+            recompensasDesc: "Gana dinero basado en tu habilidad, sin azar. El mérito y la práctica son la clave.",
+            numeros: "Números de Braves",
+            jugadores: "Jugadores Activos",
+            desafiosCompletados: "Desafíos Completados",
+            partidasJugadas: "Partidas jugadas",
+            desafiosActivos: "Desafíos Activos",
+            verMas: "Ver más",
+            testimoniosTitle: "Lo que Dicen Nuestros Usuarios",
+            faqTitle: "Preguntas Frecuentes",
+            tienesDudas: "¿Tienes alguna duda?",
+            necesitasInfo: "Si necesitas más información, escríbenos a:",
+            email: "braves.mobile.app@gmail.com",
+            respuesta24h: "Te responderemos en menos de 24 horas.",
+            terminos: "Términos y Condiciones",
+            privacidad: "Política de Privacidad",
+            eliminarCuenta: "Eliminar Cuenta",
+            copyright: "© 2024 Braves. Todos los derechos reservados.",
+            modalTitle: "Próximamente en App Store",
+            modalDesc: "Pronto estará disponible en la App Store. Por ahora solo está disponible en Google Play."
+        },
+        pt: {
+            inicio: "Início",
+            comoFunciona: "Como Funciona",
+            caracteristicas: "Características",
+            desafios: "Desafios",
+            testimonios: "Depoimentos",
+            contacto: "Contato",
+            heroTitle: "Braves: Mostre suas Habilidades",
+            heroDesc: "Compita em desafios emocionantes, sejam virtuais ou físicos, melhore suas habilidades e ganhe dinheiro real baseado na sua destreza. A competição do futuro está aqui!",
+            appStore: "Baixar na App Store",
+            googlePlay: "Disponível no Google Play",
+            reconocimientos: "Reconhecimentos",
+            premio: "Vencedores do Prêmio de Inovação concedido pela ANDE (Agência Nacional de Desenvolvimento) e ANII (Agência Nacional de Pesquisa e Inovação) do Uruguai.",
+            comoFuncionaTitle: "Como Funciona",
+            elige: "Escolha um Desafio",
+            eligeDesc: "Explore desafios virtuais e físicos. Selecione o que mais lhe interessa e prepare-se para a ação.",
+            participa: "Participe",
+            participaDesc: "Pague a entrada, treine e faça sua tentativa oficial. Mostre do que você é capaz.",
+            ganaDinero: "Ganhe Dinheiro",
+            ganaDineroDesc: "Se você atingir a meta, compartilha o prêmio. Sua habilidade será recompensada com dinheiro real.",
+            caracteristicasTitle: "Características Únicas",
+            desafiosCompetitivos: "Desafios Competitivos",
+            desafiosCompetitivosDesc: "Viva experiências diversas: desde jogos virtuais de destreza até desafios físicos reais.",
+            verificacionVideo: "Verificação por Vídeo",
+            verificacionVideoDesc: "Grave suas tentativas físicas com seu celular e verifique sua conquista diante de toda a comunidade.",
+            seguridad: "Segurança e Privacidade",
+            seguridadDesc: "Protegemos suas informações com medidas avançadas, apoiados por especialistas em cibersegurança.",
+            recompensas: "Recompensas Justas",
+            recompensasDesc: "Ganhe dinheiro baseado em sua habilidade, sem sorte. O mérito e a prática são a chave.",
+            numeros: "Números do Braves",
+            jugadores: "Jogadores Ativos",
+            desafiosCompletados: "Desafios Completos",
+            partidasJugadas: "Partidas Jogadas",
+            desafiosActivos: "Desafios Ativos",
+            verMas: "Ver mais",
+            testimoniosTitle: "O que Dizem Nossos Usuários",
+            faqTitle: "Perguntas Frequentes",
+            tienesDudas: "Tem alguma dúvida?",
+            necesitasInfo: "Se você precisar de mais informações, escreva para:",
+            email: "braves.mobile.app@gmail.com",
+            respuesta24h: "Responderemos em menos de 24 horas.",
+            terminos: "Termos e Condições",
+            privacidad: "Política de Privacidade",
+            eliminarCuenta: "Excluir Conta",
+            copyright: "© 2024 Braves. Todos os direitos reservados.",
+            modalTitle: "Em Breve na App Store",
+            modalDesc: "Em breve estará disponível na App Store. Por enquanto, está disponível apenas no Google Play."
+        },
+        en: {
+            inicio: "Home",
+            comoFunciona: "How It Works",
+            caracteristicas: "Features",
+            desafios: "Challenges",
+            testimonios: "Testimonials",
+            contacto: "Contact",
+            heroTitle: "Braves: Show Your Skills",
+            heroDesc: "Compete in exciting challenges, whether virtual or physical, improve your skills and earn real money based on your prowess. The competition of the future is here!",
+            appStore: "Download on the App Store",
+            googlePlay: "Available on Google Play",
+            reconocimientos: "Recognitions",
+            premio: "Winners of the Innovation Award granted by ANDE (National Development Agency) and ANII (National Agency for Research and Innovation) of Uruguay.",
+            comoFuncionaTitle: "How It Works",
+            elige: "Choose a Challenge",
+            eligeDesc: "Explore virtual and physical challenges. Select the one that interests you the most and get ready for action.",
+            participa: "Participate",
+            participaDesc: "Pay the entry fee, train, and make your official attempt. Show what you're made of.",
+            ganaDinero: "Earn Money",
+            ganaDineroDesc: "If you reach the goal, you share the prize. Your skill will be rewarded with real money.",
+            caracteristicasTitle: "Unique Features",
+            desafiosCompetitivos: "Competitive Challenges",
+            desafiosCompetitivosDesc: "Experience a wide variety: from virtual skill-based games to real physical challenges.",
+            verificacionVideo: "Video Verification",
+            verificacionVideoDesc: "Record your physical attempts with your phone and verify your achievement before the entire community.",
+            seguridad: "Security & Privacy",
+            seguridadDesc: "We protect your information with advanced measures, backed by cybersecurity experts.",
+            recompensas: "Fair Rewards",
+            recompensasDesc: "Earn money based on your skill, without luck. Merit and practice are key.",
+            numeros: "Braves Numbers",
+            jugadores: "Active Players",
+            desafiosCompletados: "Completed Challenges",
+            partidasJugadas: "Matches Played",
+            desafiosActivos: "Active Challenges",
+            verMas: "See more",
+            testimoniosTitle: "What Our Users Say",
+            faqTitle: "Frequently Asked Questions",
+            tienesDudas: "Have any questions?",
+            necesitasInfo: "If you need more information, write to:",
+            email: "braves.mobile.app@gmail.com",
+            respuesta24h: "We'll get back to you in less than 24 hours.",
+            terminos: "Terms and Conditions",
+            privacidad: "Privacy Policy",
+            eliminarCuenta: "Delete Account",
+            copyright: "© 2024 Braves. All rights reserved.",
+            modalTitle: "Coming Soon on App Store",
+            modalDesc: "It will be available soon on the App Store. For now, it is only available on Google Play."
+        }
+    };
+
+    function applyTranslations(lang) {
+        document.querySelector('.text-inicio').textContent = texts[lang].inicio;
+        document.querySelector('.text-como-funciona').textContent = texts[lang].comoFunciona;
+        document.querySelector('.text-caracteristicas').textContent = texts[lang].caracteristicas;
+        document.querySelector('.text-desafios').textContent = texts[lang].desafios;
+        document.querySelector('.text-testimonios').textContent = texts[lang].testimonios;
+        document.querySelector('.text-contacto').textContent = texts[lang].contacto;
+        document.querySelector('.text-hero-title').textContent = texts[lang].heroTitle;
+        document.querySelector('.text-hero-description').textContent = texts[lang].heroDesc;
+        document.querySelector('.text-app-store').alt = texts[lang].appStore;
+        document.querySelector('.text-google-play').alt = texts[lang].googlePlay;
+        document.querySelector('.text-reconocimientos').textContent = texts[lang].reconocimientos;
+        document.querySelector('.text-premio').textContent = texts[lang].premio;
+        document.querySelector('.text-como-funciona-title').textContent = texts[lang].comoFuncionaTitle;
+        document.querySelector('.text-elige').textContent = texts[lang].elige;
+        document.querySelector('.text-elige-desc').textContent = texts[lang].eligeDesc;
+        document.querySelector('.text-participa').textContent = texts[lang].participa;
+        document.querySelector('.text-participa-desc').textContent = texts[lang].participaDesc;
+        document.querySelector('.text-gana-dinero').textContent = texts[lang].ganaDinero;
+        document.querySelector('.text-gana-dinero-desc').textContent = texts[lang].ganaDineroDesc;
+        document.querySelector('.text-caracteristicas-title').textContent = texts[lang].caracteristicasTitle;
+        document.querySelector('.text-desafios-competitivos').textContent = texts[lang].desafiosCompetitivos;
+        document.querySelector('.text-desafios-competitivos-desc').textContent = texts[lang].desafiosCompetitivosDesc;
+        document.querySelector('.text-verificacion-video').textContent = texts[lang].verificacionVideo;
+        document.querySelector('.text-verificacion-video-desc').textContent = texts[lang].verificacionVideoDesc;
+        document.querySelector('.text-seguridad').textContent = texts[lang].seguridad;
+        document.querySelector('.text-seguridad-desc').textContent = texts[lang].seguridadDesc;
+        document.querySelector('.text-recompensas').textContent = texts[lang].recompensas;
+        document.querySelector('.text-recompensas-desc').textContent = texts[lang].recompensasDesc;
+        document.querySelector('.text-numeros').textContent = texts[lang].numeros;
+        document.querySelector('.text-jugadores').textContent = texts[lang].jugadores;
+        document.querySelector('.text-desafios-completados').textContent = texts[lang].desafiosCompletados;
+        document.querySelector('.text-partidas-jugadas').textContent = texts[lang].partidasJugadas;
+        document.querySelector('.text-desafios-activos').textContent = texts[lang].desafiosActivos;
+        // Los botones "Ver más" se generan dinámicamente, se podrían traducir en el popup.
+        document.querySelector('.text-testimonios-title').textContent = texts[lang].testimoniosTitle;
+        document.querySelector('.text-faq-title').textContent = texts[lang].faqTitle;
+        document.querySelector('.text-tienes-dudas').textContent = texts[lang].tienesDudas;
+        document.querySelector('.text-necesitas-info').textContent = texts[lang].necesitasInfo;
+        document.querySelector('.text-email').textContent = texts[lang].email;
+        document.querySelector('.text-respuesta-24h').textContent = texts[lang].respuesta24h;
+        document.querySelector('.text-terminos').textContent = texts[lang].terminos;
+        document.querySelector('.text-privacidad').textContent = texts[lang].privacidad;
+        document.querySelector('.text-eliminar-cuenta').textContent = texts[lang].eliminarCuenta;
+        document.querySelector('.text-copyright').textContent = texts[lang].copyright;
+        document.querySelector('.text-modal-title').textContent = texts[lang].modalTitle;
+        document.querySelector('.text-modal-desc').textContent = texts[lang].modalDesc;
+    }
+
+    // Detectar país del usuario
+    fetch('https://ipapi.co/json/').then(response=>response.json()).then(data=>{
+        const country = data.country_code;
+        const ptCountries = ['BR','PT'];
+        const esCountries = ['ES','UY','AR','MX','CL','CO','PE','BO','PY','VE','CR','DO','EC','GT','HN','NI','PA','PR','SV'];
+        let lang = 'en'; // Por defecto inglés
+        if (ptCountries.includes(country)) {
+            lang = 'pt';
+        } else if (esCountries.includes(country)) {
+            lang = 'es';
+        } else {
+            lang = 'en';
+        }
+        applyTranslations(lang);
+    }).catch(()=>{
+        // Si falla la detección, inglés por defecto
+        applyTranslations('en');
     });
 });
