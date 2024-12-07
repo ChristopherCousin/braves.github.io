@@ -17,9 +17,11 @@
         .content h1 {
             color: #FF6B6B;
         }
-        .content ul {
-            list-style-type: disc;
-            padding-left: 20px;
+
+        /* Aseguramos que el enlace del email sea blanco */
+        .content a[href^="mailto:"] {
+            color: #FFFFFF;
+            text-decoration: underline; /* Opcional: para que se note que es un enlace */
         }
     </style>
 </head>
