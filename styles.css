@@ -1014,3 +1014,62 @@ main {
         flex-basis: 100%;
     }
 }
+
+/* Ajustes básicos para móvil */
+@media (max-width: 768px) {
+    html {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+        height: 100%;
+    }
+
+    body {
+        position: relative;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+        touch-action: pan-y pinch-zoom; /* Permite scroll vertical y zoom */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Mejoras para el menú móvil */
+    nav ul.show {
+        position: absolute;
+        max-height: calc(100vh - 60px);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain; /* Previene scroll del body mientras se scrollea el menú */
+    }
+
+    /* Ajustes para elementos fijos */
+    header {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+
+    /* Mejoras para el contenedor principal */
+    main {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Ajustes para secciones con scroll horizontal */
+    .testimonial-carousel {
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    /* Desactivar animaciones en scroll para mejorar rendimiento */
+    .step:hover,
+    .feature:hover,
+    .challenge-card:hover {
+        transform: none;
+    }
+}
