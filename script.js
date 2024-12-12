@@ -317,9 +317,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateValue("userCount", 0, 426, 2000);
-                    animateValue("challengeCount", 0, 14, 2500);
-                    animateValue("prizeCount", 0, 15530, 3000); // Aunque no esté visible, dejamos el código igual
+                    animateValue("userCount", 0, 3652, 2000);
+                    animateValue("challengeCount", 0, 21, 2500);
+                    animateValue("gamesPlayed", 0, 56530, 3000);
                     observer.unobserve(entry.target);
                 }
             });
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', function() {
             recompensas: "Recompensas Justas",
             recompensasDesc: "Recibe recompensas basadas en tu habilidad, sin azar. El mérito y la práctica son la clave.",
             numeros: "Números de Braves",
-            jugadores: "Jugadores Activos",
+            jugadores: "Jugadores",
             desafiosCompletados: "Desafíos Completados",
             partidasJugadas: "Partidas jugadas",
             desafiosActivos: "Desafíos Activos",
@@ -497,7 +497,7 @@ document.addEventListener('DOMContentLoaded', function() {
             recompensas: "Recompensas Justas",
             recompensasDesc: "Receba recompensas baseadas em sua habilidade, sem sorte. O mérito e a prática são a chave.",
             numeros: "Números do Braves",
-            jugadores: "Jogadores Ativos",
+            jugadores: "Jogadores",
             desafiosCompletados: "Desafios Completos",
             partidasJugadas: "Partidas Jogadas",
             desafiosActivos: "Desafios Ativos",
@@ -546,7 +546,7 @@ document.addEventListener('DOMContentLoaded', function() {
             recompensas: "Fair Rewards",
             recompensasDesc: "Earn rewards based on your skill, without luck. Merit and practice are key.",
             numeros: "Braves Numbers",
-            jugadores: "Active Players",
+            jugadores: "Players",
             desafiosCompletados: "Completed Challenges",
             partidasJugadas: "Matches Played",
             desafiosActivos: "Active Challenges",
