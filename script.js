@@ -465,7 +465,11 @@ document.addEventListener('DOMContentLoaded', function() {
             copyright: "© 2024 Braves. Todos los derechos reservados.",
             modalTitle: "Próximamente en App Store",
             modalDesc: "Pronto estará disponible en la App Store. Por ahora solo está disponible en Google Play.",
-            christopherDesc: "Emprendedor tecnológico con una sólida trayectoria en el desarrollo de productos digitales. Fundador de múltiples startups exitosas, incluyendo Virai. Su experiencia en Banco Santander y su dominio en ciberseguridad garantizan soluciones seguras y escalables."
+            christopherDesc: "Emprendedor tecnológico con una sólida trayectoria en el desarrollo de productos digitales. Fundador de múltiples startups exitosas, incluyendo Virai. Su experiencia en Banco Santander y su dominio en ciberseguridad garantizan soluciones seguras y escalables.",
+            equipo: "Nuestro Equipo",
+            teamIntro: "Detrás de Braves hay un equipo que combina experiencia emprendedora con excelencia técnica. Unimos conocimiento en desarrollo de productos móviles, seguridad y tecnologías emergentes para crear una plataforma innovadora y confiable.",
+            cofundador: "Co-Fundador",
+            santiagoDesc: "Ingeniero (École Polytechnique & Télécom Paris), con experiencia en Orange como Mobile Product Manager. Especialista en productos móviles y tecnologías emergentes (5G). Su visión estratégica e innovadora impulsa el desarrollo y crecimiento de Braves."
         },
         pt: {
             // No se cambia el contenido, se mantiene igual
@@ -515,7 +519,11 @@ document.addEventListener('DOMContentLoaded', function() {
             copyright: "© 2024 Braves. Todos os direitos reservados.",
             modalTitle: "Em Breve na App Store",
             modalDesc: "Em breve estará disponível na App Store. Por enquanto, está disponível apenas no Google Play.",
-            christopherDesc: "Empreendedor tecnológico com sólida experiência no desenvolvimento de produtos digitais. Fundador de várias startups bem-sucedidas, incluindo Virai. Sua experiência no Banco Santander e seu domínio em cibersegurança garantem soluções seguras e escaláveis."
+            christopherDesc: "Empreendedor tecnológico com sólida experiência no desenvolvimento de produtos digitais. Fundador de várias startups bem-sucedidas, incluindo Virai. Sua experiência no Banco Santander e seu domínio em cibersegurança garantem soluções seguras e escaláveis.",
+            equipo: "Nossa Equipe",
+            teamIntro: "Por trás do Braves há uma equipe que combina experiência empreendedora com excelência técnica. Unimos conhecimento em desenvolvimento de produtos móveis, segurança e tecnologias emergentes para criar uma plataforma inovadora e confiável.",
+            cofundador: "Co-Fundador",
+            santiagoDesc: "Engenheiro (École Polytechnique & Télécom Paris), com experiência na Orange como Mobile Product Manager. Especialista em produtos móveis e tecnologias emergentes (5G). Sua visão estratégica e inovadora impulsiona o desenvolvimento e crescimento do Braves."
         },
         en: {
             // No se cambia el contenido, se mantiene igual adaptado anteriormente
@@ -565,7 +573,11 @@ document.addEventListener('DOMContentLoaded', function() {
             copyright: "© 2024 Braves. All rights reserved.",
             modalTitle: "Coming Soon on App Store",
             modalDesc: "It will be available soon on the App Store. For now, it is only available on Google Play.",
-            christopherDesc: "Tech entrepreneur with a solid track record in digital product development. Founder of multiple successful startups, including Virai. His experience at Banco Santander and expertise in cybersecurity ensure secure and scalable solutions."
+            christopherDesc: "Tech entrepreneur with a solid track record in digital product development. Founder of multiple successful startups, including Virai. His experience at Banco Santander and expertise in cybersecurity ensure secure and scalable solutions.",
+            equipo: "Our Team",
+            teamIntro: "Behind Braves there's a team that combines entrepreneurial experience with technical excellence. We unite knowledge in mobile product development, security, and emerging technologies to create an innovative and reliable platform.",
+            cofundador: "Co-Founder",
+            santiagoDesc: "Engineer (École Polytechnique & Télécom Paris), with experience at Orange as Mobile Product Manager. Specialist in mobile products and emerging technologies (5G). His strategic and innovative vision drives Braves' development and growth."
         }
     };
 
@@ -616,6 +628,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.text-modal-title').textContent = texts[lang].modalTitle;
         document.querySelector('.text-modal-desc').textContent = texts[lang].modalDesc;
         document.querySelector('.text-christopher-desc').textContent = texts[lang].christopherDesc;
+        document.querySelector('.text-equipo').textContent = texts[lang].equipo;
+        document.querySelector('.text-team-intro').textContent = texts[lang].teamIntro;
+        document.querySelectorAll('.text-cofundador').forEach(el => el.textContent = texts[lang].cofundador);
+        document.querySelector('.text-santiago-desc').textContent = texts[lang].santiagoDesc;
     }
 
     // Detectar país del usuario
