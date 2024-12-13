@@ -26,6 +26,12 @@
     <!-- Canonical Link -->
     <link rel="canonical" href="https://www.bravesapp.com">
 
+    <script>
+        if (window.location.hostname === "www.bravesapp.com") {
+            window.location.replace("https://bravesapp.com" + window.location.pathname + window.location.search);
+        }
+    </script>
+
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
