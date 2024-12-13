@@ -464,7 +464,8 @@ document.addEventListener('DOMContentLoaded', function() {
             eliminarCuenta: "Eliminar Cuenta",
             copyright: "© 2024 Braves. Todos los derechos reservados.",
             modalTitle: "Próximamente en App Store",
-            modalDesc: "Pronto estará disponible en la App Store. Por ahora solo está disponible en Google Play."
+            modalDesc: "Pronto estará disponible en la App Store. Por ahora solo está disponible en Google Play.",
+            christopherDesc: "Emprendedor tecnológico con una sólida trayectoria en el desarrollo de productos digitales. Fundador de múltiples startups exitosas, incluyendo Virai. Su experiencia en Banco Santander y su dominio en ciberseguridad garantizan soluciones seguras y escalables."
         },
         pt: {
             // No se cambia el contenido, se mantiene igual
@@ -513,7 +514,8 @@ document.addEventListener('DOMContentLoaded', function() {
             eliminarCuenta: "Excluir Conta",
             copyright: "© 2024 Braves. Todos os direitos reservados.",
             modalTitle: "Em Breve na App Store",
-            modalDesc: "Em breve estará disponível na App Store. Por enquanto, está disponível apenas no Google Play."
+            modalDesc: "Em breve estará disponível na App Store. Por enquanto, está disponível apenas no Google Play.",
+            christopherDesc: "Empreendedor tecnológico com sólida experiência no desenvolvimento de produtos digitais. Fundador de várias startups bem-sucedidas, incluindo Virai. Sua experiência no Banco Santander e seu domínio em cibersegurança garantem soluções seguras e escaláveis."
         },
         en: {
             // No se cambia el contenido, se mantiene igual adaptado anteriormente
@@ -562,7 +564,8 @@ document.addEventListener('DOMContentLoaded', function() {
             eliminarCuenta: "Delete Account",
             copyright: "© 2024 Braves. All rights reserved.",
             modalTitle: "Coming Soon on App Store",
-            modalDesc: "It will be available soon on the App Store. For now, it is only available on Google Play."
+            modalDesc: "It will be available soon on the App Store. For now, it is only available on Google Play.",
+            christopherDesc: "Tech entrepreneur with a solid track record in digital product development. Founder of multiple successful startups, including Virai. His experience at Banco Santander and expertise in cybersecurity ensure secure and scalable solutions."
         }
     };
 
@@ -612,6 +615,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.text-copyright').textContent = texts[lang].copyright;
         document.querySelector('.text-modal-title').textContent = texts[lang].modalTitle;
         document.querySelector('.text-modal-desc').textContent = texts[lang].modalDesc;
+        document.querySelector('.text-christopher-desc').textContent = texts[lang].christopherDesc;
     }
 
     // Detectar país del usuario
