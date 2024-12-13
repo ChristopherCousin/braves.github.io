@@ -637,19 +637,24 @@ document.addEventListener('DOMContentLoaded', function() {
     // Detectar país del usuario
     fetch('https://ipapi.co/json/').then(response=>response.json()).then(data=>{
         const country = data.country_code;
+        console.log('País detectado:', country);
         const ptCountries = ['BR','PT'];
         const esCountries = ['ES','UY','AR','MX','CL','CO','PE','BO','PY','VE','CR','DO','EC','GT','HN','NI','PA','PR','SV'];
         let lang = 'en'; // Por defecto inglés
         if (ptCountries.includes(country)) {
             lang = 'pt';
+            console.log('Idioma seleccionado: Portugués');
         } else if (esCountries.includes(country)) {
             lang = 'es';
+            console.log('Idioma seleccionado: Español');
         } else {
             lang = 'en';
+            console.log('Idioma seleccionado: Inglés');
         }
         applyTranslations(lang);
-    }).catch(()=>{
+    }).catch((error)=>{
         // Si falla la detección, inglés por defecto
+        console.error('Error al detectar el país:', error);
         applyTranslations('en');
     });
 });
