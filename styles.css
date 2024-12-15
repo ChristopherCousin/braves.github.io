@@ -256,21 +256,26 @@ h2 {
 }
 
 .steps {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 2rem;
+    position: relative;
 }
 
 .step {
-    flex-basis: 30%;
-    text-align: center;
-    padding: 2.5rem;
-    background-color: var(--card-background);
+    background: rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    transition: all 0.4s ease;
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .step::before {
@@ -278,63 +283,211 @@ h2 {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--gradient-primary);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-}
-
-.step:hover::before {
-    transform: scaleX(1);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .step:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 107, 107, 0.2);
+}
+
+.step:hover::before {
+    opacity: 1;
 }
 
 .step-icon {
-    width: 80px;
-    height: 80px;
-
-    color: var(--text-color);
-    font-size: 2rem;
-    font-weight: 700;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.step:hover .step-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+}
+
+.step-icon::after {
+    content: '';
+    position: absolute;
+    width: calc(100% + 20px);
+    height: calc(100% + 20px);
+    border: 2px dashed var(--primary-color);
+    border-radius: 50%;
+    animation: spin 10s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.step:hover .step-icon::after {
+    opacity: 1;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.step h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.step p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+    position: relative;
+    z-index: 1;
 }
 
 .feature-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 2rem;
 }
 
 .feature {
-    background: var(--card-background);
-    padding: 2.5rem;
+    background: rgba(42, 42, 42, 0.8);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
-    box-shadow: var(--box-shadow);
-    transition: all 0.4s ease;
+    padding: 2.5rem;
     position: relative;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
 }
 
 .feature:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 107, 107, 0.2);
+}
+
+.feature:hover::before {
+    transform: scaleY(1);
 }
 
 .feature-icon {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1.5rem;
-    background: var(--gradient-primary);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: all 0.4s ease;
+}
+
+.feature:hover .feature-icon {
+    transform: scale(1.1) rotate(10deg);
+    filter: drop-shadow(0 0 10px rgba(255, 107, 107, 0.5));
+}
+
+.feature h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.feature p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .steps, .feature-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .step, .feature {
+        padding: 2rem;
+    }
+
+    .step-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .step h3, .feature h3 {
+        font-size: 1.5rem;
+    }
+
+    .step p, .feature p {
+        font-size: 1rem;
+    }
+}
+
+/* Add connecting lines between steps */
+.steps::after {
+    content: '';
+    position: absolute;
+    top: 30%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent,
+        var(--primary-color),
+        var(--secondary-color),
+        transparent
+    );
+    opacity: 0.3;
+    z-index: 0;
+}
+
+.how-it-works::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(circle at 50% 50%, var(--primary-color) 1px, transparent 1px),
+        radial-gradient(circle at 50% 50%, var(--secondary-color) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    animation: float-particle 15s linear infinite;
+    opacity: 0.1;
 }
 
 .demo-video {
