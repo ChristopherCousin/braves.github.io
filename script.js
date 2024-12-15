@@ -692,7 +692,7 @@ function initializeStatistics() {
                 
                 // Animate each statistic with different delays
                 setTimeout(() => {
-                    animateValue(document.getElementById('userCount'), 0, 500, 2000);
+                    animateValue(document.getElementById('userCount'), 0, 2530, 2000);
                 }, 200);
                 
                 setTimeout(() => {
