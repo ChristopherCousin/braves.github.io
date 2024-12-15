@@ -696,7 +696,7 @@ function initializeStatistics() {
                 }, 200);
                 
                 setTimeout(() => {
-                    animateValue(document.getElementById('challengeCount'), 0, 25000, 2000);
+                    animateValue(document.getElementById('challengeCount'), 0, 34, 2000);
                 }, 400);
                 
                 setTimeout(() => {
