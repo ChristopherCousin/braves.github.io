@@ -194,19 +194,40 @@
 
         <!-- Estadísticas -->
         <section id="statistics" class="statistics">
-            <h2 class="text-numeros">Números de Braves</h2>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <h3 id="userCount" aria-live="polite">0</h3>
-                    <p class="text-jugadores">Jugadores</p>
-                </div>
-                <div class="stat-item">
-                    <h3 id="challengeCount" aria-live="polite">0</h3>
-                    <p class="text-desafios-completados">Desafíos Completados</p>
-                </div>
-                <div class="stat-item">
-                    <h3 id="gamesPlayed" aria-live="polite">0</h3>
-                    <p class="text-partidas-jugadas">Partidas jugadas</p>
+            <div class="stats-background"></div>
+            <div class="stats-content">
+                <h2 class="text-numeros">Números que Nos Definen</h2>
+                <div class="stats-container">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="0">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">
+                            <h3 id="userCount" aria-live="polite">0</h3>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <p class="text-jugadores">Jugadores Activos</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-number">
+                            <h3 id="challengeCount" aria-live="polite">0</h3>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <p class="text-desafios-completados">Desafíos Completados</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-number">
+                            <h3 id="gamesPlayed" aria-live="polite">0</h3>
+                            <span class="stat-plus">+</span>
+                        </div>
+                        <p class="text-partidas-jugadas">Partidas Jugadas</p>
+                    </div>
                 </div>
             </div>
         </section>
