@@ -10,7 +10,51 @@
     --card-background: #2A2A2A;
     --gradient-primary: linear-gradient(135deg, var(--primary-color), #FF8E8E);
     --gradient-dark: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+    --gradient-section: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    --gradient-footer: linear-gradient(180deg, #2A2A2A, #1E1E1E);
     --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+}
+
+/* Estilos base para todas las secciones */
+section {
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 0;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 50%, rgba(78, 205, 196, 0.1), transparent 60%),
+        radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.1), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Separadores entre secciones */
+section:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 107, 107, 0.3), 
+        transparent
+    );
+    z-index: 2;
 }
 
 html {
@@ -216,7 +260,7 @@ nav ul li a:hover::after {
 }
 
 .awards {
-    background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-section);
     padding: 6rem 0;
     text-align: center;
     position: relative;
@@ -663,7 +707,7 @@ h2 {
 }
 
 .testimonials {
-    background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-section);
     padding: 5rem 0;
     position: relative;
     overflow: hidden;
@@ -858,7 +902,7 @@ h2 {
 
 .faq {
     padding: 5rem 0;
-    background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-section);
     position: relative;
     overflow: hidden;
 }
@@ -982,7 +1026,7 @@ h2 {
 }
 
 .challenges {
-    background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-section);
     padding: 5rem 0;
     position: relative;
     overflow: hidden;
@@ -1355,7 +1399,7 @@ h2 {
     text-align: center;
     padding: 8rem 0;
     position: relative;
-    background: linear-gradient(145deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-section);
     overflow: hidden;
 }
 
@@ -1666,7 +1710,7 @@ h2 {
 }
 
 footer {
-    background: linear-gradient(180deg, #2A2A2A, #1E1E1E);
+    background: var(--gradient-footer);
     color: var(--text-color);
     padding: 4rem 0 2rem;
     position: relative;
@@ -1826,7 +1870,7 @@ footer::before {
 .statistics {
     position: relative;
     padding: 8rem 0;
-    background: var(--gradient-dark);
+    background: var(--gradient-section);
     overflow: hidden;
 }
 
