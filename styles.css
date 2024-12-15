@@ -7,6 +7,10 @@
     --background-color: #1E1E1E;
     --text-color: #FFFFFF;
     --button-color: #007AFF;
+    --card-background: #2A2A2A;
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), #FF8E8E);
+    --gradient-dark: linear-gradient(135deg, #1E1E1E, #2A2A2A);
+    --box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 html {
@@ -90,6 +94,8 @@ header {
     width: 100%;
     z-index: 1000;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 nav {
@@ -97,66 +103,97 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 5%;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .logo img {
     height: 40px;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
 }
 
 nav ul {
     display: flex;
     list-style: none;
-}
-
-nav ul li {
-    margin-left: 2rem;
+    gap: 2rem;
 }
 
 nav ul li a {
     text-decoration: none;
     color: var(--text-color);
-    font-weight: 600;
-    transition: color 0.3s ease;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
 }
 
-nav ul li a:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .hero {
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #1E1E1E, #2A2A2A);
-    padding: 7rem 0 5rem;
-    overflow: visible;
-    width: 100%;
-    max-width: 100%;
+    background: var(--gradient-dark);
+    padding: 8rem 0 6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(78, 205, 196, 0.1), transparent 50%);
+    pointer-events: none;
 }
 
 .hero-content {
     flex: 1;
     padding: 0 5%;
-    color: var(--text-color);
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease-out;
 }
 
 .hero p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 1.3rem;
+    margin-bottom: 2.5rem;
     max-width: 600px;
+    opacity: 0.9;
+    animation: slideInFromLeft 1s ease-out 0.3s both;
 }
-
-
-
-
-
 
 .hero-image {
     flex: 1;
@@ -227,15 +264,34 @@ h2 {
 .step {
     flex-basis: 30%;
     text-align: center;
-    padding: 2rem;
-    background-color: #2A2A2A;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 2.5rem;
+    background-color: var(--card-background);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.step::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.step:hover::before {
+    transform: scaleX(1);
 }
 
 .step:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .step-icon {
@@ -259,22 +315,26 @@ h2 {
 }
 
 .feature {
-    background-color: #2A2A2A;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease;
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 .feature:hover {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .feature-icon {
-    font-size: 3rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .demo-video {
@@ -311,19 +371,28 @@ h2 {
 }
 
 .testimonial-card {
-    flex: 0 0 300px;
-    scroll-snap-align: start;
-    background-color: #333333;
-    border-radius: 15px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    padding: 2rem;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--card-background);
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
+    transition: all 0.4s ease;
+    margin: 1rem;
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '"';
+    position: absolute;
+    top: 1rem;
+    left: 1.5rem;
+    font-size: 4rem;
+    color: var(--primary-color);
+    opacity: 0.2;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .testimonial-card p {
@@ -451,20 +520,26 @@ h2 {
 }
 
 .view-more-btn {
-    background-color: var(--button-color);
-    color: var(--text-color);
+    display: inline-block;
+    padding: 1rem 2rem;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease;
     border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 25px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    align-self: flex-start;
-    margin-top: auto;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
 }
 
 .view-more-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.view-more-btn:active {
+    transform: translateY(-1px);
 }
 
 .popup-overlay {
@@ -585,12 +660,21 @@ footer {
 }
 
 .statistics {
-    color: var(--text-color);
-    padding: 5rem 0;
+    background: var(--gradient-dark);
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
 }
 
-.statistics h2 {
-    color: var(--primary-color);
+.statistics::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.1), transparent 50%);
+    pointer-events: none;
 }
 
 .stats-container {
@@ -604,10 +688,16 @@ footer {
 .stat-item {
     text-align: center;
     padding: 2rem;
+    background: rgba(42, 42, 42, 0.6);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: var(--box-shadow);
 }
 
 .stat-item h3 {
-    font-size: 3rem;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
 }
 
@@ -617,19 +707,27 @@ footer {
 }
 
 .app-stores {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+    display: flex;
+    gap: 1.5rem;
+    animation: slideInFromLeft 1s ease-out 0.6s both;
+}
+
+.store-button {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.store-button:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1);
 }
 
 .store-button img {
-  height: 250px;
-  transition: transform 0.3s ease;
-  
+    height: 250px;
+    transition: transform 0.3s ease;
 }
 
 .store-button:hover img {
-  transform: scale(1.05);
+    transform: scale(1.05);
 }
 
 /* Ocultar el botón de menú hamburguesa por defecto */
