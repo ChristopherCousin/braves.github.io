@@ -131,13 +131,19 @@ document.addEventListener('DOMContentLoaded', function() {
         popupOverlay.classList.add('popup-overlay');
         popupOverlay.innerHTML = `
             <div class="popup-content">
-                <span class="close-popup">&times;</span>
+                <button class="close-popup" aria-label="Cerrar detalles del desafío">&times;</button>
                 <h3></h3>
                 <p class="full-description"></p>
-                <strong>Cómo Participar:</strong>
-                <ul class="how-to"></ul>
-                <strong>Reglas:</strong>
-                <ul class="rules"></ul>
+                <div class="popup-sections">
+                    <div class="popup-section">
+                        <strong>Cómo Participar</strong>
+                        <ul class="how-to"></ul>
+                    </div>
+                    <div class="popup-section">
+                        <strong>Reglas del Desafío</strong>
+                        <ul class="rules"></ul>
+                    </div>
+                </div>
             </div>
         `;
         document.body.appendChild(popupOverlay);
