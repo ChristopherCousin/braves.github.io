@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function() {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     animateValue("userCount", 0, 3652, 2000);
-                    animateValue("challengeCount", 0, 21, 2500);
+                    animateValue("challengeCount", 0, 26, 2500);
                     animateValue("gamesPlayed", 0, 56530, 3000);
                     observer.unobserve(entry.target);
                 }
@@ -663,55 +663,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Error al detectar el país:', error);
         applyTranslations('en');
     });
-});
-
-// Statistics Animation
-function animateValue(element, start, end, duration) {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-        if (!startTimestamp) startTimestamp = timestamp;
-        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-        const currentValue = Math.floor(progress * (end - start) + start);
-        element.textContent = currentValue.toLocaleString();
-        if (progress < 1) {
-            window.requestAnimationFrame(step);
-        }
-    };
-    window.requestAnimationFrame(step);
-}
-
-// Initialize statistics
-function initializeStatistics() {
-    const statsSection = document.querySelector('.statistics');
-    let animated = false;
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !animated) {
-                animated = true;
-                
-                // Animate each statistic with different delays
-                setTimeout(() => {
-                    animateValue(document.getElementById('userCount'), 0, 2530, 2000);
-                }, 200);
-                
-                setTimeout(() => {
-                    animateValue(document.getElementById('challengeCount'), 0, 34, 2000);
-                }, 400);
-                
-                setTimeout(() => {
-                    animateValue(document.getElementById('gamesPlayed'), 0, 100000, 2000);
-                }, 600);
-            }
-        });
-    }, {
-        threshold: 0.2
-    });
-
-    observer.observe(statsSection);
-}
-
-// Call the function when the document is ready
-document.addEventListener('DOMContentLoaded', () => {
-    initializeStatistics();
 });
