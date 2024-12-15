@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="challenge-card-content">
                     <h3>${challenge.title}</h3>
                     <p>${challenge.description}</p>
-                    <button class="view-more-btn" data-challenge-index="${index}">Ver más</button>
+                    <button class="view-more-btn" data-challenge-index="${index}"><span>Ver más</span></button>
                 </div>
             `;
             challengeSlider.appendChild(challengeCard);
