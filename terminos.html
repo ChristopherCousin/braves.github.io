@@ -8,18 +8,120 @@
     <style>
         .content {
             padding: 8rem 5%;
-            background-color: #2A2A2A;
+            background: linear-gradient(145deg, #2A2A2A, #232323);
             color: #FFFFFF;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            border-radius: 10px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .content h1, .content h2 {
+        
+        .content h1 {
             color: #FF6B6B;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
+        
+        .content h2 {
+            color: #FF6B6B;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.3);
+        }
+        
+        .content p, .content li {
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
         .content ul {
-            list-style-type: disc;
-            padding-left: 20px;
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .content ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .content ul li::before {
+            content: '•';
+            color: #FF6B6B;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .content a {
+            color: #FF6B6B;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed rgba(255, 107, 107, 0.5);
+        }
+        
+        .content a:hover {
+            color: #FF8E8E;
+            border-bottom-style: solid;
+        }
+        
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            color: white;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .subsection {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .subsection:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 4rem 1.5rem;
+                margin: 1rem;
+                border-radius: 15px;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+            }
+            
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content p, .content li {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -43,115 +145,226 @@
 
     <main>
         <section class="content">
-            <h1>Términos y Condiciones para Usuarios en Uruguay</h1>
+            <h1 class="text-terminos-title">Términos y Condiciones para Usuarios en Uruguay</h1>
 
-            <h2>Introducción</h2>
-            <p>Bienvenido a Braves, una aplicación móvil diseñada para ofrecerte desafíos emocionantes y la oportunidad de competir con otros usuarios. Estos términos y condiciones rigen tu acceso y uso de la aplicación Braves, incluyendo cualquier funcionalidad, contenido y servicios ofrecidos en o a través de Braves.</p>
-            <p>Al acceder o usar Braves, aceptas estar sujeto a estos términos y condiciones, nuestra Política de Privacidad, y cualquier otro término aplicable. Si no estás de acuerdo con alguno de estos términos, por favor no uses nuestra aplicación.</p>
-            
-            <h2>Registro de Usuario y Cuenta</h2>
-            <p>Para acceder a ciertas funcionalidades de Braves, necesitas registrarte y crear una cuenta de usuario. Al registrarte, aceptas proporcionar información verdadera, precisa y completa, y actualizarla según sea necesario. Eres responsable de mantener la confidencialidad de tu contraseña y de todas las actividades que ocurran bajo tu cuenta. Al registrarte, también aceptas que el equipo de Braves puede contactarte para resolver problemas técnicos o comerciales.</p>
-            
-            <h2>Restricción de Edad</h2>
-            <p>Braves está exclusivamente reservado para individuos mayores de 18 años. Al crear una cuenta y aceptar estos términos, confirmas que tienes al menos 18 años. Implementamos procedimientos robustos para verificar la edad de los usuarios, incluyendo la solicitud de documentos de identificación durante el proceso de registro. Nos reservamos el derecho de solicitar comprobante de edad en cualquier momento y suspender o cancelar permanentemente las cuentas de usuarios que no cumplan con este requisito de edad.</p>
-            
-            <h2>Uso de la Aplicación</h2>
-            <p>Braves ofrece desafíos virtuales y reales en los que puedes participar. Estos desafíos tienen reglas específicas y pueden implicar una tarifa de participación. Al participar, aceptas estas reglas y reconoces que los resultados y premios serán determinados en función del rendimiento y el cumplimiento de los criterios establecidos.</p>
-            
-            <h2>Juego Basado en Habilidad</h2>
-            <p>Braves opera exclusivamente como una plataforma de juegos basados en habilidades. Todos los desafíos y competiciones están diseñados de manera que el éxito depende principalmente de la destreza y habilidad del usuario, y no del azar. Al participar en nuestros desafíos, confirmas que entiendes y aceptas que se trata de juegos de habilidad y que cumples con las leyes aplicables en tu jurisdicción.</p>
-            
-            <h2>Conexión a Internet</h2>
-            <p>Braves está diseñado para ser usado con una conexión a internet continua. Si tu conexión se pierde durante un juego y la sesión no se registra, Braves no será responsable de esta pérdida de conexión, y la tarifa de participación puede no ser reembolsada.</p>
-            
-            <h2>Permisos de Cámara</h2>
-            <p>Para participar en los desafíos reales de Braves, debes otorgar permisos de acceso a la cámara en tu dispositivo. Este permiso es esencial para una participación efectiva en los desafíos y para la funcionalidad general de la aplicación. Si eliges no aceptar estos permisos de cámara, podrías enfrentarte a situaciones donde se te cobre por participar en un desafío sin poder participar efectivamente en él.</p>
-            <p>Si se te cobró por un desafío sin participar debido a no aceptar los permisos de cámara, es crucial que nos contactes en <a href="mailto:info@bravesapp.com" style="color:#ffffff;">info@bravesapp.com</a>. Evaluaremos tu caso individualmente para proporcionar una resolución adecuada, que puede incluir un reembolso o crédito para futuros desafíos, dependiendo de tus circunstancias específicas.</p>
-            
-            <h2>Pagos y Premios</h2>
-            <p>Los desafíos en Braves requieren pago para participar. Aceptas que todos los pagos son finales y no reembolsables, a menos que se especifique lo contrario. Los premios se distribuirán de acuerdo con las reglas de cada desafío y pueden estar sujetas a condiciones adicionales, como la verificación de identidad.</p>
-            
-            <h2>Tarifas</h2>
-            <p>Al aceptar estos términos, reconoces y aceptas que Braves se reserva el derecho de aplicar una tarifa del 25% sobre las ganancias. Esta tarifa se deducirá del monto total del premio antes de su distribución al ganador. Además, ten en cuenta que el uso de la pasarela de pago Stripe para procesar transacciones financieras puede incurrir en tarifas adicionales, determinadas y cobradas por Stripe. Estas tarifas adicionales también pueden aplicarse y deducirse del premio antes de su distribución.</p>
-            
-            <h2>Retiro de Premios</h2>
-            <p>Para retirar tus ganancias de Braves, el monto mínimo de retiro es de 250 pesos, y se cobrará una tarifa del 5% al retirar dinero de la billetera. Si tus premios acumulados no alcanzan el umbral mínimo, te sugerimos continuar participando en desafíos hasta que tu monto total de premios sea suficiente para proceder con el retiro.</p>
-            
-            <h2>Responsabilidad Fiscal</h2>
-            <p>Los premios y ganancias obtenidos a través de Braves pueden estar sujetos a impuestos según las leyes fiscales de Uruguay. Es tu responsabilidad cumplir con todas las obligaciones fiscales aplicables y consultar con un asesor fiscal si es necesario.</p>
-            
-            <h2>Eliminación de Cuenta y Datos Personales</h2>
-            <p>En Braves, tomamos muy en serio tu privacidad y tus derechos sobre los datos. Si decides eliminar tu cuenta y todos los datos personales asociados, estamos aquí para asistirte. Ten en cuenta que si no retiras fondos antes de eliminar la cuenta, los perderás sin posibilidad de recuperación.</p>
-            
-            <h2>Privacidad y Protección de Datos</h2>
-            <p>En Braves, respetamos tu privacidad y nos comprometemos a proteger tu información personal de acuerdo con la Ley N° 18.331 de Protección de Datos Personales y Acción de Habeas Data de Uruguay. Para más detalles sobre cómo recopilamos, usamos y protegemos tu información, por favor revisa nuestra Política de Privacidad.</p>
-            
-            <h2>Propiedad Intelectual</h2>
-            <p>Todo el contenido en Braves, incluyendo texto, gráficos, logotipos, iconos, imágenes, clips de audio y software, es propiedad de Braves o se usa bajo licencia y está protegido por las leyes de propiedad intelectual de Uruguay. No puedes usar, copiar, modificar o distribuir dicho contenido sin nuestro permiso expreso.</p>
-            
-            <h2>Resolución de Disputas</h2>
-            <p>En caso de cualquier disputa derivada del uso de Braves, los usuarios acuerdan intentar resolver el conflicto de manera amistosa mediante comunicación directa con nuestro equipo de soporte.</p>
-            
-            <h2>RESOLUCIÓN DE DISPUTAS ESPECÍFICAS REGULACIONES FINANCIERAS</h2>
-            <p>- Cumplimiento con la Ley de Inclusión Financiera (Ley 19.210).<br>
-            - Operaciones supervisadas según normativas del BCU.<br>
-            - Registros de transacciones según requisitos legales.<br>
-            - Declaración de origen de fondos cuando sea requerido.</p>
-            <p>Disputas relacionadas con resultados de juegos:<br>
-            - Todas las disputas deben reportarse dentro de las 24 horas posteriores al evento.<br>
-            - La revisión de resultados disputados se realizará en las siguientes 24 horas.<br>
-            - Todas las decisiones de disputas se basarán en evidencia de video/capturas de pantalla.<br>
-            - La decisión final corresponde al equipo de Braves.<br>
-            - El proceso de revisión incluirá:</p>
-            <ul>
-                <li>Análisis del registro de la partida.</li>
-                <li>Revisión de la evidencia proporcionada.</li>
-                <li>Verificación técnica del funcionamiento del sistema.</li>
-                <li>Evaluación de las condiciones de conexión.</li>
-            </ul>
-            
-            <h2>Proceso de Pagos y Reembolsos</h2>
-            <p>1. Verificación de Pagos:<br>
-               - Cada transacción recibirá una confirmación inmediata.<br>
-               - El historial de transacciones estará disponible por 90 días.<br>
-               - Los pagos se procesarán solo después de la verificación completa.</p>
-            <p>2. Proceso de Disputa de Pagos:<br>
-               - Reporte inicial dentro de las 24 horas.<br>
-               - Respuesta inicial en 48 horas.<br>
-               - Revisión completa en 7 días hábiles.<br>
-               - Resolución y reembolso (si aplica) en 15 días hábiles.</p>
-            <p>3. Medidas de Seguridad en Pagos:<br>
-               - Todas las transacciones están encriptadas.<br>
-               - Verificación multi-factor para retiros.<br>
-               - Monitoreo de fraude 24/7.<br>
-               - Límites de transacción por seguridad.</p>
-            
-            <h2>Cancelación y Suspensión</h2>
-            <p>Nos reservamos el derecho de:<br>
-            - Suspender cuentas temporalmente ante actividad sospechosa.<br>
-            - Cancelar cuentas por violaciones de términos.<br>
-            - Retener pagos pendientes durante investigaciones.<br>
-            - Solicitar verificación adicional en cualquier momento.</p>
-            
-            <h2>Modificaciones del Servicio</h2>
-            <p>Braves puede:<br>
-            - Modificar o discontinuar características del servicio.<br>
-            - Cambiar los costos de participación con previo aviso.<br>
-            - Actualizar los requisitos técnicos.<br>
-            - Modificar los criterios de elegibilidad para participar.</p>
-            
-            <h2>Limitación de Responsabilidad</h2>
-            <p>Braves y sus desarrolladores no serán responsables por ningún daño directo, indirecto, incidental, especial o consecuente que resulte del uso o la imposibilidad de uso de nuestra aplicación, incluyendo, pero no limitado a, errores en los desafíos, fallos en el registro de resultados o problemas técnicos. Además, no garantizamos la precisión o completitud de cualquier contenido proporcionado a través de la aplicación.</p>
-            
-            <h2>Actualizaciones de los Términos y Condiciones</h2>
-            <p>Braves se reserva el derecho de actualizar estos términos y condiciones en cualquier momento. Notificaremos a los usuarios sobre cambios significativos mediante notificaciones dentro de la aplicación o por correo electrónico. El uso continuado de Braves después de dichas notificaciones constituye la aceptación de los términos actualizados.</p>
-            
-            <h2>Ley Aplicable y Jurisdicción</h2>
-            <p>Estos términos y condiciones se rigen e interpretan de acuerdo con las leyes de Uruguay. Cualquier disputa que surja en relación con estos términos estará sujeta a la jurisdicción de los tribunales competentes en la ciudad correspondiente de Uruguay.</p>
-            
-            <h2>Contacto</h2>
-            <p>Si tienes alguna pregunta o inquietud sobre estos términos y condiciones, por favor contáctanos en:<br>
-            Email: <a href="mailto:info@bravesapp.com" style="color:#ffffff;">info@bravesapp.com</a></p>
+            <div class="subsection">
+                <h2><span class="section-number">1</span>Introducción</h2>
+                <p class="text-terminos-intro">Bienvenido(a) a Braves, una aplicación móvil diseñada para ofrecerte desafíos virtuales y reales (basados en habilidad) y la oportunidad de competir con otros usuarios. Estos Términos y Condiciones (en adelante, los "Términos") rigen tu acceso y uso de la aplicación Braves, incluyendo cualquier funcionalidad, contenido y servicios ofrecidos en o a través de Braves.</p>
+                <p>Al acceder o usar Braves, aceptas estar sujeto(a) a estos Términos, nuestra Política de Privacidad, y cualquier otro término adicional que sea aplicable. Si no estás de acuerdo con alguno de estos Términos, por favor no uses nuestra aplicación.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">2</span>Registro de Usuario y Cuenta</h2>
+                <h3>2.1. Creación de Cuenta</h3>
+                <p>Para acceder a ciertas funcionalidades de Braves, necesitas registrarte y crear una cuenta de usuario. Al registrarte, aceptas:</p>
+                <ul>
+                    <li>Proporcionar información verdadera, precisa y completa.</li>
+                    <li>Mantener actualizada tu información.</li>
+                    <li>Ser mayor de 18 años, conforme a lo establecido en la cláusula 3 de estos Términos.</li>
+                </ul>
+
+                <h3>2.2. Prohibición de Múltiples Cuentas</h3>
+                <ul>
+                    <li>Se prohíbe expresamente la creación, uso o control simultáneo de más de una cuenta por parte de la misma persona.</li>
+                    <li>Cualquier intento de eludir esta prohibición será considerado conducta fraudulenta.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">3</span>Restricción de Edad</h2>
+                <p>Braves está exclusivamente reservado para personas mayores de 18 años. Al crear una cuenta, confirmas que tienes al menos 18 años de edad. Braves puede solicitar comprobante de edad en cualquier momento y se reserva el derecho de suspender o cancelar cuentas que no cumplan este requisito.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">4</span>Uso de la Aplicación</h2>
+                
+                <h3>4.1. Naturaleza de los Desafíos</h3>
+                <p>Braves ofrece desafíos virtuales y reales en los que puedes participar. Estos desafíos:</p>
+                <ul>
+                    <li>Pueden implicar el pago de una tarifa de participación.</li>
+                    <li>Tienen reglas específicas que se comunicarán en cada caso.</li>
+                    <li>Se basan en habilidad (no en azar), por lo que tu destreza influirá directamente en la obtención de premios.</li>
+                </ul>
+
+                <h3>4.2. Ajustes de Dificultad</h3>
+                <p>Con el fin de mantener una experiencia de juego equilibrada y retadora, Braves ajusta la dificultad de los desafíos en función del rendimiento de cada usuario.</p>
+                <ul>
+                    <li>Si presentas rachas de victorias continuadas, se incrementará gradualmente la dificultad.</li>
+                    <li>Si pierdes o presentas dificultades, Braves puede reducir la dificultad para facilitar tu experiencia.</li>
+                </ul>
+
+                <h3>4.3. Conexión a Internet</h3>
+                <p>Braves está diseñado para usarse con una conexión a internet continua. Si tu conexión se pierde durante un juego y la sesión no se registra, Braves no será responsable por dicha situación, y la tarifa de participación puede no ser reembolsada.</p>
+
+                <h3>4.4. Permisos de Cámara</h3>
+                <p>Para participar en ciertos desafíos reales, será necesario otorgar permisos de acceso a la cámara de tu dispositivo.</p>
+                <ul>
+                    <li>Si no aceptas estos permisos, no podrás participar plenamente en dichos desafíos.</li>
+                    <li>En caso de haberse cobrado una tarifa sin posibilidad de participar efectivamente, podrás contactar a <a href="mailto:info@bravesapp.com">info@bravesapp.com</a> para solicitar una evaluación.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">5</span>Pagos, Premios y Tarifas</h2>
+                
+                <h3>5.1. Participación y Pagos</h3>
+                <p>Los desafíos en Braves requieren un pago para participar, y aceptas que:</p>
+                <ul>
+                    <li>Todos los pagos son finales y no reembolsables, salvo disposición expresa.</li>
+                    <li>Braves utiliza pasarelas de pago externas y se atiene a sus condiciones y comisiones.</li>
+                </ul>
+
+                <h3>5.2. Comisiones</h3>
+                <ul>
+                    <li>Braves aplica una tarifa del 25% sobre las ganancias del usuario.</li>
+                    <li>Al retirar dinero de la billetera, se aplica una tarifa del 5%.</li>
+                    <li>Procesadores externos pueden imponer costos adicionales.</li>
+                </ul>
+
+                <h3>5.3. Retiro de Premios</h3>
+                <ul>
+                    <li>El monto mínimo para retirar es de 250 pesos uruguayos (UYU).</li>
+                    <li>Si no alcanzas ese umbral, puedes seguir participando hasta alcanzarlo.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">6</span>Eliminación de Cuenta y Datos Personales</h2>
+                <p>Podrás solicitar la eliminación de tu cuenta y de todos los datos personales asociados, conforme a lo estipulado en nuestra Política de Privacidad.</p>
+                <ul>
+                    <li>Si eliminas tu cuenta antes de retirar los fondos acumulados, perderás esos montos sin posibilidad de recuperarlos.</li>
+                    <li>Una vez eliminada, no se podrá revertir la acción ni restaurar el historial o las ganancias.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">7</span>Propiedad Intelectual</h2>
+                <p>Todo el contenido de Braves (texto, gráficos, logos, imágenes, software, etc.) es propiedad de Braves o se utiliza bajo licencia, y está protegido por leyes de propiedad intelectual de Uruguay y tratados internacionales. No podrás usar, copiar, modificar ni distribuir dicho contenido sin autorización escrita de Braves.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">8</span>Conductas Prohibidas, Investigaciones y Sanciones</h2>
+                
+                <h3>8.1. Conductas Prohibidas</h3>
+                <ul>
+                    <li>Cuentas Múltiples: Crear, usar o controlar más de una cuenta por persona.</li>
+                    <li>Suplantación o Fraude: Falsificar datos, suplantar identidad o manipular resultados.</li>
+                    <li>Abuso de la Plataforma: Realizar acciones que busquen aprovecharse indebidamente de Braves.</li>
+                </ul>
+
+                <h3>8.2. Investigación de Actividades Sospechosas</h3>
+                <p>Braves se reserva el derecho de investigar comportamientos sospechosos:</p>
+                <ul>
+                    <li>Revisión de historial de transacciones, partidas y accesos.</li>
+                    <li>Solicitud de información y/o documentación complementaria.</li>
+                    <li>Contacto con autoridades competentes si existiera indicio de delito.</li>
+                </ul>
+
+                <h3>8.3. Medidas y Sanciones</h3>
+                <p>Si Braves determina que has incumplido estos Términos:</p>
+                <ul>
+                    <li>Suspensión o Bloqueo de Cuenta: Temporales o definitivos.</li>
+                    <li>Retención de Fondos: Se podrán retener saldos vinculados a conductas infractoras.</li>
+                    <li>Otras Acciones Legales: Braves podrá ejercer las acciones judiciales pertinentes.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">9</span>Resolución de Disputas</h2>
+                
+                <h3>9.1. Disputas Generales</h3>
+                <p>Las partes se comprometen a intentar resolver cualquier conflicto de manera amistosa mediante comunicación directa con el equipo de soporte.</p>
+
+                <h3>9.2. Disputas sobre Resultados</h3>
+                <ul>
+                    <li>Deberás reportar cualquier disputa dentro de las 24 horas posteriores al evento.</li>
+                    <li>Braves revisará la evidencia y emitirá un veredicto en un plazo razonable.</li>
+                    <li>La decisión final corresponde al equipo de Braves.</li>
+                </ul>
+
+                <h3>9.3. Disputas Financieras</h3>
+                <ul>
+                    <li>Reporta disputas de pago dentro de las 24 horas.</li>
+                    <li>Respuesta inicial en 48 horas, revisión completa en 7 días hábiles.</li>
+                    <li>Reembolsos, si corresponden, en hasta 15 días hábiles.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">10</span>Proceso de Pagos y Reembolsos</h2>
+                
+                <h3>10.1. Verificación de Pagos</h3>
+                <ul>
+                    <li>Cada transacción recibirá una confirmación inmediata dentro de la aplicación.</li>
+                    <li>El historial de transacciones estará disponible por 90 días.</li>
+                    <li>Los pagos se procesarán solo después de la verificación completa de identidad.</li>
+                </ul>
+
+                <h3>10.2. Seguridad en Pagos</h3>
+                <ul>
+                    <li>Todas las transacciones se ejecutan con protocolos de cifrado.</li>
+                    <li>Se requerirá verificación multi-factor en retiros superiores a ciertos umbrales.</li>
+                    <li>Braves mantiene un monitoreo continuo 24/7 en busca de fraude.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">11</span>Cancelación y Suspensión</h2>
+                
+                <h3>11.1. Iniciativa de Braves</h3>
+                <p>Braves se reserva el derecho de:</p>
+                <ul>
+                    <li>Suspender temporalmente cuentas por actividad sospechosa.</li>
+                    <li>Cancelar cuentas definitivamente si se demuestra violación de estos Términos.</li>
+                    <li>Retener pagos pendientes mientras dura la investigación.</li>
+                    <li>Solicitar verificación adicional en cualquier momento.</li>
+                </ul>
+
+                <h3>11.2. Iniciativa del Usuario</h3>
+                <p>Podrás cancelar o cerrar tu cuenta en cualquier momento; sin embargo, si no retiras tus fondos antes de la cancelación, éstos se perderán de forma irrecuperable.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">12</span>Modificaciones del Servicio</h2>
+                <p>Braves podrá:</p>
+                <ul>
+                    <li>Modificar o descontinuar ciertas características de la plataforma.</li>
+                    <li>Ajustar las tarifas de participación y los porcentajes de comisión.</li>
+                    <li>Actualizar los requisitos técnicos y de elegibilidad.</li>
+                    <li>Modificar las reglas de los desafíos con previo aviso.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">13</span>Limitación de Responsabilidad</h2>
+                <p>Braves y sus desarrolladores no serán responsables por:</p>
+                <ul>
+                    <li>Daños directos, indirectos o consecuentes del uso de la aplicación.</li>
+                    <li>Fallas técnicas o errores en los desafíos.</li>
+                    <li>Pérdida de conexión a internet durante los desafíos.</li>
+                    <li>Decisiones unilaterales tomadas por el usuario.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">14</span>Actualizaciones de los Términos</h2>
+                <p>Braves se reserva el derecho de actualizar estos Términos en cualquier momento.</p>
+                <ul>
+                    <li>Se notificará a los usuarios de cambios significativos mediante avisos en la aplicación o correo electrónico.</li>
+                    <li>El uso continuado de Braves después de las notificaciones constituirá la aceptación de los Términos actualizados.</li>
+                </ul>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">15</span>Ley Aplicable y Jurisdicción</h2>
+                <p>Estos Términos se rigen por las leyes de la República Oriental del Uruguay. Cualquier disputa derivada o relacionada con estos Términos estará sujeta a la jurisdicción de los tribunales competentes en la ciudad correspondiente de Uruguay.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">16</span>Contacto</h2>
+                <p>Si tienes preguntas, inquietudes o reclamos en relación con estos Términos, por favor contáctanos en:</p>
+                <p>Email: <a href="mailto:info@bravesapp.com">info@bravesapp.com</a></p>
+            </div>
         </section>
     </main>
 

@@ -475,7 +475,15 @@ document.addEventListener('DOMContentLoaded', function() {
             equipo: "Nuestro Equipo",
             teamIntro: "Detrás de Braves hay un equipo que combina experiencia emprendedora con excelencia técnica. Unimos conocimiento en desarrollo de productos móviles, seguridad y tecnologías emergentes para crear una plataforma innovadora y confiable.",
             cofundador: "Co-Fundador",
-            santiagoDesc: "Ingeniero (École Polytechnique & Télécom Paris), con experiencia en Orange como Mobile Product Manager. Especialista en productos móviles y tecnologías emergentes (5G). Su visión estratégica e innovadora impulsa el desarrollo y crecimiento de Braves."
+            santiagoDesc: "Ingeniero (École Polytechnique & Télécom Paris), con experiencia en Orange como Mobile Product Manager. Especialista en productos móviles y tecnologías emergentes (5G). Su visión estratégica e innovadora impulsa el desarrollo y crecimiento de Braves.",
+            terminosTitle: "Términos y Condiciones para Usuarios en Uruguay",
+            terminosIntro: "Bienvenido(a) a Braves, una aplicación móvil diseñada para ofrecerte desafíos virtuales y reales (basados en habilidad) y la oportunidad de competir con otros usuarios.",
+            terminosSeccion10: "Proceso de Pagos y Reembolsos",
+            terminosSeccion11: "Cancelación y Suspensión",
+            terminosSeccion12: "Modificaciones del Servicio",
+            terminosSeccion13: "Limitación de Responsabilidad",
+            terminosSeccion14: "Actualizaciones de los Términos",
+            terminosSeccion15: "Ley Aplicable y Jurisdicción"
         },
         pt: {
             // No se cambia el contenido, se mantiene igual
@@ -529,7 +537,15 @@ document.addEventListener('DOMContentLoaded', function() {
             equipo: "Nossa Equipe",
             teamIntro: "Por trás do Braves há uma equipe que combina experiência empreendedora com excelência técnica. Unimos conhecimento em desenvolvimento de produtos móveis, segurança e tecnologias emergentes para criar uma plataforma inovadora e confiável.",
             cofundador: "Co-Fundador",
-            santiagoDesc: "Engenheiro (École Polytechnique & Télécom Paris), com experiência na Orange como Mobile Product Manager. Especialista em produtos móveis e tecnologias emergentes (5G). Sua visão estratégica e inovadora impulsiona o desenvolvimento e crescimento do Braves."
+            santiagoDesc: "Engenheiro (École Polytechnique & Télécom Paris), com experiência na Orange como Mobile Product Manager. Especialista em produtos móveis e tecnologias emergentes (5G). Sua visão estratégica e inovadora impulsiona o desenvolvimento e crescimento do Braves.",
+            terminosTitle: "Termos e Condições para Usuários no Uruguai",
+            terminosIntro: "Bem-vindo(a) ao Braves, um aplicativo móvel projetado para oferecer desafios virtuais e reais (baseados em habilidade) e a oportunidade de competir com outros usuários.",
+            terminosSeccion10: "Processo de Pagamentos e Reembolsos",
+            terminosSeccion11: "Cancelamento e Suspensão",
+            terminosSeccion12: "Modificações do Serviço",
+            terminosSeccion13: "Limitação de Responsabilidade",
+            terminosSeccion14: "Atualizações dos Termos",
+            terminosSeccion15: "Lei Aplicável e Jurisdição"
         },
         en: {
             // No se cambia el contenido, se mantiene igual adaptado anteriormente
@@ -583,7 +599,15 @@ document.addEventListener('DOMContentLoaded', function() {
             equipo: "Our Team",
             teamIntro: "Behind Braves there's a team that combines entrepreneurial experience with technical excellence. We unite knowledge in mobile product development, security, and emerging technologies to create an innovative and reliable platform.",
             cofundador: "Co-Founder",
-            santiagoDesc: "Engineer (École Polytechnique & Télécom Paris), with experience at Orange as Mobile Product Manager. Specialist in mobile products and emerging technologies (5G). His strategic and innovative vision drives Braves' development and growth."
+            santiagoDesc: "Engineer (École Polytechnique & Télécom Paris), with experience at Orange as Mobile Product Manager. Specialist in mobile products and emerging technologies (5G). His strategic and innovative vision drives Braves' development and growth.",
+            terminosTitle: "Terms and Conditions for Users in Uruguay",
+            terminosIntro: "Welcome to Braves, a mobile application designed to offer you virtual and real challenges (skill-based) and the opportunity to compete with other users.",
+            terminosSeccion10: "Payment and Refund Process",
+            terminosSeccion11: "Cancellation and Suspension",
+            terminosSeccion12: "Service Modifications",
+            terminosSeccion13: "Limitation of Liability",
+            terminosSeccion14: "Terms Updates",
+            terminosSeccion15: "Applicable Law and Jurisdiction"
         }
     };
 
@@ -638,6 +662,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.text-team-intro').textContent = texts[lang].teamIntro;
         document.querySelectorAll('.text-cofundador').forEach(el => el.textContent = texts[lang].cofundador);
         document.querySelector('.text-santiago-desc').textContent = texts[lang].santiagoDesc;
+        document.querySelector('.text-terminos-title').textContent = texts[lang].terminosTitle;
+        document.querySelector('.text-terminos-intro').textContent = texts[lang].terminosIntro;
+        document.querySelector('.text-terminos-seccion-10').textContent = texts[lang].terminosSeccion10;
+        document.querySelector('.text-terminos-seccion-11').textContent = texts[lang].terminosSeccion11;
+        document.querySelector('.text-terminos-seccion-12').textContent = texts[lang].terminosSeccion12;
+        document.querySelector('.text-terminos-seccion-13').textContent = texts[lang].terminosSeccion13;
+        document.querySelector('.text-terminos-seccion-14').textContent = texts[lang].terminosSeccion14;
+        document.querySelector('.text-terminos-seccion-15').textContent = texts[lang].terminosSeccion15;
     }
 
     // Detectar país del usuario
@@ -664,3 +696,66 @@ document.addEventListener('DOMContentLoaded', function() {
         applyTranslations('en');
     });
 });
+
+// Animaciones para la página de términos y condiciones
+if (document.querySelector('.content')) {
+    // Animación inicial del título
+    gsap.from('.content h1', {
+        duration: 1.2,
+        opacity: 0,
+        y: -50,
+        ease: 'power3.out'
+    });
+
+    // Animación de las secciones
+    gsap.utils.toArray('.subsection').forEach((section, i) => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse'
+            },
+            duration: 0.8,
+            opacity: 0,
+            y: 30,
+            delay: i * 0.1,
+            ease: 'power2.out'
+        });
+
+        // Animación de los números de sección
+        gsap.from(section.querySelector('.section-number'), {
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 80%'
+            },
+            duration: 0.5,
+            scale: 0,
+            rotation: -180,
+            delay: i * 0.1 + 0.2,
+            ease: 'back.out(1.7)'
+        });
+    });
+
+    // Efecto hover mejorado para las subsecciones
+    gsap.utils.toArray('.subsection').forEach(section => {
+        section.addEventListener('mouseenter', () => {
+            gsap.to(section, {
+                duration: 0.3,
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                borderColor: 'rgba(255, 107, 107, 0.3)',
+                y: -5,
+                ease: 'power2.out'
+            });
+        });
+
+        section.addEventListener('mouseleave', () => {
+            gsap.to(section, {
+                duration: 0.3,
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                borderColor: 'rgba(255, 255, 255, 0.1)',
+                y: 0,
+                ease: 'power2.out'
+            });
+        });
+    });
+}
