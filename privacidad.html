@@ -8,22 +8,127 @@
     <style>
         .content {
             padding: 8rem 5%;
-            background-color: #2A2A2A;
+            background: linear-gradient(145deg, #2A2A2A, #232323);
             color: #FFFFFF;
-            max-width: 800px;
+            max-width: 1000px;
             margin: 0 auto;
-            border-radius: 10px;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .content h1, .content h2 {
+        
+        .content h1 {
             color: #FF6B6B;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .content a {
-            color: #FFFFFF;
-            text-decoration: underline;
+        
+        .content h2 {
+            color: #FF6B6B;
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid rgba(255, 107, 107, 0.3);
         }
+        
+        .content h3 {
+            color: #FF8E8E;
+            font-size: 1.4rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .content p, .content li {
+            line-height: 1.8;
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
         .content ul {
-            list-style-type: disc;
-            padding-left: 20px;
+            list-style-type: none;
+            padding-left: 0;
+            margin-bottom: 2rem;
+        }
+        
+        .content ul li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 1rem;
+        }
+        
+        .content ul li::before {
+            content: '•';
+            color: #FF6B6B;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .content a {
+            color: #FF6B6B;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px dashed rgba(255, 107, 107, 0.5);
+        }
+        
+        .content a:hover {
+            color: #FF8E8E;
+            border-bottom-style: solid;
+        }
+        
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+            color: white;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .subsection {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .subsection:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 107, 107, 0.3);
+            transform: translateY(-2px);
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 4rem 1.5rem;
+                margin: 1rem;
+                border-radius: 15px;
+            }
+            
+            .content h1 {
+                font-size: 2rem;
+            }
+            
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            
+            .content p, .content li {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -48,103 +153,170 @@
     <main>
         <section class="content">
             <h1>Política de Privacidad para Usuarios en Uruguay</h1>
-            <p>En Braves, una plataforma de e-sports, nos tomamos muy en serio la privacidad de nuestros usuarios. Esta Política de Privacidad tiene como objetivo informarte sobre cómo recopilamos, usamos, protegemos y compartimos tu información personal cuando utilizas nuestra aplicación, en cumplimiento con la Ley N° 18.331 de Protección de Datos Personales y Acción de Habeas Data de Uruguay.</p>
-            <p>Al utilizar nuestra aplicación, das tu consentimiento para la recopilación, uso y divulgación de tu información personal según se describe en esta Política de Privacidad.</p>
 
-            <h2>Responsable del Tratamiento y Datos de Contacto</h2>
-            <p><strong>Braves Inc.</strong><br>
-            Email: <a href="mailto:info@bravesapp.com">info@bravesapp.com</a></p>
+            <div class="subsection">
+                <p>En Braves, una plataforma de e-sports basada en la habilidad de los usuarios, valoramos y protegemos la privacidad de nuestros usuarios. Esta Política de Privacidad describe cómo recopilamos, usamos, protegemos y compartimos tu información personal al utilizar nuestra aplicación, en cumplimiento de la Ley N° 18.331 de Protección de Datos Personales y Acción de Habeas Data de Uruguay.</p>
+                <p>Al utilizar la aplicación Braves, das tu consentimiento para la recopilación y el uso de tu información personal según lo descrito en esta Política.</p>
+            </div>
 
-            <h2>Consentimiento para Comunicaciones</h2>
-            <p>Al registrarte en Braves, aceptas recibir comunicaciones de nuestra parte por correo electrónico, teléfono y WhatsApp, incluyendo actualizaciones, notificaciones e información relacionada con tu cuenta y nuestros servicios. Puedes retirar tu consentimiento en cualquier momento contactándonos en <a href="mailto:info@bravesapp.com">info@bravesapp.com</a> o siguiendo las instrucciones para darte de baja proporcionadas en nuestras comunicaciones.</p>
+            <div class="subsection">
+                <h2><span class="section-number">1</span>Responsable del Tratamiento y Datos de Contacto</h2>
+                <p>Responsable: Braves Inc.</p>
+                <p>Email: <a href="mailto:info@bravesapp.com">info@bravesapp.com</a></p>
+            </div>
 
-            <h2>COMUNICACIONES Y CONTACTO</h2>
-            <p>Al proporcionar tu número de teléfono y usar nuestra aplicación, aceptas que:</p>
-            <ul>
-                <li>Solo te contactaremos por asuntos relacionados con el servicio y tu cuenta.</li>
-                <li>Las comunicaciones se realizarán en horarios razonables.</li>
-                <li>Puedes actualizar tus preferencias de contacto en cualquier momento.</li>
-                <li>No compartiremos tu información de contacto con terceros sin tu consentimiento.</li>
-                <li>El contacto será principalmente para:</li>
-            </ul>
-            <ul style="list-style-type: circle; margin-left:40px;">
-                <li>Verificación de seguridad.</li>
-                <li>Problemas técnicos.</li>
-                <li>Disputas de pagos o resultados.</li>
-                <li>Actualizaciones críticas del servicio.</li>
-            </ul>
+            <div class="subsection">
+                <h2><span class="section-number">2</span>Consentimiento para Comunicaciones</h2>
+                <p>Al registrarte en Braves, aceptas recibir comunicaciones por correo electrónico, teléfono o WhatsApp con fines de:</p>
+                <ul>
+                    <li>Verificación de seguridad.</li>
+                    <li>Problemas técnicos o de soporte.</li>
+                    <li>Disputas de pagos o resultados.</li>
+                    <li>Actualizaciones críticas del servicio.</li>
+                </ul>
+                <p>Puedes retirar tu consentimiento en cualquier momento enviando un correo a <a href="mailto:info@bravesapp.com">info@bravesapp.com</a> o siguiendo las instrucciones de baja en los mensajes que recibas.</p>
+            </div>
 
-            <h2>Información que Recopilamos</h2>
-            <p><strong>Información de Registro:</strong> Recopilamos tu dirección de correo electrónico, número de teléfono y verificamos si eres mayor de edad. No recopilamos nombres reales; te pedimos que crees un nombre de usuario de tu elección.</p>
-            <p><strong>Datos de Uso:</strong> Recopilamos información sobre cómo interactúas con nuestra aplicación, incluyendo los juegos que juegas, tu participación en desafíos y otras actividades dentro de la aplicación.</p>
-            <p><strong>Información Financiera:</strong> No recopilamos detalles de tarjetas de crédito directamente. Las transacciones se procesan a través de Apple Pay, Google Pay y utilizamos Stripe para los pagos. Podemos recopilar detalles de transacciones como el monto y la fecha de la transacción.</p>
-            <p><strong>Multimedia:</strong> Para ciertos desafíos reales, como Hit the Ball, solicitamos acceso a la cámara para grabar el desafío.</p>
+            <div class="subsection">
+                <h2><span class="section-number">3</span>Información que Recopilamos</h2>
+                
+                <h3>3.1. Información de Registro</h3>
+                <ul>
+                    <li>Correo electrónico y número de teléfono para verificar tu cuenta.</li>
+                    <li>Comprobante de edad (mayores de 18 años).</li>
+                    <li>Nombre de usuario (no necesariamente tu nombre real).</li>
+                </ul>
 
-            <h2>Consentimiento</h2>
-            <p>Al proporcionar tu información personal, consientes su recopilación, uso y divulgación según lo descrito en esta Política de Privacidad. Puedes retirar tu consentimiento en cualquier momento, sujeto a restricciones legales o contractuales, contactándonos en <a href="mailto:info@bravesapp.com">info@bravesapp.com</a>. Sin embargo, retirar el consentimiento puede afectar tu capacidad para utilizar ciertas funciones de la aplicación.</p>
+                <h3>3.2. Datos de Uso</h3>
+                <ul>
+                    <li>Interacciones dentro de la aplicación (desafíos en los que participas, estadísticas de victorias/derrotas, rachas de juego).</li>
+                    <li>Datos técnicos de conexión (IP, tipo de dispositivo, sistema operativo).</li>
+                </ul>
 
-            <h2>Uso de la Información</h2>
-            <p>Utilizamos la información recopilada para:</p>
-            <ul>
-                <li>Verificar tu elegibilidad basada en la edad.</li>
-                <li>Procesar transacciones y gestionar tu participación en desafíos.</li>
-                <li>Proporcionar soporte técnico y mejorar la experiencia del usuario.</li>
-                <li>Comunicarnos contigo vía correo electrónico, teléfono o WhatsApp para enviarte notificaciones importantes, actualizaciones y responder a tus consultas.</li>
-                <li>Personalizar tu experiencia y proporcionarte contenido relevante.</li>
-                <li>Hacer cumplir nuestros Términos y Condiciones.</li>
-            </ul>
+                <h3>3.3. Información Financiera</h3>
+                <ul>
+                    <li>No recopilamos datos completos de tarjetas de crédito directamente: usamos Stripe, Apple Pay y/o Google Pay.</li>
+                    <li>Sí podremos recopilar detalles de las transacciones (monto, fecha) y la forma de pago utilizada.</li>
+                    <li>Datos bancarios (en caso de retiros) como número de cuenta para efectuar pagos.</li>
+                </ul>
 
-            <h2>Compartir y Divulgación de Información</h2>
-            <p><strong>Proveedores de Servicios:</strong> Podemos compartir tu información con terceros proveedores de servicios que nos ayudan a operar nuestra aplicación, como procesadores de pagos (por ejemplo, Stripe) y proveedores de análisis. Estos terceros están obligados a proteger tu información y utilizarla solo para los fines que especificamos.</p>
-            <p><strong>Requisitos Legales:</strong> Podemos divulgar tu información si es requerido por ley, orden judicial o regulación gubernamental, o si dicha divulgación es necesaria para proteger los derechos, propiedad o seguridad de Braves, nuestros usuarios u otros.</p>
-            <p><strong>Transferencias Comerciales:</strong> En caso de una fusión, adquisición, reorganización o venta de activos, tu información personal puede ser transferida como parte de la transacción.</p>
+                <h3>3.4. Multimedia</h3>
+                <p>Para desafíos que requieran cámara (por ejemplo, para grabaciones de la participación), solicitaremos acceso a la cámara. El usuario puede rechazar dicho permiso, pero es posible que no pueda competir en esos desafíos.</p>
+            </div>
 
-            <h2>Transferencias Internacionales de Datos</h2>
-            <p>Tu información puede ser almacenada y procesada en Uruguay, Canadá u otros países donde nuestros proveedores de servicios mantengan instalaciones. Al utilizar nuestra aplicación, consientes la transferencia de información a países fuera de Uruguay, que pueden tener leyes de protección de datos diferentes. Tomamos medidas para asegurar que se implementen las salvaguardas adecuadas para proteger tu información personal.</p>
+            <div class="subsection">
+                <h2><span class="section-number">4</span>Finalidades del Tratamiento de Datos</h2>
+                <ul>
+                    <li>Verificación de Elegibilidad: Asegurar que eres mayor de 18 años.</li>
+                    <li>Procesar Pagos: Gestionar transacciones e historial de compra/venta de desafíos.</li>
+                    <li>Soporte Técnico: Dar asistencia y resolver problemas técnicos.</li>
+                    <li>Comunicaciones: Envío de notificaciones relevantes (actualizaciones, facturación, cambios de políticas).</li>
+                    <li>Mejora de la Experiencia: Personalizar el contenido según tu actividad y ajustar la dificultad de los desafíos (cláusula 4.2 de los Términos).</li>
+                    <li>Prevención de Fraude: Detectar y bloquear cuentas múltiples, conductas abusivas y cualquier actividad ilícita.</li>
+                </ul>
+            </div>
 
-            <h2>Seguridad de la Información</h2>
-            <p>Estamos comprometidos a proteger tu información personal. Hemos implementado medidas de seguridad para proteger tus datos contra acceso no autorizado, alteración, divulgación o destrucción.</p>
+            <div class="subsection">
+                <h2><span class="section-number">5</span>Investigación de Actividades Sospechosas</h2>
+                <p>Si se detecta actividad o patrones que pudieran considerarse fraudulentos, Braves:</p>
+                <ul>
+                    <li>Analizará tu comportamiento en la aplicación, historial de transacciones y datos de conexión (IPs, dispositivos).</li>
+                    <li>Podrá solicitar documentación adicional o verificación de identidad reforzada.</li>
+                    <li>Se reserva el derecho de compartir dichos datos con autoridades competentes y asesores legales en cumplimiento de la ley (p.ej. Ley de Inclusión Financiera, normativas BCU, prevención de lavado de activos Ley 19.574, etc.).</li>
+                </ul>
+            </div>
 
-            <h2>SEGURIDAD DE DATOS REFORZADA</h2>
-            <p>Implementamos las siguientes medidas de seguridad adicionales:</p>
-            <ul>
-                <li>Auditorías de seguridad regulares cada 3 meses.</li>
-                <li>Almacenamiento de datos encriptado en reposo y en tránsito.</li>
-                <li>Acceso limitado del personal a datos sensibles.</li>
-                <li>Monitoreo del sistema 24/7.</li>
-                <li>Registros detallados de acceso a datos.</li>
-                <li>Copias de seguridad automáticas diarias.</li>
-                <li>Protocolos de recuperación ante desastres.</li>
-            </ul>
+            <div class="subsection">
+                <h2><span class="section-number">6</span>Base Legal para el Tratamiento</h2>
+                <p>La base legal para el tratamiento de tus datos personales incluye:</p>
+                <ul>
+                    <li>Consentimiento expreso al momento de registro y uso de la aplicación.</li>
+                    <li>Cumplimiento contractual, ya que el uso de Braves implica la ejecución de un contrato de prestación de servicios.</li>
+                    <li>Interés legítimo de Braves para prevenir fraude y garantizar la seguridad e integridad de la aplicación.</li>
+                </ul>
+            </div>
 
-            <h2>Retención de Datos</h2>
-            <p>Retenemos tu información personal solo durante el tiempo necesario para cumplir con los fines para los cuales fue recopilada, o según lo requiera la ley uruguaya. Cuando tu información personal ya no sea necesaria, la eliminaremos o anonimizaremos de manera segura.</p>
+            <div class="subsection">
+                <h2><span class="section-number">7</span>Compartir y Divulgar Información</h2>
+                
+                <h3>7.1. Proveedores de Servicios</h3>
+                <p>Podemos compartir tu información con terceros que nos ayudan a operar Braves (procesadores de pago, servicios de análisis). Dichos terceros están obligados a usar la información únicamente para los fines indicados y a adoptar medidas de seguridad adecuadas.</p>
 
-            <h2>Derechos del Usuario</h2>
-            <p>Bajo la Ley N° 18.331, tienes derecho a:</p>
-            <ul>
-                <li>Acceder a la información personal que tenemos sobre ti.</li>
-                <li>Solicitar correcciones a tu información personal si es inexacta o está incompleta.</li>
-                <li>Oponerte al procesamiento de tus datos personales por motivos legítimos.</li>
-                <li>Solicitar la eliminación de tus datos personales, sujeto a obligaciones legales.</li>
-            </ul>
-            <p>Para ejercer estos derechos, por favor contáctanos en <a href="mailto:info@bravesapp.com">info@bravesapp.com</a>.</p>
+                <h3>7.2. Requisitos Legales</h3>
+                <p>Si es requerido por ley, orden judicial o autoridad competente, podremos divulgar tu información personal para:</p>
+                <ul>
+                    <li>Proteger derechos, propiedad o seguridad de Braves o de otros usuarios.</li>
+                    <li>Cumplir con normativas financieras o de prevención de lavado de dinero.</li>
+                </ul>
 
-            <h2>Privacidad de los Menores</h2>
-            <p>Nuestra aplicación no está destinada a individuos menores de 18 años. No recopilamos intencionalmente información personal de menores. Si nos damos cuenta de que hemos recopilado inadvertidamente información personal de un menor, tomaremos medidas para eliminar dicha información de inmediato.</p>
+                <h3>7.3. Transferencias Comerciales</h3>
+                <p>En caso de fusión, adquisición o venta de activos, tu información personal podría ser transferida como parte de la transacción, bajo la misma o mayor protección de privacidad.</p>
+            </div>
 
-            <h2>Cookies y Tecnologías Similares</h2>
-            <p>Podemos utilizar cookies y tecnologías similares para mejorar tu experiencia, analizar el uso y proporcionar contenido personalizado. Puedes gestionar tus preferencias de cookies a través de la configuración de tu navegador.</p>
+            <div class="subsection">
+                <h2><span class="section-number">8</span>Transferencias Internacionales de Datos</h2>
+                <p>Tu información puede ser almacenada o procesada en Uruguay, Canadá u otros países donde Braves o sus proveedores de servicios mantengan instalaciones. Tomamos las medidas de seguridad necesarias para proteger tus datos, asegurando un nivel adecuado de protección conforme a la normativa uruguaya.</p>
+            </div>
 
-            <h2>Enlaces a Terceros</h2>
-            <p>Nuestra aplicación puede contener enlaces a sitios web o servicios de terceros que no son operados por nosotros. No somos responsables de las prácticas de privacidad de dichos terceros, y te recomendamos revisar sus políticas de privacidad.</p>
+            <div class="subsection">
+                <h2><span class="section-number">9</span>Seguridad de la Información</h2>
+                <p>Implementamos medidas técnicas y organizativas para proteger tus datos:</p>
+                <ul>
+                    <li>Encriptado de la información en tránsito y en reposo.</li>
+                    <li>Monitoreo 24/7 de sistemas para prevenir accesos no autorizados.</li>
+                    <li>Controles de acceso estrictos en nuestra infraestructura.</li>
+                    <li>Auditorías de seguridad regulares y copias de seguridad automáticas diarias.</li>
+                </ul>
+            </div>
 
-            <h2>Cambios en Nuestra Política de Privacidad</h2>
-            <p>Podemos actualizar nuestra Política de Privacidad de vez en cuando para reflejar cambios en nuestras prácticas o requisitos legales. Te notificaremos de cualquier cambio significativo publicando la nueva política en esta página y/o a través de otros métodos de comunicación. Tu uso continuado de la aplicación después de dichos cambios constituye tu aceptación de la Política de Privacidad actualizada.</p>
+            <div class="subsection">
+                <h2><span class="section-number">10</span>Retención de Datos</h2>
+                <p>Conservaremos tu información personal solo mientras sea necesaria para las finalidades descritas en esta Política o para cumplir con obligaciones legales. Una vez que no sea necesaria, la borraremos o la anonimizaremos de manera segura.</p>
+            </div>
 
-            <h2>Contáctanos</h2>
-            <p>Si tienes alguna pregunta, inquietud o queja sobre nuestra Política de Privacidad o nuestro manejo de tu información personal, por favor contáctanos en:<br>
-            Email: <a href="mailto:info@bravesapp.com">info@bravesapp.com</a></p>
+            <div class="subsection">
+                <h2><span class="section-number">11</span>Derechos del Usuario</h2>
+                <p>De acuerdo con la Ley N° 18.331, tienes derecho a:</p>
+                <ul>
+                    <li>Acceder a tus datos personales.</li>
+                    <li>Rectificar información inexacta o incompleta.</li>
+                    <li>Oponerte al tratamiento de tus datos por motivos legítimos.</li>
+                    <li>Solicitar la supresión de tus datos cuando proceda legalmente.</li>
+                </ul>
+                <p>Para ejercer estos derechos, contáctanos en <a href="mailto:info@bravesapp.com">info@bravesapp.com</a>. Atenderemos tu solicitud conforme a la normativa vigente.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">12</span>Privacidad de Menores</h2>
+                <p>Braves no está destinado a individuos menores de 18 años. No recopilamos conscientemente información de menores; si detectamos que un menor ha proporcionado datos, los eliminaremos de nuestros sistemas de inmediato.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">13</span>Cookies y Tecnologías Similares</h2>
+                <p>Podemos utilizar cookies y herramientas similares para:</p>
+                <ul>
+                    <li>Analizar la actividad de los usuarios.</li>
+                    <li>Mejorar la experiencia y el rendimiento de la plataforma.</li>
+                    <li>Proporcionar contenido adaptado a tus preferencias.</li>
+                </ul>
+                <p>Puedes gestionar tus preferencias de cookies desde la configuración de tu navegador o dispositivo.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">14</span>Enlaces a Terceros</h2>
+                <p>La aplicación puede incluir enlaces a sitios o servicios de terceros que no son operados por Braves. No asumimos responsabilidad por sus políticas de privacidad ni por sus prácticas. Se recomienda leer las políticas de cada sitio o servicio externo que visites.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">15</span>Cambios en la Política de Privacidad</h2>
+                <p>Braves puede actualizar esta Política de Privacidad para reflejar cambios en nuestras prácticas o en la normativa aplicable. Notificaremos dichos cambios a través de la aplicación o por correo electrónico. Tu uso continuado de la aplicación tras la notificación de cambios implica tu aceptación de la versión actualizada.</p>
+            </div>
+
+            <div class="subsection">
+                <h2><span class="section-number">16</span>Contáctanos</h2>
+                <p>Si tienes dudas, inquietudes o quejas respecto de esta Política de Privacidad o sobre el tratamiento de tus datos personales, por favor contáctanos en:</p>
+                <p>Email: <a href="mailto:info@bravesapp.com">info@bravesapp.com</a></p>
+            </div>
         </section>
     </main>
 
