@@ -350,14 +350,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Manejo de errores de imágenes
     window.addEventListener('error', function(e) {
         if (e.target.tagName === 'IMG') {
-            e.target.src = 'assets/placeholder.png';
             console.error('Error loading image:', e.target.src);
+            // Removemos la imagen en lugar de intentar cargar un placeholder
+            e.target.style.display = 'none';
         }
     }, true);
 
     function handleResourceError(error) {
         console.error('Resource loading error:', error);
-        // Implementar sistema de telemetría aquí si se desea
     }
 });
 
