@@ -468,6 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
             terminos: "Términos y Condiciones",
             privacidad: "Política de Privacidad",
             eliminarCuenta: "Eliminar Cuenta",
+            eliminarCuentaDesc: "Para eliminar tu cuenta, por favor envía un correo a info@bravesapp.com o accede a la aplicación y sigue los pasos en tu perfil para eliminar tu cuenta.",
             copyright: "© 2024 Braves. Todos los derechos reservados.",
             modalTitle: "Próximamente en App Store",
             modalDesc: "Pronto estará disponible en la App Store. Por ahora solo está disponible en Google Play.",
@@ -530,6 +531,7 @@ document.addEventListener('DOMContentLoaded', function() {
             terminos: "Termos e Condições",
             privacidad: "Política de Privacidade",
             eliminarCuenta: "Excluir Conta",
+            eliminarCuentaDesc: "Para excluir sua conta, envie um e-mail para info@bravesapp.com ou acesse o aplicativo e siga as etapas em seu perfil para excluir sua conta.",
             copyright: "© 2024 Braves. Todos os direitos reservados.",
             modalTitle: "Em Breve na App Store",
             modalDesc: "Em breve estará disponível na App Store. Por enquanto, está disponível apenas no Google Play.",
@@ -592,6 +594,7 @@ document.addEventListener('DOMContentLoaded', function() {
             terminos: "Terms and Conditions",
             privacidad: "Privacy Policy",
             eliminarCuenta: "Delete Account",
+            eliminarCuentaDesc: "To delete your account, please send an email to info@bravesapp.com or access the app and follow the steps in your profile to delete your account.",
             copyright: "© 2024 Braves. All rights reserved.",
             modalTitle: "Coming Soon on App Store",
             modalDesc: "It will be available soon on the App Store. For now, it is only available on Google Play.",
@@ -612,64 +615,84 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     function applyTranslations(lang) {
-        document.querySelector('.text-inicio').textContent = texts[lang].inicio;
-        document.querySelector('.text-como-funciona').textContent = texts[lang].comoFunciona;
-        document.querySelector('.text-caracteristicas').textContent = texts[lang].caracteristicas;
-        document.querySelector('.text-desafios').textContent = texts[lang].desafios;
-        document.querySelector('.text-testimonios').textContent = texts[lang].testimonios;
-        document.querySelector('.text-contacto').textContent = texts[lang].contacto;
-        document.querySelector('.text-hero-title').textContent = texts[lang].heroTitle;
-        document.querySelector('.text-hero-description').textContent = texts[lang].heroDesc;
-        document.querySelector('.text-app-store').alt = texts[lang].appStore;
-        document.querySelector('.text-google-play').alt = texts[lang].googlePlay;
-        document.querySelector('.text-reconocimientos').textContent = texts[lang].reconocimientos;
-        document.querySelector('.text-premio').textContent = texts[lang].premio;
-        document.querySelector('.text-como-funciona-title').textContent = texts[lang].comoFuncionaTitle;
-        document.querySelector('.text-elige').textContent = texts[lang].elige;
-        document.querySelector('.text-elige-desc').textContent = texts[lang].eligeDesc;
-        document.querySelector('.text-participa').textContent = texts[lang].participa;
-        document.querySelector('.text-participa-desc').textContent = texts[lang].participaDesc;
-        document.querySelector('.text-gana-dinero').textContent = texts[lang].ganaDinero;
-        document.querySelector('.text-gana-dinero-desc').textContent = texts[lang].ganaDineroDesc;
-        document.querySelector('.text-caracteristicas-title').textContent = texts[lang].caracteristicasTitle;
-        document.querySelector('.text-desafios-competitivos').textContent = texts[lang].desafiosCompetitivos;
-        document.querySelector('.text-desafios-competitivos-desc').textContent = texts[lang].desafiosCompetitivosDesc;
-        document.querySelector('.text-verificacion-video').textContent = texts[lang].verificacionVideo;
-        document.querySelector('.text-verificacion-video-desc').textContent = texts[lang].verificacionVideoDesc;
-        document.querySelector('.text-seguridad').textContent = texts[lang].seguridad;
-        document.querySelector('.text-seguridad-desc').textContent = texts[lang].seguridadDesc;
-        document.querySelector('.text-recompensas').textContent = texts[lang].recompensas;
-        document.querySelector('.text-recompensas-desc').textContent = texts[lang].recompensasDesc;
-        document.querySelector('.text-numeros').textContent = texts[lang].numeros;
-        document.querySelector('.text-jugadores').textContent = texts[lang].jugadores;
-        document.querySelector('.text-desafios-completados').textContent = texts[lang].desafiosCompletados;
-        document.querySelector('.text-partidas-jugadas').textContent = texts[lang].partidasJugadas;
-        document.querySelector('.text-desafios-activos').textContent = texts[lang].desafiosActivos;
-        document.querySelector('.text-testimonios-title').textContent = texts[lang].testimoniosTitle;
-        document.querySelector('.text-faq-title').textContent = texts[lang].faqTitle;
-        document.querySelector('.text-tienes-dudas').textContent = texts[lang].tienesDudas;
-        document.querySelector('.text-necesitas-info').textContent = texts[lang].necesitasInfo;
-        document.querySelector('.text-email').textContent = texts[lang].email;
-        document.querySelector('.text-respuesta-24h').textContent = texts[lang].respuesta24h;
-        document.querySelector('.text-terminos').textContent = texts[lang].terminos;
-        document.querySelector('.text-privacidad').textContent = texts[lang].privacidad;
-        document.querySelector('.text-eliminar-cuenta').textContent = texts[lang].eliminarCuenta;
-        document.querySelector('.text-copyright').textContent = texts[lang].copyright;
-        document.querySelector('.text-modal-title').textContent = texts[lang].modalTitle;
-        document.querySelector('.text-modal-desc').textContent = texts[lang].modalDesc;
-        document.querySelector('.text-christopher-desc').textContent = texts[lang].christopherDesc;
-        document.querySelector('.text-equipo').textContent = texts[lang].equipo;
-        document.querySelector('.text-team-intro').textContent = texts[lang].teamIntro;
-        document.querySelectorAll('.text-cofundador').forEach(el => el.textContent = texts[lang].cofundador);
-        document.querySelector('.text-santiago-desc').textContent = texts[lang].santiagoDesc;
-        document.querySelector('.text-terminos-title').textContent = texts[lang].terminosTitle;
-        document.querySelector('.text-terminos-intro').textContent = texts[lang].terminosIntro;
-        document.querySelector('.text-terminos-seccion-10').textContent = texts[lang].terminosSeccion10;
-        document.querySelector('.text-terminos-seccion-11').textContent = texts[lang].terminosSeccion11;
-        document.querySelector('.text-terminos-seccion-12').textContent = texts[lang].terminosSeccion12;
-        document.querySelector('.text-terminos-seccion-13').textContent = texts[lang].terminosSeccion13;
-        document.querySelector('.text-terminos-seccion-14').textContent = texts[lang].terminosSeccion14;
-        document.querySelector('.text-terminos-seccion-15').textContent = texts[lang].terminosSeccion15;
+        // Función auxiliar para actualizar el texto de manera segura
+        const safeSetText = (selector, text) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.textContent = text;
+            }
+        };
+
+        // Función auxiliar para actualizar el alt de manera segura
+        const safeSetAlt = (selector, text) => {
+            const element = document.querySelector(selector);
+            if (element) {
+                element.alt = text;
+            }
+        };
+
+        // Aplicar traducciones de manera segura
+        safeSetText('.text-inicio', texts[lang].inicio);
+        safeSetText('.text-como-funciona', texts[lang].comoFunciona);
+        safeSetText('.text-caracteristicas', texts[lang].caracteristicas);
+        safeSetText('.text-desafios', texts[lang].desafios);
+        safeSetText('.text-testimonios', texts[lang].testimonios);
+        safeSetText('.text-contacto', texts[lang].contacto);
+        safeSetText('.text-hero-title', texts[lang].heroTitle);
+        safeSetText('.text-hero-description', texts[lang].heroDesc);
+        safeSetAlt('.text-app-store', texts[lang].appStore);
+        safeSetAlt('.text-google-play', texts[lang].googlePlay);
+        safeSetText('.text-reconocimientos', texts[lang].reconocimientos);
+        safeSetText('.text-premio', texts[lang].premio);
+        safeSetText('.text-como-funciona-title', texts[lang].comoFuncionaTitle);
+        safeSetText('.text-elige', texts[lang].elige);
+        safeSetText('.text-elige-desc', texts[lang].eligeDesc);
+        safeSetText('.text-participa', texts[lang].participa);
+        safeSetText('.text-participa-desc', texts[lang].participaDesc);
+        safeSetText('.text-gana-dinero', texts[lang].ganaDinero);
+        safeSetText('.text-gana-dinero-desc', texts[lang].ganaDineroDesc);
+        safeSetText('.text-caracteristicas-title', texts[lang].caracteristicasTitle);
+        safeSetText('.text-desafios-competitivos', texts[lang].desafiosCompetitivos);
+        safeSetText('.text-desafios-competitivos-desc', texts[lang].desafiosCompetitivosDesc);
+        safeSetText('.text-verificacion-video', texts[lang].verificacionVideo);
+        safeSetText('.text-verificacion-video-desc', texts[lang].verificacionVideoDesc);
+        safeSetText('.text-seguridad', texts[lang].seguridad);
+        safeSetText('.text-seguridad-desc', texts[lang].seguridadDesc);
+        safeSetText('.text-recompensas', texts[lang].recompensas);
+        safeSetText('.text-recompensas-desc', texts[lang].recompensasDesc);
+        safeSetText('.text-numeros', texts[lang].numeros);
+        safeSetText('.text-jugadores', texts[lang].jugadores);
+        safeSetText('.text-desafios-completados', texts[lang].desafiosCompletados);
+        safeSetText('.text-partidas-jugadas', texts[lang].partidasJugadas);
+        safeSetText('.text-desafios-activos', texts[lang].desafiosActivos);
+        safeSetText('.text-testimonios-title', texts[lang].testimoniosTitle);
+        safeSetText('.text-faq-title', texts[lang].faqTitle);
+        safeSetText('.text-tienes-dudas', texts[lang].tienesDudas);
+        safeSetText('.text-necesitas-info', texts[lang].necesitasInfo);
+        safeSetText('.text-email', texts[lang].email);
+        safeSetText('.text-respuesta-24h', texts[lang].respuesta24h);
+        safeSetText('.text-terminos', texts[lang].terminos);
+        safeSetText('.text-privacidad', texts[lang].privacidad);
+        safeSetText('.text-eliminar-cuenta', texts[lang].eliminarCuenta);
+        safeSetText('.text-eliminar-cuenta-desc', texts[lang].eliminarCuentaDesc);
+        safeSetText('.text-copyright', texts[lang].copyright);
+        safeSetText('.text-modal-title', texts[lang].modalTitle);
+        safeSetText('.text-modal-desc', texts[lang].modalDesc);
+        safeSetText('.text-christopher-desc', texts[lang].christopherDesc);
+        safeSetText('.text-equipo', texts[lang].equipo);
+        safeSetText('.text-team-intro', texts[lang].teamIntro);
+        document.querySelectorAll('.text-cofundador').forEach(el => {
+            if (el) el.textContent = texts[lang].cofundador;
+        });
+        safeSetText('.text-santiago-desc', texts[lang].santiagoDesc);
+        safeSetText('.text-terminos-title', texts[lang].terminosTitle);
+        safeSetText('.text-terminos-intro', texts[lang].terminosIntro);
+        safeSetText('.text-terminos-seccion-10', texts[lang].terminosSeccion10);
+        safeSetText('.text-terminos-seccion-11', texts[lang].terminosSeccion11);
+        safeSetText('.text-terminos-seccion-12', texts[lang].terminosSeccion12);
+        safeSetText('.text-terminos-seccion-13', texts[lang].terminosSeccion13);
+        safeSetText('.text-terminos-seccion-14', texts[lang].terminosSeccion14);
+        safeSetText('.text-terminos-seccion-15', texts[lang].terminosSeccion15);
     }
 
     // Detectar país del usuario

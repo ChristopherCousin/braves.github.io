@@ -21,7 +21,7 @@
         /* Aseguramos que el enlace del email sea blanco */
         .content a[href^="mailto:"] {
             color: #FFFFFF;
-            text-decoration: underline; /* Opcional: para que se note que es un enlace */
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -33,29 +33,29 @@
             </div>
             <button class="menu-toggle">☰</button>
             <ul>
-                <li><a href="index.html#home">Inicio</a></li>
-                <li><a href="index.html#how-it-works">Cómo Funciona</a></li>
-                <li><a href="index.html#features">Características</a></li>
-                <li><a href="index.html#challenges">Desafíos</a></li>
-                <li><a href="index.html#testimonials">Testimonios</a></li>
-                <li><a href="index.html#contact">Contacto</a></li>
+                <li><a href="index.html#home" class="text-inicio">Inicio</a></li>
+                <li><a href="index.html#how-it-works" class="text-como-funciona">Cómo Funciona</a></li>
+                <li><a href="index.html#features" class="text-caracteristicas">Características</a></li>
+                <li><a href="index.html#challenges" class="text-desafios">Desafíos</a></li>
+                <li><a href="index.html#testimonials" class="text-testimonios">Testimonios</a></li>
+                <li><a href="index.html#contact" class="text-contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section class="content">
-            <h1>Eliminar Cuenta</h1>
-            <p>Para eliminar tu cuenta, por favor envía un correo a <a href="mailto:info@bravesapp.com">info@bravesapp.com</a> o accede a la aplicación y sigue los pasos en tu perfil para eliminar tu cuenta.</p>
+            <h1 class="text-eliminar-cuenta">Eliminar Cuenta</h1>
+            <p class="text-eliminar-cuenta-desc">Para eliminar tu cuenta, por favor envía un correo a <a href="mailto:info@bravesapp.com" class="text-email">info@bravesapp.com</a> o accede a la aplicación y sigue los pasos en tu perfil para eliminar tu cuenta.</p>
         </section>
     </main>
 
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="terminos.html">Términos y Condiciones</a>
-                <a href="privacidad.html">Política de Privacidad</a>
-                <a href="delete_account.html">Eliminar Cuenta</a>
+                <a href="terminos.html" class="text-terminos">Términos y Condiciones</a>
+                <a href="privacidad.html" class="text-privacidad">Política de Privacidad</a>
+                <a href="delete_account.html" class="text-eliminar-cuenta">Eliminar Cuenta</a>
             </div>
             <div class="social-links">
                 <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
@@ -63,9 +63,14 @@
                 <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
-        <div class="copyright">
+        <div class="copyright text-copyright">
             © 2024 Braves. Todos los derechos reservados.
         </div>
     </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
