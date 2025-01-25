@@ -16,6 +16,21 @@ const debounce = (func, wait) => {
 
 // Función para asegurarse de que el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
+    // Track store button clicks
+    document.querySelector('a[href*="apps.apple.com"]').addEventListener('click', function() {
+        gtag('event', 'click', {
+            'event_category': 'store_button',
+            'event_label': 'App Store'
+        });
+    });
+
+    document.querySelector('a[href*="play.google.com"]').addEventListener('click', function() {
+        gtag('event', 'click', {
+            'event_category': 'store_button',
+            'event_label': 'Google Play'
+        });
+    });
+
     // Animación del encabezado al desplazarse
     gsap.to("header", {
         scrollTrigger: {
@@ -412,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
         appleModal.style.display = 'none'; // Hide the modal
     });
 
-    // Close the modal cuando el usuario hace clic fuera del contenido del modal
+    // Close the modal when the user clicks outside the modal content
     window.addEventListener('click', function(event) {
         if (event.target == appleModal) {
             appleModal.style.display = 'none'; // Hide the modal
