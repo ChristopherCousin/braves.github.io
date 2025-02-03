@@ -109,9 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
             ]
         },
         { 
-            title: "Hit the Ball", 
+            title: "Speed Rush", 
             description: "Pon a prueba tu precisión y reflejos rebotando una pelota de papel en este desafiante juego de habilidad.", 
-            image: "assets/ball.png",
+            image: "assets/rush.png",
             fullDescription: "¡Participa en Hit the Ball Challenge y muestra tu destreza! Usa la cámara de tu móvil para grabarte mientras realizas el desafío.",
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",

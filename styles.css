@@ -2532,3 +2532,67 @@ body::before {
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
+
+/*------------------------------------------------
+  Mejoras para dispositivos móviles
+------------------------------------------------*/
+
+/* Ajustes para pantallas de hasta 768px */
+@media (max-width: 768px) {
+    /* Aumentar la zona táctil del botón de menú */
+    .menu-toggle {
+        padding: 10px; /* Aumenta el área clicable */
+        font-size: 26px; /* Incrementa el tamaño para mayor legibilidad */
+    }
+    /* Mejorar legibilidad del menú */
+    nav ul {
+        font-size: 1.1rem;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+    /* Aseguramos un tamaño de fuente legible */
+    body {
+        font-size: 16px;
+    }
+    /* Menú */
+    nav ul li a {
+        font-size: 1.1rem;
+    }
+    /* Reducir el tamaño del título y párrafo del héroe para evitar un overflow */
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero p {
+        font-size: 0.9rem;
+    }
+    /* Ajustar los tamaños de las imágenes de las app-stores */
+    .app-stores img,
+    .store-button img {
+        height: 150px;
+    }
+    /* Reducir el tamaño de títulos y párrafos en las tarjetas de desafíos */
+    .challenge-card-content h3 {
+        font-size: 1.3rem;
+    }
+    .challenge-card-content p {
+        font-size: 0.9rem;
+    }
+    /* Mejorar targets táctiles para enlaces y botones interactivos */
+    nav ul li a,
+    .view-more-btn,
+    .contact-button.whatsapp,
+    .faq-question,
+    .close-popup {
+        padding: 12px 20px;
+        min-height: 44px;
+        min-width: 44px;
+    }
+    /* Ajustar el modal para que se adapte a pantallas pequeñas */
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
+        padding: 15px;
+    }
+}
