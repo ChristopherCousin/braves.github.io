@@ -59,17 +59,20 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: 1
     });
 
-    // Animación de secciones al desplazarse
+    // Animación del contenido de cada sección sin afectar el fondo
     const sections = document.querySelectorAll("section");
     sections.forEach(section => {
-        gsap.from(section, {
+        // Seleccionamos únicamente los elementos hijos de la sección
+        const children = section.children;
+        gsap.from(children, {
             scrollTrigger: {
                 trigger: section,
                 start: "top 80%"
             },
             opacity: 0,
             y: 50,
-            duration: 1
+            duration: 1,
+            stagger: 0.1
         });
     });
 
@@ -351,15 +354,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.warn('Sección de estadísticas no encontrada. Animaciones no inicializadas.');
     }
 
-    // Animación de paralaje para la imagen del héroe
-    window.addEventListener('scroll', debounce(() => {
-        const scrollPosition = window.pageYOffset;
-        const heroImage = document.querySelector('.hero-image');
-        if (heroImage) {
-            heroImage.style.transform = `translateY(${scrollPosition * 0.1}px)`;
-        }
-    }, 10));
-
     console.log('Página cargada. Animaciones y efectos iniciados.');
 
     // Manejo de errores de imágenes
@@ -374,6 +368,58 @@ document.addEventListener('DOMContentLoaded', function() {
     function handleResourceError(error) {
         console.error('Resource loading error:', error);
     }
+
+    // [Efecto 3D (tilt) avanzado para el HERO]
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+        // Se deshabilita el efecto tilt del HERO manteniendo el estado inicial
+        heroSection.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    }
+
+    // Nueva integración de Three.js para fondo 3D en el HERO
+    function initHeroBackground() {
+        const canvas = document.getElementById('hero-canvas');
+        if (!canvas) return;
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio);
+        // Usamos el tamaño actual del canvas (tomando su bounding box)
+        renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, canvas.clientWidth / canvas.clientHeight, 0.1, 1000);
+        camera.position.z = 50;
+        
+        // Crear un sistema de partículas para un fondo futurista
+        const particleCount = 1000;
+        const geometry = new THREE.BufferGeometry();
+        const positions = [];
+        for (let i = 0; i < particleCount; i++) {
+            positions.push((Math.random() - 0.5) * 200);
+            positions.push((Math.random() - 0.5) * 200);
+            positions.push((Math.random() - 0.5) * 200);
+        }
+        geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+        const material = new THREE.PointsMaterial({ color: 0xff6b6b, size: 1 });
+        const particles = new THREE.Points(geometry, material);
+        scene.add(particles);
+    
+        function animate() {
+            requestAnimationFrame(animate);
+            // Rotación lenta para dar una sensación de movimiento infinito
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate();
+    
+        window.addEventListener('resize', () => {
+            const rect = canvas.getBoundingClientRect();
+            renderer.setSize(rect.width, rect.height);
+            camera.aspect = rect.width / rect.height;
+            camera.updateProjectionMatrix();
+        });
+    }
+
+    initHeroBackground();
 });
 
 // Forzar recarga de recursos

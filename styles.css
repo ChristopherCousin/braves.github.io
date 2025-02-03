@@ -19,22 +19,13 @@
 section {
     position: relative;
     overflow: hidden;
-    padding: 6rem 0;
-    background: var(--gradient-section);
+    padding: 8rem 0;
+    background: var(--background-color) !important;
+    border: none !important;
 }
 
 section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(255, 142, 142, 0.03), transparent 70%),
-        radial-gradient(circle at 80% 50%, rgba(255, 107, 107, 0.03), transparent 70%);
-    pointer-events: none;
-    z-index: 1;
+    display: none;
 }
 
 section > * {
@@ -44,18 +35,7 @@ section > * {
 
 /* Separadores entre secciones */
 section:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(90deg, 
-        transparent 0%, 
-        rgba(255, 107, 107, 0.15) 50%,
-        transparent 100%
-    );
-    z-index: 2;
+    display: none;
 }
 
 html {
@@ -91,7 +71,7 @@ body {
 }
 
 .modal-content {
-    background-color: #2A2A2A; /* Match your website’s color scheme */
+    background-color: #2A2A2A; /* Match your website's color scheme */
     margin: 10% auto; /* Center modal vertically */
     padding: 20px;
     border-radius: 10px;
@@ -201,18 +181,19 @@ nav ul li a:hover::after {
     padding: 8rem 0 6rem;
     position: relative;
     overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 
-.hero::before {
-    content: '';
+/* Nuevo estilo para el canvas del fondo 3D */
+#hero-canvas {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 30% 50%, rgba(255, 142, 142, 0.1), transparent 60%),
-        radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.1), transparent 60%);
+    width: 100%;
+    height: 100%;
+    z-index: 0;
     pointer-events: none;
 }
 
@@ -232,6 +213,8 @@ nav ul li a:hover::after {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: fadeIn 1s ease-out;
+    transform: translateZ(30px);
+    text-shadow: 0 4px 10px rgba(255, 107, 107, 0.5);
 }
 
 .hero p {
@@ -240,6 +223,8 @@ nav ul li a:hover::after {
     max-width: 600px;
     opacity: 0.9;
     animation: slideInFromLeft 1s ease-out 0.3s both;
+    transform: translateZ(20px);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .hero-image {
@@ -446,7 +431,7 @@ nav ul li a:hover::after {
 }
 
 .how-it-works, .features, .challenges, .testimonials, .contact {
-    padding: 5rem 0;
+    padding: 8rem 0;
 }
 
 h2 {
@@ -465,13 +450,13 @@ h2 {
 }
 
 .step {
-    background: rgba(42, 42, 42, 0.8);
+    background: rgba(42, 42, 42, 0.95) !important;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2.5rem;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
@@ -567,13 +552,13 @@ h2 {
 }
 
 .feature {
-    background: rgba(42, 42, 42, 0.8);
+    background: rgba(42, 42, 42, 0.95) !important;
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2.5rem;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -675,20 +660,7 @@ h2 {
 }
 
 .how-it-works::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    background-image: 
-        radial-gradient(circle at 50% 50%, var(--primary-color) 1px, transparent 1px),
-        radial-gradient(circle at 50% 50%, var(--secondary-color) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-    animation: float-particle 15s linear infinite;
-    opacity: 0.1;
+    display: none;
 }
 
 .demo-video {
@@ -717,15 +689,7 @@ h2 {
 }
 
 .testimonials::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 50%, rgba(255, 142, 142, 0.05), transparent 60%),
-                radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.05), transparent 60%);
-    pointer-events: none;
+    display: none;
 }
 
 .testimonial-carousel {
@@ -911,14 +875,7 @@ h2 {
 }
 
 .faq::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 70% 30%, rgba(255, 107, 107, 0.1), transparent 50%);
-    pointer-events: none;
+    display: none;
 }
 
 .faq-container {
@@ -1036,15 +993,7 @@ h2 {
 }
 
 .challenges::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 30% 50%, rgba(255, 142, 142, 0.05), transparent 60%),
-                radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.05), transparent 60%);
-    pointer-events: none;
+    display: none;
 }
 
 .challenge-slider {
@@ -1186,13 +1135,13 @@ h2 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    opacity: 0;
-    transition: opacity 0.3s ease;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
 }
 
 .challenge-card .view-more-btn:hover::before {
-    opacity: 1;
+    transform: translateX(100%);
 }
 
 .challenge-card .view-more-btn span {
@@ -1873,20 +1822,12 @@ footer::before {
 .statistics {
     position: relative;
     padding: 8rem 0;
-    background: linear-gradient(145deg, #1E1E1E, #262626);
+    background: var(--background-color) !important;
     overflow: hidden;
 }
 
 .stats-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(circle at 30% 50%, rgba(255, 142, 142, 0.05), transparent 60%),
-        radial-gradient(circle at 70% 50%, rgba(255, 107, 107, 0.05), transparent 60%);
-    z-index: 1;
+    display: none;
 }
 
 .stats-content {
@@ -2078,23 +2019,21 @@ footer::before {
         flex-direction: column;
         align-items: center;
         text-align: center;
-		
+        perspective: 800px;
     }
     .hero-content {
         order: 1;
         width: 100%;
     }
-	
     .hero h1 {
-        font-size: 2.2rem;
-        line-height: 1.2;
-        margin-bottom: 1rem;
-		padding-top: 20px;
+        font-size: 2.5rem;
+        transform: translateZ(20px);
+        text-shadow: 0 3px 8px rgba(255, 107, 107, 0.4);
     }
     .hero p {
         font-size: 1rem;
-        line-height: 1.5;
-        margin-bottom: 1.5rem;
+        transform: translateZ(15px);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
     .app-stores {
         display: flex;
@@ -2105,7 +2044,6 @@ footer::before {
     .store-button img {
         height: 170px;
     }
-	
     .hero-image {
         order: 2;
         width: 100%;
@@ -2176,8 +2114,7 @@ footer::before {
         min-height: 44px;
         min-width: 44px;
     }
-	
-	    .how-it-works {
+    .how-it-works {
         padding: 3rem 0;
     }
 
@@ -2195,7 +2132,6 @@ footer::before {
         background-color: rgba(42, 42, 42, 0.8);
         border-radius: 10px;
     }
-
 
     .step-content {
         flex: 1;
@@ -2528,4 +2464,71 @@ main {
     .popup-section {
         padding: 1.2rem;
     }
+}
+
+/* Indicador de scroll futurista */
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 30px;
+    height: 30px;
+}
+
+/* Ocultamos los puntos actuales */
+.scroll-indicator .dot {
+    display: none;
+}
+
+/* Creamos la flecha moderna con efecto futurista */
+.scroll-indicator::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    margin: 0 auto;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 18px solid var(--primary-color); /* rojo */
+    animation: futuristicArrow 2s infinite;
+}
+
+@keyframes futuristicArrow {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: drop-shadow(0 0 5px var(--primary-color));
+    }
+    50% {
+        transform: translateY(10px);
+        opacity: 0.5;
+        filter: drop-shadow(0 0 15px var(--primary-color));
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: drop-shadow(0 0 5px var(--primary-color));
+    }
+}
+
+/* Fondo Profesional Animado */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #1E1E1E, #1E1E1E, #1E1E1E, #2A2A2A);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: professionalGradient 60s ease infinite;
+}
+
+@keyframes professionalGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }

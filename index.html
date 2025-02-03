@@ -75,6 +75,9 @@
 
     <link rel="stylesheet" href="styles.css">
 
+    <!-- Incluir Three.js desde CDN -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r140/three.min.js"></script>
+
     <!-- GSAP -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
@@ -113,6 +116,8 @@
     <main id="main-content">
         <!-- Hero Section -->
         <section id="hero" class="hero">
+            <!-- Canvas para fondo 3D -->
+            <canvas id="hero-canvas"></canvas>
             <div class="hero-content">
                 <h1 class="text-hero-title">Braves: Demuestra tus Habilidades</h1>
                 <p class="text-hero-description">Compite en desafíos emocionantes, ya sean virtuales o físicos, mejora tus habilidades y obtén recompensas basadas en tu destreza. ¡La competencia del futuro está aquí!</p>
@@ -127,6 +132,12 @@
             </div>
             <div class="hero-image">
                 <img src="assets/braves-app-mockup.png" alt="Braves App en acción" loading="lazy">
+            </div>
+            <!-- Scroll Down Indicator -->
+            <div class="scroll-indicator">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
         </section>
 
