@@ -422,24 +422,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeroBackground();
 });
 
-// Forzar recarga de recursos
-function forceReload() {
-    const links = document.getElementsByTagName('link');
-    for (let i = 0; i < links.length; i++) {
-        if (links[i].getAttribute('rel') === 'stylesheet') {
-            links[i].href = links[i].href.split('?')[0] + '?id=' + new Date().getMilliseconds();
-        }
-    }
-    const scripts = document.getElementsByTagName('script');
-    for (let i = 0; i < scripts.length; i++) {
-        if (scripts[i].src && !scripts[i].src.includes('livereload.js')) {
-            scripts[i].src = scripts[i].src.split('?')[0] + '?id=' + new Date().getMilliseconds();
-        }
-    }
-}
-
-// Llamar a la función cuando la página se carga
-window.addEventListener('load', forceReload);
+// En su lugar, agregamos una transición para evitar el flash
+window.addEventListener('load', () => {
+    document.body.classList.add('loaded');
+});
 
 // Funcionalidad del menú hamburguesa
 const menuToggle = document.querySelector('.menu-toggle');

@@ -56,6 +56,12 @@ body {
     background-color: var(--background-color);
     position: relative;
     overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
 }
 
 .modal {
@@ -441,22 +447,30 @@ h2 {
     color: var(--primary-color);
 }
 
+/* Eliminar la línea que atraviesa los steps */
+.steps::after {
+    display: none;
+}
+
+/* Rediseño de los steps */
 .steps {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
     padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
     position: relative;
 }
 
 .step {
-    background: rgba(42, 42, 42, 0.95) !important;
+    background: rgba(42, 42, 42, 0.95);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 2.5rem;
+    border-radius: 24px;
+    padding: 3rem 2rem;
     position: relative;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
@@ -464,84 +478,109 @@ h2 {
     text-align: center;
 }
 
-.step::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(78, 205, 196, 0.1));
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.step:hover {
-    transform: translateY(-10px) scale(1.02);
-    border-color: var(--primary-color);
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 20px rgba(255, 107, 107, 0.2);
-}
-
-.step:hover::before {
-    opacity: 1;
-}
-
 .step-icon {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    font-size: 2rem;
+    color: white;
     position: relative;
     transition: all 0.4s ease;
 }
 
+.step:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
 .step:hover .step-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.1);
     box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
-}
-
-.step-icon::after {
-    content: '';
-    position: absolute;
-    width: calc(100% + 20px);
-    height: calc(100% + 20px);
-    border: 2px dashed var(--primary-color);
-    border-radius: 50%;
-    animation: spin 10s linear infinite;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.step:hover .step-icon::after {
-    opacity: 1;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
 }
 
 .step h3 {
     font-size: 1.8rem;
     color: var(--primary-color);
     margin-bottom: 1rem;
-    position: relative;
-    z-index: 1;
+    font-weight: 600;
 }
 
 .step p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: var(--text-color);
-    opacity: 0.9;
-    position: relative;
-    z-index: 1;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Mejoras para móvil */
+@media (max-width: 768px) {
+    .steps {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+
+    .step {
+        padding: 2rem;
+        flex-direction: row;
+        text-align: left;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+    }
+
+    .step-content {
+        flex: 1;
+    }
+
+    .step h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .step p {
+        font-size: 1rem;
+        margin: 0;
+    }
+
+    /* Desactivar algunas animaciones en móvil para mejor rendimiento */
+    .step:hover {
+        transform: none;
+    }
+}
+
+/* Ajuste adicional para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .step {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .step-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+
+    .step h3 {
+        font-size: 1.2rem;
+    }
+
+    .step p {
+        font-size: 0.9rem;
+    }
 }
 
 .feature-grid {
