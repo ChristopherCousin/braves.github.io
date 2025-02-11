@@ -341,9 +341,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    animateValue("userCount", 0, 13652, 2000);
-                    animateValue("challengeCount", 0, 77, 2500);
-                    animateValue("gamesPlayed", 0, 136530, 3000);
+                    animateValue("userCount", 0, 14452, 2000);
+                    animateValue("challengeCount", 0, 127, 2500);
+                    animateValue("gamesPlayed", 0, 196530, 3000);
                     observer.unobserve(entry.target);
                 }
             });
