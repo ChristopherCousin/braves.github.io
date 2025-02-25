@@ -1,0 +1,312 @@
+/* Estilos para la sección Hero */
+.hero {
+    display: flex;
+    align-items: center;
+    background: var(--background-color);
+    padding: 10rem 0 8rem;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    will-change: transform;
+    min-height: 100vh;
+}
+
+/* Canvas del fondo 3D */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+/* Overlay con gradiente */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 90, 90, 0.08), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(255, 128, 128, 0.05), transparent 60%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-content {
+    flex: 1;
+    padding: 0 5%;
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeIn 1s ease-out;
+    transform: translateZ(30px);
+    text-shadow: 0 4px 10px rgba(255, 90, 90, 0.5);
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    opacity: 0.9;
+    animation: slideInFromLeft 1s ease-out 0.3s both;
+    transform: translateZ(20px);
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    color: var(--text-color-secondary);
+    line-height: 1.7;
+}
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.hero-image img {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.3));
+    animation: float 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateY(-5deg);
+    transition: transform 0.5s ease;
+}
+
+.hero-image:hover img {
+    transform: perspective(1000px) rotateY(0deg) scale(1.02);
+}
+
+.app-stores {
+    display: flex;
+    gap: 1.5rem;
+    animation: slideInFromLeft 1s ease-out 0.6s both;
+}
+
+.store-button {
+    transition: transform var(--transition-normal), filter var(--transition-normal);
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius-md);
+}
+
+.store-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+    z-index: 1;
+}
+
+.store-button:hover {
+    transform: translateY(-5px);
+    filter: brightness(1.1) contrast(1.05);
+}
+
+.store-button:hover::before {
+    transform: translateX(100%);
+}
+
+.store-button img {
+    height: auto;
+    width: 180px;
+    transition: transform var(--transition-normal);
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.store-button:hover img {
+    transform: scale(1.02);
+}
+
+/* Indicador de scroll futurista */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    width: 30px;
+    height: 50px;
+    border: 2px solid rgba(255, 90, 90, 0.3);
+    border-radius: var(--border-radius-full);
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+/* Ocultamos los puntos actuales */
+.scroll-indicator .dot {
+    display: none;
+}
+
+/* Creamos la flecha moderna con efecto futurista */
+.scroll-indicator::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    margin: 0 auto;
+    background: var(--primary-color);
+    border-radius: 50%;
+    animation: scrollDot 2s infinite;
+}
+
+@keyframes scrollDot {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 4rem;
+    }
+    
+    .hero p {
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero {
+        padding: 8rem 0 6rem;
+        min-height: auto;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 7rem 0 5rem;
+    }
+    
+    .hero-content {
+        order: 1;
+        width: 100%;
+        max-width: 100%;
+        padding: 0 1.5rem;
+        margin-bottom: 3rem;
+    }
+    
+    .hero h1 {
+        font-size: 3rem;
+        transform: translateZ(20px);
+        text-shadow: 0 3px 8px rgba(255, 90, 90, 0.4);
+    }
+    
+    .hero p {
+        font-size: 1.1rem;
+        transform: translateZ(15px);
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        margin: 0 auto 2rem;
+    }
+    
+    .app-stores {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .store-button img {
+        width: 180px;
+        height: auto;
+    }
+    
+    .hero-image {
+        order: 2;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .hero-image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transform: perspective(1000px) rotateY(0);
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .hero {
+        padding: 6rem 0 4rem;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    .store-button img {
+        width: 150px;
+        height: auto;
+    }
+    
+    .app-stores {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+    }
+    
+    .store-button {
+        min-height: 44px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .hero-image {
+        max-width: 280px;
+    }
+} 

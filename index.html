@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <title>Braves - Compite en Desafíos de Habilidad</title>
     <meta name="description" content="Braves es una plataforma innovadora donde puedes participar en desafíos únicos, demostrar tu destreza y obtener recompensas basadas en tu habilidad. ¡Únete a la revolución de los juegos competitivos!">
 
@@ -73,7 +76,8 @@
     <link rel="preload" href="assets/braves-logo.png" as="image">
     <link rel="preload" href="assets/braves-app-mockup.png" as="image">
 
-    <link rel="stylesheet" href="styles.css">
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="css/main.css">
 
     <!-- Incluir Three.js desde CDN -->
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r140/three.min.js"></script>
@@ -122,16 +126,16 @@
                 <h1 class="text-hero-title">Braves: Demuestra tus Habilidades</h1>
                 <p class="text-hero-description">Compite en desafíos emocionantes, ya sean virtuales o físicos, mejora tus habilidades y obtén recompensas basadas en tu destreza. ¡La competencia del futuro está aquí!</p>
                 <div class="app-stores">
-                    <a href="https://apps.apple.com/us/app/braves/id6740215654" id="apple2-store-button" class="store-button" aria-label="Descargar en App Store">
-                        <img src="assets/app-store.svg" alt="Descargar en App Store" loading="lazy" class="text-app-store">
+                    <a href="https://apps.apple.com/us/app/braves/id6740215654" id="apple2-store-button" class="store-button" aria-label="Descargar en App Store" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/app-store.svg" alt="Descargar en App Store" loading="lazy" class="text-app-store" width="180" height="60">
                     </a>
-                    <a href="https://play.google.com/store/apps/details?id=io.onlybraves.braves" class="store-button" aria-label="Disponible en Google Play">
-                        <img src="assets/google-play.svg" alt="Disponible en Google Play" loading="lazy" class="text-google-play">
+                    <a href="https://play.google.com/store/apps/details?id=io.onlybraves.braves" class="store-button" aria-label="Disponible en Google Play" target="_blank" rel="noopener noreferrer">
+                        <img src="assets/google-play.svg" alt="Disponible en Google Play" loading="lazy" class="text-google-play" width="180" height="60">
                     </a>
                 </div>
             </div>
             <div class="hero-image">
-                <img src="assets/braves-app-mockup.png" alt="Braves App en acción" loading="lazy">
+                <img src="assets/braves-app-mockup.png" alt="Braves App en acción" loading="lazy" width="400" height="600">
             </div>
             <!-- Scroll Down Indicator -->
             <div class="scroll-indicator">
@@ -382,5 +386,6 @@
     </div>
 
     <script src="script.js" defer></script>
+    <script src="transitions.js" defer></script>
 </body>
 </html>

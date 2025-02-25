@@ -1,0 +1,422 @@
+/* Estilos para la sección de contacto */
+.contact {
+    text-align: center;
+    padding: 8rem 0;
+    position: relative;
+    background: var(--gradient-section);
+    overflow: hidden;
+}
+
+.contact::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 90, 90, 0.06), transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(255, 128, 128, 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.contact::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"><rect width="1" height="1" fill="rgba(255,255,255,0.03)"/></svg>');
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.contact-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.contact h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    display: inline-block;
+}
+
+.contact h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: var(--border-radius-full);
+}
+
+.contact p {
+    font-size: 1.3rem;
+    margin-bottom: 3rem;
+    color: var(--text-color-secondary);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+}
+
+.contact-methods {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin: 4rem auto;
+    max-width: 1000px;
+}
+
+.contact-method {
+    background: var(--gradient-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 3.5rem;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--box-shadow-card);
+    transform-style: preserve-3d;
+}
+
+.contact-method::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+.contact-method:hover {
+    transform: translateY(-15px) scale(1.02);
+    border-color: var(--primary-color);
+    box-shadow: var(--box-shadow-card-hover);
+}
+
+.contact-method:hover::before {
+    transform: scaleX(1);
+}
+
+.method-icon {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    transition: all var(--transition-normal);
+    position: relative;
+    transform: translateZ(20px);
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+.contact-method:hover .method-icon {
+    transform: translateZ(30px) scale(1.1) rotate(5deg);
+    color: var(--secondary-color);
+    filter: drop-shadow(0 8px 15px rgba(0, 0, 0, 0.3));
+}
+
+.method-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    position: relative;
+    transform: translateZ(15px);
+}
+
+.email-address {
+    margin: 2.5rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all var(--transition-normal);
+    transform: translateZ(10px);
+}
+
+.email-address:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--primary-color);
+    transform: translateZ(10px) translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.email-address a {
+    font-size: 1.6rem;
+    font-weight: 700;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+    transition: all var(--transition-normal);
+    display: inline-block;
+    position: relative;
+}
+
+.email-address a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+    transform-origin: right;
+}
+
+.email-address a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.contact-buttons {
+    margin-top: 2.5rem;
+    transform: translateZ(15px);
+}
+
+.contact-button.whatsapp {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.2rem 2.5rem;
+    border-radius: var(--border-radius-full);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-button.whatsapp::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.contact-button.whatsapp:hover::before {
+    transform: translateX(100%);
+}
+
+.contact-button.whatsapp:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(37, 211, 102, 0.4);
+}
+
+.contact-button i {
+    font-size: 1.6rem;
+    position: relative;
+    z-index: 1;
+}
+
+.response-time {
+    margin-top: 4rem;
+    padding: 1.5rem 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-full);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all var(--transition-normal);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.response-time:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    border-color: rgba(255, 90, 90, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.response-time i {
+    color: var(--secondary-color);
+    font-size: 1.4rem;
+}
+
+.response-time span {
+    font-size: 1.1rem;
+    color: var(--text-color-secondary);
+    font-weight: 500;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .contact-methods {
+        gap: 2.5rem;
+    }
+    
+    .contact-method {
+        padding: 3rem;
+    }
+    
+    .method-icon {
+        font-size: 3rem;
+        margin-bottom: 1.75rem;
+    }
+    
+    .method-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .email-address {
+        margin: 2rem 0;
+        padding: 1.75rem;
+    }
+    
+    .email-address a {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact {
+        padding: 6rem 0;
+    }
+
+    .contact h2 {
+        font-size: 2.75rem;
+    }
+
+    .contact p {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+
+    .contact-methods {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+
+    .contact-method {
+        padding: 2.5rem;
+    }
+
+    .method-icon {
+        font-size: 2.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .method-title {
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+    }
+
+    .email-address {
+        margin: 1.75rem 0;
+        padding: 1.5rem;
+    }
+
+    .email-address a {
+        font-size: 1.4rem;
+    }
+
+    .contact-button.whatsapp {
+        width: 100%;
+        justify-content: center;
+        padding: 1.1rem 2rem;
+        font-size: 1.2rem;
+    }
+
+    .response-time {
+        margin-top: 3rem;
+        padding: 1.25rem 2rem;
+    }
+    
+    .response-time i {
+        font-size: 1.3rem;
+    }
+    
+    .response-time span {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact {
+        padding: 5rem 0;
+    }
+    
+    .contact h2 {
+        font-size: 2.5rem;
+    }
+    
+    .contact p {
+        font-size: 1rem;
+    }
+    
+    .contact-methods {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+    
+    .contact-method {
+        padding: 2rem;
+    }
+    
+    .method-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .method-title {
+        font-size: 1.5rem;
+    }
+    
+    .email-address {
+        margin: 1.5rem 0;
+        padding: 1.25rem;
+    }
+    
+    .email-address a {
+        font-size: 1.3rem;
+    }
+    
+    .contact-button.whatsapp {
+        padding: 1rem 1.75rem;
+        font-size: 1.1rem;
+    }
+    
+    .response-time {
+        margin-top: 2.5rem;
+        padding: 1rem 1.5rem;
+        flex-direction: column;
+        text-align: center;
+    }
+} 

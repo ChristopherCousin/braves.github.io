@@ -1,0 +1,225 @@
+/* Ajustes responsivos generales */
+
+/* Ajustes para pantallas de hasta 768px (tablets y móviles) */
+@media (max-width: 768px) {
+    body {
+        font-size: 16px;
+    }
+    
+    .container {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    /* Mejora de targets táctiles */
+    nav ul li a,
+    .view-more-btn,
+    .contact button,
+    .faq-question,
+    .close-popup,
+    .store-button,
+    .social-icon,
+    .contact-button,
+    .footer-links a {
+        padding: 12px 20px;
+        min-height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Aumentar espacio entre elementos interactivos */
+    nav ul,
+    .footer-links,
+    .social-links {
+        gap: 1.5rem;
+    }
+    
+    /* Mejorar feedback táctil */
+    a, button, .faq-question, .view-more-btn {
+        transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    
+    a:active, button:active, .faq-question:active, .view-more-btn:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+    
+    /* Ajustes básicos para móvil */
+    html {
+        overflow-y: scroll;
+        -webkit-overflow-scrolling: touch; /* Mejora el scroll en iOS */
+        height: 100%;
+    }
+
+    body {
+        position: relative;
+        min-height: 100%;
+        overflow-x: hidden;
+        overflow-y: visible;
+        touch-action: pan-y pinch-zoom; /* Permite scroll vertical y zoom */
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Ajustes para elementos fijos */
+    header {
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+        will-change: transform;
+    }
+    
+    /* Mejoras para el contenedor principal */
+    main {
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-y: contain;
+        position: relative;
+        z-index: 1;
+    }
+    
+    /* Ajustes para secciones con scroll horizontal */
+    .testimonial-carousel {
+        overscroll-behavior-x: contain;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+    
+    /* Desactivar animaciones en scroll para mejorar rendimiento */
+    .step:hover,
+    .feature:hover,
+    .challenge-card:hover {
+        transform: none;
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (hasta 480px) */
+@media (max-width: 480px) {
+    /* Aseguramos un tamaño de fuente legible */
+    body {
+        font-size: 16px;
+    }
+    
+    /* Menú */
+    nav ul li a {
+        font-size: 1.1rem;
+    }
+    
+    /* Reducir el tamaño del título y párrafo del héroe para evitar un overflow */
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 0.9rem;
+    }
+    
+    /* Ajustar los tamaños de las imágenes de las app-stores */
+    .app-stores img,
+    .store-button img {
+        height: 150px;
+    }
+    
+    /* Mejorar targets táctiles para enlaces y botones interactivos */
+    nav ul li a,
+    .view-more-btn,
+    .contact-button.whatsapp,
+    .faq-question,
+    .close-popup {
+        padding: 12px 20px;
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    /* Ajustar el modal para que se adapte a pantallas pequeñas */
+    .modal-content {
+        margin: 20% auto;
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+/* Mejoras para dispositivos de alta resolución */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-image img,
+    .challenge-card img,
+    .award-container img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Ajustes para dispositivos móviles en orientación landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+    /* Ajustar altura del hero para evitar scroll excesivo */
+    .hero {
+        min-height: auto;
+        padding: 6rem 2rem 3rem;
+        flex-direction: row;
+    }
+    
+    /* Reorganizar contenido del hero para aprovechar el espacio horizontal */
+    .hero-content {
+        flex: 1;
+        padding-right: 2rem;
+    }
+    
+    .hero-image {
+        flex: 1;
+        max-width: 40%;
+    }
+    
+    /* Ajustar tamaño de fuentes */
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero p {
+        font-size: 1rem;
+    }
+    
+    /* Ajustar secciones para que no sean demasiado altas */
+    section {
+        padding: 3rem 2rem;
+    }
+    
+    /* Ajustar menú móvil para orientación landscape */
+    nav ul {
+        height: 100vh;
+        padding: 5rem 2rem 2rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-content: flex-start;
+    }
+    
+    nav ul li {
+        width: auto;
+        margin: 0.5rem;
+    }
+    
+    /* Ajustar pasos de "Cómo funciona" para orientación landscape */
+    .steps {
+        flex-direction: row;
+    }
+    
+    .step {
+        flex: 1;
+    }
+    
+    /* Ajustar grid de características */
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+} 

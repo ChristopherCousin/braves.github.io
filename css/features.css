@@ -1,0 +1,213 @@
+/* Estilos para la sección de características */
+.features {
+    padding: 8rem 0;
+    background: var(--background-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 70% 20%, rgba(255, 90, 90, 0.03), transparent 70%),
+        radial-gradient(circle at 30% 80%, rgba(255, 128, 128, 0.03), transparent 70%);
+    pointer-events: none;
+}
+
+.features h2 {
+    margin-bottom: 4rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.feature {
+    background: var(--gradient-card) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    transition: all var(--transition-slow);
+    box-shadow: var(--box-shadow-card);
+    transform-style: preserve-3d;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.feature::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--gradient-primary);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.5s ease;
+}
+
+.feature::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 90, 90, 0.05), transparent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.feature:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary-color) !important;
+    box-shadow: var(--box-shadow-card-hover);
+}
+
+.feature:hover::before {
+    transform: scaleY(1);
+}
+
+.feature:hover::after {
+    opacity: 1;
+}
+
+.feature-icon {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    transition: all var(--transition-normal);
+    transform: translateZ(20px);
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+}
+
+.feature:hover .feature-icon {
+    transform: translateZ(30px) scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 8px 15px rgba(255, 90, 90, 0.3));
+}
+
+.feature h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.25rem;
+    position: relative;
+    transform: translateZ(10px);
+    font-weight: 600;
+}
+
+.feature p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color-secondary);
+    opacity: 0.95;
+    transform: translateZ(5px);
+    flex-grow: 1;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .feature-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 0 1.5rem;
+    }
+    
+    .feature {
+        padding: 2.5rem;
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1.75rem;
+    }
+    
+    .feature h3 {
+        font-size: 1.6rem;
+    }
+    
+    .feature p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .features {
+        padding: 6rem 0;
+    }
+    
+    .features h2 {
+        margin-bottom: 3rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+        gap: 2rem;
+    }
+
+    .feature {
+        padding: 2.25rem;
+    }
+
+    .feature-icon {
+        font-size: 2.75rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .feature h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .feature p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .features {
+        padding: 5rem 0;
+    }
+    
+    .feature-grid {
+        padding: 0 1rem;
+        gap: 1.5rem;
+    }
+    
+    .feature {
+        padding: 2rem;
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .feature h3 {
+        font-size: 1.4rem;
+    }
+    
+    .feature p {
+        font-size: 0.95rem;
+    }
+} 

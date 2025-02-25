@@ -1,0 +1,310 @@
+/* Estilos para la sección del equipo */
+.team {
+    background-color: var(--background-color);
+    padding: 8rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.team::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 30% 30%, rgba(255, 90, 90, 0.04), transparent 70%),
+        radial-gradient(circle at 70% 70%, rgba(255, 128, 128, 0.04), transparent 70%);
+    pointer-events: none;
+}
+
+.team h2 {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 2rem;
+}
+
+.team-intro {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.team-intro p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--text-color-secondary);
+}
+
+.team-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.team-member {
+    flex-basis: calc(50% - 2rem);
+    min-width: 320px;
+    background: var(--gradient-card);
+    border-radius: var(--border-radius-lg);
+    padding: 3rem;
+    box-shadow: var(--box-shadow-card);
+    transition: all var(--transition-slow);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform-style: preserve-3d;
+}
+
+.team-member::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+    z-index: 1;
+}
+
+.team-member:hover {
+    transform: translateY(-15px);
+    box-shadow: var(--box-shadow-card-hover);
+    border-color: rgba(255, 90, 90, 0.2);
+}
+
+.team-member:hover::before {
+    transform: scaleX(1);
+}
+
+.member-photo {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 2.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--primary-color);
+    padding: 4px;
+    background: var(--gradient-primary);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    transition: all var(--transition-normal);
+    transform: translateZ(20px);
+}
+
+.member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .member-photo {
+    transform: translateZ(30px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+.team-member:hover .member-photo img {
+    transform: scale(1.1);
+}
+
+.member-info {
+    text-align: center;
+    transform-style: preserve-3d;
+}
+
+.member-info h3 {
+    color: var(--text-color);
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    transform: translateZ(10px);
+}
+
+.member-role {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    transform: translateZ(10px);
+}
+
+.member-description {
+    color: var(--text-color-secondary);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    transform: translateZ(5px);
+}
+
+.member-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    transform: translateZ(15px);
+}
+
+.member-social a {
+    color: var(--text-color-secondary);
+    font-size: 1.6rem;
+    transition: all var(--transition-normal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.member-social a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px);
+    background: rgba(255, 90, 90, 0.1);
+    border-color: rgba(255, 90, 90, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .team-member {
+        padding: 2.5rem;
+    }
+    
+    .member-photo {
+        width: 160px;
+        height: 160px;
+        margin-bottom: 2rem;
+    }
+    
+    .member-info h3 {
+        font-size: 1.6rem;
+    }
+    
+    .member-role {
+        font-size: 1.1rem;
+    }
+    
+    .member-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .team {
+        padding: 6rem 0;
+    }
+    
+    .team h2 {
+        margin-bottom: 1.5rem;
+    }
+    
+    .team-intro {
+        margin-bottom: 3rem;
+        padding: 0 1.5rem;
+    }
+    
+    .team-intro p {
+        font-size: 1.1rem;
+    }
+    
+    .team-container {
+        gap: 3rem;
+        padding: 0 1.5rem;
+    }
+
+    .team-member {
+        flex-basis: 100%;
+        min-width: 0;
+        padding: 2rem;
+    }
+    
+    .member-photo {
+        width: 140px;
+        height: 140px;
+        margin-bottom: 1.75rem;
+    }
+    
+    .member-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .member-role {
+        font-size: 1.05rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .member-description {
+        font-size: 0.95rem;
+        margin-bottom: 1.75rem;
+    }
+    
+    .member-social {
+        gap: 1.25rem;
+    }
+    
+    .member-social a {
+        font-size: 1.4rem;
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .team {
+        padding: 5rem 0;
+    }
+    
+    .team-intro {
+        padding: 0 1rem;
+    }
+    
+    .team-container {
+        padding: 0 1rem;
+        gap: 2.5rem;
+    }
+    
+    .team-member {
+        padding: 1.75rem;
+    }
+    
+    .member-photo {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .member-info h3 {
+        font-size: 1.4rem;
+    }
+    
+    .member-role {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .member-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .member-social a {
+        font-size: 1.3rem;
+        width: 36px;
+        height: 36px;
+    }
+} 

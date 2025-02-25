@@ -1,0 +1,26 @@
+/* Archivo principal que importa todos los estilos */
+
+/* Base y variables */
+@import 'base.css';
+
+/* Componentes de la página */
+@import 'header.css';
+@import 'hero.css';
+@import 'awards.css';
+@import 'how-it-works.css';
+@import 'features.css';
+@import 'statistics.css';
+@import 'challenges.css';
+@import 'testimonials.css';
+@import 'faq.css';
+@import 'team.css';
+@import 'contact.css';
+@import 'footer.css';
+
+/* Componentes adicionales */
+@import 'modal.css';
+
+/* Animaciones, transiciones y ajustes responsivos */
+@import 'animations.css';
+@import 'transitions.css';
+@import 'responsive.css'; 

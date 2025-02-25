@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Paleta de colores refinada */
+    --primary-color: #FF5A5A;
+    --secondary-color: #FF8080;
+    --accent-color: #FF3333;
+    --background-color: #121212;
+    --card-background: #1E1E1E;
+    --card-background-hover: #252525;
+    --text-color: #FFFFFF;
+    --text-color-secondary: rgba(255, 255, 255, 0.85);
+    --text-color-muted: rgba(255, 255, 255, 0.6);
+    --button-color: #FF5A5A;
+    --button-hover: #FF3333;
+    
+    /* Gradientes mejorados */
+    --gradient-primary: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    --gradient-dark: linear-gradient(145deg, #1A1A1A, #252525);
+    --gradient-section: linear-gradient(145deg, #121212, #1A1A1A);
+    --gradient-card: linear-gradient(145deg, #1E1E1E, #252525);
+    --gradient-footer: linear-gradient(180deg, #1A1A1A, #121212);
+    
+    /* Sombras y efectos */
+    --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    --box-shadow-hover: 0 12px 40px rgba(0, 0, 0, 0.35);
+    --box-shadow-card: 0 10px 25px rgba(0, 0, 0, 0.2);
+    --box-shadow-card-hover: 0 15px 35px rgba(0, 0, 0, 0.3);
+    
+    /* Bordes y radios */
+    --border-radius-sm: 8px;
+    --border-radius-md: 16px;
+    --border-radius-lg: 24px;
+    --border-radius-xl: 32px;
+    --border-radius-full: 9999px;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+body.loaded {
+    opacity: 1;
+}
+
+/* Fondo Profesional Animado */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(-45deg, #121212, #151515, #181818, #1E1E1E);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: professionalGradient 60s ease infinite;
+    opacity: 0.8;
+}
+
+/* Estilos base para todas las secciones */
+section {
+    position: relative;
+    overflow: hidden;
+    padding: var(--spacing-xl) 0;
+    background: var(--background-color) !important;
+    border: none !important;
+    width: 100%;
+    max-width: 100%;
+}
+
+section::before {
+    display: none;
+}
+
+section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Separadores entre secciones */
+section:not(:last-child)::after {
+    display: none;
+}
+
+/* Contenedor común */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+}
+
+/* Títulos de sección */
+h2 {
+    font-size: 2.75rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-color);
+    position: relative;
+    display: block;
+    width: 100%;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--gradient-primary);
+    border-radius: var(--border-radius-full);
+}
+
+h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-color);
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-color-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Estilos para la barra de desplazamiento */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: var(--border-radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-color);
+}
+
+/* Mejoras de accesibilidad */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Estilos para focus visible */
+a:focus, button:focus, input:focus, textarea:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.skip-to-main-content {
+    position: absolute;
+    left: -9999px;
+    z-index: 999;
+    padding: 1em;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+}
+
+.skip-to-main-content:focus {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+main {
+    position: relative;
+    width: 100%;
+    overflow: visible;
+}
+
+/* Botón estándar */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: var(--gradient-primary);
+    border: none;
+    border-radius: var(--border-radius-full);
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(255, 90, 90, 0.3);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 90, 90, 0.4);
+}
+
+.btn:hover::before {
+    transform: translateX(100%);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes professionalGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+} 
