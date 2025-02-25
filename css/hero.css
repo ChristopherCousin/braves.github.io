@@ -210,7 +210,7 @@
         width: 100%;
         max-width: 100%;
         padding: 0 1.5rem;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
     
     .hero h1 {
@@ -239,8 +239,9 @@
     .hero-image {
         order: 2;
         width: 100%;
-        max-width: 350px;
+        max-width: 280px;
         margin: 0 auto;
+        margin-bottom: 3rem;
     }
     
     .hero-image img {
@@ -258,7 +259,7 @@
 /* Ajustes para pantallas muy pequeñas */
 @media (max-width: 480px) {
     .hero {
-        padding: 6rem 0 4rem;
+        padding: 6rem 0 5rem;
     }
     
     .hero h1 {
@@ -279,5 +280,20 @@
     .store-button img {
         width: 150px;
         height: auto;
+    }
+    
+    .hero-image {
+        max-width: 240px;
+        margin-bottom: 4rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 25px;
+        border-color: rgba(255, 90, 90, 0.5);
+    }
+    
+    .scroll-indicator::after {
+        width: 8px;
+        height: 8px;
     }
 } 
