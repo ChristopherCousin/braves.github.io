@@ -1,0 +1,227 @@
+/**
+ * Optimizaciones CSS para mejorar el rendimiento
+ * Este archivo contiene estilos que se aplican a dispositivos de gama baja
+ * o cuando el usuario ha activado la preferencia de reducción de movimiento
+ */
+
+/* Estilos para dispositivos de gama baja */
+.low-end-device .particles,
+.low-end-device .power-particles,
+.low-end-device .map-pulse {
+    display: none !important;
+}
+
+.low-end-device #hero-canvas {
+    opacity: 0.5;
+}
+
+.low-end-device .arena-connection,
+.low-end-device .connection {
+    transition: all 0.3s ease !important;
+}
+
+.low-end-device .champion-stats .stat-value {
+    animation: none !important;
+}
+
+.low-end-device .scroll-indicator {
+    animation: none !important;
+}
+
+.low-end-device .power-icon,
+.low-end-device .section-icon {
+    animation: none !important;
+    text-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+.low-end-device .arena-navigator-toggle {
+    animation: none !important;
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+/* Estilos para preferencia de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.1s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.1s !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .particles,
+    .power-particles,
+    .map-pulse {
+        display: none !important;
+    }
+    
+    .arena-connection,
+    .connection,
+    .power-connection {
+        transition: none !important;
+    }
+    
+    .scroll-indicator,
+    .game-ui,
+    .hero-title::before,
+    .hero-title::after {
+        animation: none !important;
+    }
+}
+
+/* Optimizaciones para modo de emergencia */
+.emergency-optimized * {
+    animation: none !important;
+    transition: none !important;
+}
+
+.emergency-optimized .particles,
+.emergency-optimized .power-particles,
+.emergency-optimized .map-pulse,
+.emergency-optimized #particles,
+.emergency-optimized .arena-connections,
+.emergency-optimized .powers-connections {
+    display: none !important;
+}
+
+.emergency-optimized #hero-canvas {
+    opacity: 0.3 !important;
+}
+
+.emergency-optimized .neon-text,
+.emergency-optimized .neon-text-secondary {
+    text-shadow: 0 0 2px var(--neon-primary) !important;
+}
+
+.emergency-optimized .power-icon,
+.emergency-optimized .section-icon,
+.emergency-optimized .achievement-icon,
+.emergency-optimized .stat-icon {
+    text-shadow: 0 0 2px var(--neon-primary) !important;
+}
+
+/* Optimizaciones para dispositivos táctiles */
+.touch-device .arena-section:hover,
+.touch-device .power:hover,
+.touch-device .champion-card:hover {
+    transform: none !important;
+}
+
+.touch-device .arena-section:active,
+.touch-device .power:active,
+.touch-device .champion-card:active {
+    transform: scale(1.05) !important;
+}
+
+/* Optimizaciones para pantallas pequeñas */
+@media (max-width: 768px) {
+    .low-end-device .arena-map-content {
+        flex-direction: column !important;
+    }
+    
+    .low-end-device .arena-sections {
+        width: 100% !important;
+        margin-bottom: 20px !important;
+    }
+    
+    .low-end-device .arena-stats,
+    .low-end-device .arena-achievements,
+    .low-end-device .arena-progress {
+        width: 100% !important;
+    }
+}
+
+/* Optimizaciones para conexiones lentas */
+.slow-connection img:not([loading="eager"]) {
+    filter: blur(0px) !important;
+    transition: filter 0.1s !important;
+}
+
+.slow-connection iframe {
+    background: #1a1a1a !important;
+}
+
+/* Versiones simplificadas de componentes para dispositivos de gama baja */
+.low-end-device .arena-map-wrapper {
+    background: rgba(10, 10, 20, 0.95) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.low-end-device .arena-section::before,
+.low-end-device .power::before {
+    display: none !important;
+}
+
+.low-end-device .arena-section,
+.low-end-device .power {
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+.low-end-device .champion-card {
+    box-shadow: 0 0 5px var(--neon-secondary) !important;
+}
+
+/* Optimizaciones para fuentes */
+.low-end-device h1,
+.low-end-device h2,
+.low-end-device h3 {
+    text-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+/* Optimizaciones para efectos de hover */
+.low-end-device .power:hover .power-icon,
+.low-end-device .arena-section:hover .section-icon {
+    transform: none !important;
+}
+
+/* Optimizaciones para animaciones de contador */
+.low-end-device #userCount,
+.low-end-device #challengeCount,
+.low-end-device #gamesPlayed {
+    animation: none !important;
+}
+
+/* Optimizaciones para el mapa */
+.low-end-device .headquarters-map-container {
+    filter: none !important;
+}
+
+.low-end-device .map-overlay {
+    background: rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Optimizaciones para el juego */
+.low-end-device .game-container {
+    box-shadow: 0 0 10px var(--neon-primary) !important;
+}
+
+.low-end-device .play-button {
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+/* Optimizaciones para el formulario de contacto */
+.low-end-device .form-control:focus {
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+.low-end-device .submit-button {
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+/* Optimizaciones para el navegador de la arena */
+.low-end-device .arena-navigator-toggle {
+    box-shadow: 0 0 5px var(--neon-primary) !important;
+}
+
+.low-end-device .arena-section.visited::after {
+    box-shadow: 0 0 5px var(--neon-secondary) !important;
+}
+
+/* Optimizaciones para el footer */
+.low-end-device footer {
+    box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.5) inset !important;
+} 

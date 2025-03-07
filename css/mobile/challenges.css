@@ -1,0 +1,147 @@
+/* Estilos de la sección "Desafíos" (Mapa de la Arena) para móvil */
+
+.challenges {
+    padding: var(--spacing-lg) 0;
+}
+
+/* Fondo con efecto de grid */
+.challenges::before {
+    background-size: 30px 30px;
+}
+
+/* Contenedor del mapa */
+.arena-map-container {
+    padding: 1rem 0;
+}
+
+/* Mapa de la arena */
+.arena-map {
+    height: auto;
+    min-height: 500px;
+    flex-direction: column;
+    padding: 2rem 0;
+}
+
+/* Líneas de conexión entre zonas */
+.arena-connections {
+    display: none; /* Ocultar conexiones en móvil para simplificar */
+}
+
+/* Contenedor de zonas */
+.arena-zones {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 90%;
+    height: auto;
+}
+
+/* Zona individual */
+.arena-zone {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-lg);
+    transform: none;
+    padding: 1.5rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+/* Resetear posiciones absolutas */
+.arena-zone:nth-child(1),
+.arena-zone:nth-child(2),
+.arena-zone:nth-child(3) {
+    top: auto;
+    left: auto;
+}
+
+/* Efecto de hover en las zonas */
+.arena-zone:hover {
+    transform: scale(1.02);
+}
+
+/* Imagen del desafío */
+.zone-image {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+}
+
+/* Contenido de la zona */
+.zone-content {
+    flex: 1;
+    text-align: left;
+    padding: 0;
+}
+
+/* Título del desafío */
+.zone-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+
+/* Dificultad del desafío */
+.zone-difficulty {
+    font-size: 0.8rem;
+}
+
+/* Flecha indicadora */
+.zone-arrow {
+    position: relative;
+    bottom: auto;
+    right: auto;
+}
+
+/* Modal de vista previa del desafío */
+.challenge-preview {
+    padding: 1rem;
+}
+
+.preview-content {
+    width: 100%;
+    padding: 1.5rem;
+}
+
+.preview-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+}
+
+.preview-image {
+    margin-right: 0;
+}
+
+.preview-title {
+    font-size: 1.5rem;
+}
+
+.preview-description {
+    font-size: 1rem;
+}
+
+.preview-sections {
+    grid-template-columns: 1fr;
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .zone-title {
+        font-size: 1rem;
+    }
+    
+    .zone-difficulty {
+        font-size: 0.7rem;
+    }
+    
+    .preview-title {
+        font-size: 1.3rem;
+    }
+    
+    .preview-section-title {
+        font-size: 1.1rem;
+    }
+} 

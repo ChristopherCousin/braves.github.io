@@ -236,4 +236,90 @@
         animation: none !important;
         transform: none !important;
     }
+}
+
+/* Transiciones para la web de Braves */
+
+/* Transiciones generales */
+a, button, .power, .arena-section, .champion-card, .arena-zone,
+.contact-method, .social-link, .social-icon, .achievement-item {
+    transition: all 0.3s ease;
+}
+
+/* Transiciones para hover en botones */
+.power-button, .champion-button, .preview-button, .submit-button,
+.step-button, .see-more-button, .store-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Transiciones para hover en tarjetas */
+.power:hover, .champion-card:hover, .arena-zone:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Transiciones para íconos */
+.power-icon, .section-icon, .stat-icon, .achievement-icon, .method-icon {
+    transition: transform 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Transiciones para conexiones */
+.connection, .power-connection, .arena-connection {
+    transition: opacity 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Transiciones para barras de progreso */
+.progress-bar, .section-progress-bar {
+    transition: width 0.5s ease-out;
+}
+
+/* Transiciones para el navegador de la arena */
+.arena-navigator {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.arena-navigator-toggle {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Transiciones para modales */
+.modal, .challenge-preview {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal-content, .preview-content {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Transiciones para el menú de navegación */
+header nav ul {
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-toggle span, .menu-toggle span::before, .menu-toggle span::after {
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+/* Transiciones para formularios */
+.form-control {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Transiciones para imágenes */
+.member-photo img, .zone-image {
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Transiciones para preguntas frecuentes */
+.faq-answer {
+    transition: max-height 0.3s ease, padding 0.3s ease, opacity 0.3s ease;
+}
+
+.faq-question i {
+    transition: transform 0.3s ease;
+}
+
+/* Transiciones para pestañas */
+.champion-tab {
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
 } 

@@ -1,0 +1,350 @@
+/* Estilos de la sección hero para móvil */
+
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 6rem 1rem 3rem;
+    overflow: hidden;
+    background-color: var(--background-color);
+}
+
+/* Canvas para el fondo 3D y el mini-juego */
+#hero-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Contenedor del juego */
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin: 0 auto 2rem;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--neon-shadow-primary), 0 5px 15px rgba(0, 0, 0, 0.5);
+    z-index: 2;
+    background-color: rgba(10, 10, 20, 0.6);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+.game-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 15px 15px;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* Overlay del juego antes de iniciar */
+.game-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(10, 10, 20, 0.8);
+    z-index: 10;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    padding: 1rem;
+}
+
+.game-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.game-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+.game-description {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    color: var(--text-color);
+}
+
+.game-instructions {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius-md);
+    padding: 0.8rem;
+    margin-bottom: 1.2rem;
+    border: 1px solid var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+    width: 90%;
+    max-width: 300px;
+}
+
+.game-instructions p {
+    margin: 0.3rem 0;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-instructions i {
+    margin-right: 0.5rem;
+    color: var(--secondary-color);
+}
+
+.play-button {
+    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    background-color: transparent;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: var(--neon-shadow-secondary);
+    position: relative;
+    overflow: hidden;
+    min-height: 44px;
+    min-width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.play-button:hover,
+.play-button:active {
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    box-shadow: 0 0 15px var(--secondary-color);
+}
+
+/* Interfaz del juego */
+.game-ui {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    right: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+}
+
+.game-score {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--secondary-color);
+    text-shadow: var(--neon-shadow-secondary);
+    background-color: rgba(10, 10, 20, 0.7);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.game-lives {
+    display: flex;
+    gap: 0.3rem;
+}
+
+.life-icon {
+    width: 18px;
+    height: 18px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    box-shadow: var(--neon-shadow-accent);
+}
+
+/* Contenido del hero */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    position: relative;
+    display: inline-block;
+}
+
+.hero-title::before {
+    content: attr(data-text);
+    position: absolute;
+    left: -1px;
+    text-shadow: 1px 0 var(--primary-color);
+    top: 0;
+    color: var(--text-color);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim-2 3s infinite linear alternate-reverse;
+}
+
+.hero-title::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 1px;
+    text-shadow: -1px 0 var(--secondary-color);
+    top: 0;
+    color: var(--text-color);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: noise-anim 2s infinite linear alternate-reverse;
+}
+
+.hero-description {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    color: var(--text-color-secondary);
+    padding: 0 0.5rem;
+}
+
+/* Botones de descarga de la app */
+.app-stores {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.store-button {
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+}
+
+.store-button img {
+    height: 45px;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+    transition: all 0.3s ease;
+}
+
+.store-button:active img {
+    transform: scale(0.95);
+    filter: drop-shadow(0 0 8px rgba(255, 0, 160, 0.5));
+}
+
+/* Indicador de scroll */
+.scroll-indicator {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    z-index: 2;
+    animation: bounce 2s infinite;
+}
+
+.scroll-indicator .dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    opacity: 0.6;
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+/* Partículas flotantes (reducidas para móvil) */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+    width: 4px;
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    box-shadow: var(--neon-shadow-primary);
+    animation: particles 20s linear infinite;
+}
+
+/* Ajustes para orientación landscape */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        padding-top: 5rem;
+        min-height: auto;
+        height: auto;
+    }
+    
+    .game-container {
+        height: 200px;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 1rem;
+    }
+    
+    .hero-text {
+        flex: 1;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+        text-align: left;
+    }
+    
+    .hero-description {
+        margin-bottom: 1rem;
+    }
+    
+    .app-stores {
+        justify-content: flex-start;
+    }
+} 

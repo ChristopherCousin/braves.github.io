@@ -1,0 +1,37 @@
+/* Controlador de estilos responsivos */
+
+/* Por defecto, ocultar todos los estilos móviles */
+@media screen and (min-width: 769px) {
+    /* En pantallas grandes, usamos los estilos de escritorio */
+    [class*="mobile/"] {
+        display: none !important;
+    }
+}
+
+/* En pantallas pequeñas, ocultar estilos de escritorio y mostrar móviles */
+@media screen and (max-width: 768px) {
+    /* En pantallas pequeñas, usamos los estilos móviles */
+    [class*="desktop/"] {
+        display: none !important;
+    }
+}
+
+/* Ajustes específicos para tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    /* Ajustes específicos para tablets */
+}
+
+/* Ajustes específicos para móviles pequeños */
+@media screen and (max-width: 480px) {
+    /* Ajustes específicos para móviles pequeños */
+}
+
+/* Ajustes para dispositivos de alta resolución */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Mejoras para pantallas de alta resolución */
+}
+
+/* Ajustes para dispositivos móviles en orientación landscape */
+@media (max-width: 900px) and (orientation: landscape) {
+    /* Ajustes específicos para orientación landscape en móviles */
+} 

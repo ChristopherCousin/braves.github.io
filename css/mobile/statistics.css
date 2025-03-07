@@ -1,0 +1,41 @@
+/* Estilos para la sección de estadísticas - Mobile */
+
+.statistics {
+    padding: 60px 0;
+}
+
+.stats-content h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.stats-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.stat-item {
+    min-width: auto;
+    width: 100%;
+    max-width: 280px;
+    padding: 20px 15px;
+}
+
+.stat-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.stat-number h3 {
+    font-size: 36px;
+}
+
+.stat-plus {
+    font-size: 20px;
+    right: -12px;
+}
+
+.stat-item p {
+    font-size: 14px;
+} 

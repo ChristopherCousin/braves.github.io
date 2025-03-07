@@ -1,0 +1,265 @@
+/* Estilos de la sección "Características" (Poderes y Habilidades) para móvil */
+
+.features {
+    position: relative;
+    padding: var(--spacing-lg) 0;
+    overflow: hidden;
+}
+
+/* Fondo con efecto de grid */
+.features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Contenedor de poderes */
+.powers-container {
+    position: relative;
+    width: 90%;
+    margin: 0 auto;
+    padding: 1rem 0;
+    z-index: 1;
+}
+
+/* Título de la sección con efecto neón */
+.features h2 {
+    margin-bottom: 2rem;
+}
+
+/* Grid de poderes - versión móvil como lista vertical */
+.powers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    position: relative;
+}
+
+/* Poder individual */
+.power {
+    position: relative;
+    background-color: rgba(26, 26, 46, 0.7);
+    border-radius: var(--border-radius-lg);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    z-index: 2;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+/* Variantes de color para cada poder */
+.power:nth-child(1) {
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+}
+
+.power:nth-child(2) {
+    border: 2px solid var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.power:nth-child(3) {
+    border: 2px solid var(--accent-color);
+    box-shadow: var(--neon-shadow-accent);
+}
+
+.power:nth-child(4) {
+    border: 2px solid var(--accent-color-2);
+    box-shadow: var(--neon-shadow-accent-2);
+}
+
+/* Efecto active en los poderes */
+.power:active {
+    transform: scale(0.98);
+}
+
+/* Contenedor del icono */
+.power-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--background-color);
+    transition: all 0.3s ease;
+}
+
+.power:nth-child(1) .power-icon-container {
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+}
+
+.power:nth-child(2) .power-icon-container {
+    border: 2px solid var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.power:nth-child(3) .power-icon-container {
+    border: 2px solid var(--accent-color);
+    box-shadow: var(--neon-shadow-accent);
+}
+
+.power:nth-child(4) .power-icon-container {
+    border: 2px solid var(--accent-color-2);
+    box-shadow: var(--neon-shadow-accent-2);
+}
+
+/* Icono del poder */
+.power-icon {
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.power:nth-child(1) .power-icon {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+.power:nth-child(2) .power-icon {
+    color: var(--secondary-color);
+    text-shadow: var(--neon-shadow-secondary);
+}
+
+.power:nth-child(3) .power-icon {
+    color: var(--accent-color);
+    text-shadow: var(--neon-shadow-accent);
+}
+
+.power:nth-child(4) .power-icon {
+    color: var(--accent-color-2);
+    text-shadow: var(--neon-shadow-accent-2);
+}
+
+/* Partículas del icono - simplificadas para móvil */
+.power-particles {
+    display: none; /* Ocultas en móvil para mejor rendimiento */
+}
+
+/* Título del poder */
+.power-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+.power:nth-child(1) .power-title {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+.power:nth-child(2) .power-title {
+    color: var(--secondary-color);
+    text-shadow: var(--neon-shadow-secondary);
+}
+
+.power:nth-child(3) .power-title {
+    color: var(--accent-color);
+    text-shadow: var(--neon-shadow-accent);
+}
+
+.power:nth-child(4) .power-title {
+    color: var(--accent-color-2);
+    text-shadow: var(--neon-shadow-accent-2);
+}
+
+/* Descripción del poder */
+.power-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-color-secondary);
+    margin-bottom: 1.2rem;
+}
+
+/* Botón de acción */
+.power-action {
+    margin-top: auto;
+    width: 100%;
+}
+
+.power-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+    background-color: transparent;
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-height: 44px;
+}
+
+.power:nth-child(1) .power-button {
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+}
+
+.power:nth-child(2) .power-button {
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.power:nth-child(3) .power-button {
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    box-shadow: var(--neon-shadow-accent);
+}
+
+.power:nth-child(4) .power-button {
+    color: var(--accent-color-2);
+    border: 2px solid var(--accent-color-2);
+    box-shadow: var(--neon-shadow-accent-2);
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .power {
+        padding: 1.2rem;
+    }
+    
+    .power-icon-container {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .power-icon {
+        font-size: 2rem;
+    }
+    
+    .power-title {
+        font-size: 1.3rem;
+    }
+    
+    .power-description {
+        font-size: 0.9rem;
+    }
+    
+    .power-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+} 

@@ -1,0 +1,15 @@
+/* Estilos para el modal - Mobile */
+
+.modal-content {
+    margin: 20% auto;
+    padding: 20px;
+    max-width: 90%;
+}
+
+#modal-title {
+    font-size: 20px;
+}
+
+#modal-description {
+    font-size: 14px;
+} 

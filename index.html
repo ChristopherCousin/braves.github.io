@@ -88,6 +88,21 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
+    <!-- Scripts propios -->
+    <script defer src="js/game.js"></script>
+    <script defer src="js/background3d.js"></script>
+    <script defer src="js/menu.js"></script>
+    <script defer src="js/tutorial.js"></script>
+    <script defer src="js/arena-map.js"></script>
+    <script defer src="js/powers.js"></script>
+    <script defer src="js/champions.js"></script>
+    <script defer src="js/headquarters.js"></script>
+    <script defer src="js/arena-navigator.js"></script>
+    <script defer src="js/faq.js"></script>
+    <script defer src="js/performance-optimizer.js"></script>
+    <script defer src="script.js"></script>
+    <script defer src="transitions.js"></script>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-J50KJE2NXY"></script>
     <script>
@@ -107,13 +122,15 @@
                     <img src="assets/braves-logo.png" alt="Logo de Braves" loading="lazy">
                 </a>
             </div>
-            <button class="menu-toggle" aria-label="Abrir menú de navegación">☰</button>
+            <button class="menu-toggle" aria-label="Abrir menú de navegación">
+                <span></span>
+            </button>
             <ul>
-                <li><a href="#hero" class="text-inicio">Inicio</a></li>
+                <li><a href="#hero" class="text-inicio">Arena</a></li>
                 <li><a href="#how-it-works" class="text-como-funciona">Cómo Funciona</a></li>
-                <li><a href="#features" class="text-caracteristicas">Características</a></li>
                 <li><a href="#challenges" class="text-desafios">Desafíos</a></li>
-                <li><a href="#testimonials" class="text-testimonios">Testimonios</a></li>
+                <li><a href="#features" class="text-caracteristicas">Características</a></li>
+                <li><a href="#testimonials" class="text-testimonios">Campeones</a></li>
                 <li><a href="#contact" class="text-contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -124,21 +141,45 @@
         <section id="hero" class="hero">
             <!-- Canvas para fondo 3D -->
             <canvas id="hero-canvas"></canvas>
+            
+            <!-- Partículas flotantes -->
+            <div class="particles" id="particles"></div>
+            
+            <!-- Contenedor del mini-juego -->
+            <div class="game-container">
+                <div class="game-overlay">
+                    <h2 class="game-title">Flappy Braves</h2>
+                    <p class="game-description">¡Prueba ahora mismo uno de nuestros desafíos! Toca o haz clic para mantener al pájaro volando y evita los obstáculos. Cada tubo que pases te dará un punto.</p>
+                    <div class="game-instructions">
+                        <p><i class="fas fa-mouse-pointer"></i> <strong>PC:</strong> Haz clic o pulsa Espacio/Flecha Arriba</p>
+                        <p><i class="fas fa-mobile-alt"></i> <strong>Móvil:</strong> Toca la pantalla para saltar</p>
+                    </div>
+                    <button class="play-button" id="play-button">Jugar</button>
+                </div>
+                <div class="game-ui">
+                    <div class="game-score">Puntos: <span id="score">0</span></div>
+                    <div class="game-lives" id="lives">
+                        <div class="life-icon"></div>
+                        <div class="life-icon"></div>
+                        <div class="life-icon"></div>
+                    </div>
+                </div>
+                <canvas id="game-canvas"></canvas>
+            </div>
+            
             <div class="hero-content">
-                <h1 class="text-hero-title">Braves: Demuestra tus Habilidades</h1>
-                <p class="text-hero-description">Compite en desafíos emocionantes, ya sean virtuales o físicos, mejora tus habilidades y obtén recompensas basadas en tu destreza. ¡La competencia del futuro está aquí!</p>
+                <h1 class="hero-title" data-text="Braves: La Arena de Desafíos">Braves: La Arena de Desafíos</h1>
+                <p class="hero-description">Compite en desafíos emocionantes, demuestra tus habilidades y obtén recompensas basadas en tu destreza. ¡La competencia del futuro está aquí!</p>
                 <div class="app-stores">
                     <a href="https://apps.apple.com/us/app/braves/id6740215654" id="apple2-store-button" class="store-button" aria-label="Descargar en App Store" target="_blank" rel="noopener noreferrer">
                         <img src="assets/app-store.svg" alt="Descargar en App Store" loading="lazy" class="text-app-store" width="150" height="50">
                     </a>
                     <a href="https://play.google.com/store/apps/details?id=io.onlybraves.braves" class="store-button" aria-label="Disponible en Google Play" target="_blank" rel="noopener noreferrer">
-                        <img src="assets/google-play.svg" alt="Disponible en Google Play" loading="lazy" class="text-google-play" width="150" height="50">
+                        <img src="assets/google-play-eng.svg" alt="Disponible en Google Play" loading="lazy" class="text-google-play" width="150" height="50">
                     </a>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="assets/braves-app-mockup.png" alt="Braves App en acción" loading="lazy" width="400" height="600">
-            </div>
+            
             <!-- Scroll Down Indicator -->
             <div class="scroll-indicator">
                 <div class="dot"></div>
@@ -165,27 +206,41 @@
 
         <!-- Cómo funciona -->
         <section id="how-it-works" class="how-it-works">
-            <h2 class="text-como-funciona-title">Cómo Funciona</h2>
-            <div class="steps">
-                <div class="step">
-                    <div class="step-icon">1</div>
-                    <div class="step-content">
-                        <h3>Elige un Desafío</h3>
-                        <p>Explora retos virtuales y físicos. Selecciona el que más te interese y prepárate para la acción.</p>
-                    </div>
+            <h2 class="text-como-funciona-title">Tutorial de la Arena</h2>
+            <div class="steps-container">
+                <div class="progress-track">
+                    <div class="progress-bar" id="tutorial-progress"></div>
                 </div>
-                <div class="step">
-                    <div class="step-icon">2</div>
-                    <div class="step-content">
-                        <h3 class="text-participa">Participa</h3>
-                        <p class="text-participa-desc">Paga la entrada, entrena y realiza tu intento oficial. Demuestra de qué estás hecho.</p>
+                <div class="steps">
+                    <div class="step" data-step="1">
+                        <div class="step-icon">1</div>
+                        <div class="step-content">
+                            <h3 class="neon-text-secondary">Elige un Desafío</h3>
+                            <p>Explora la Arena y descubre desafíos virtuales y físicos. Selecciona el que más te interese y prepárate para demostrar tu destreza.</p>
+                            <div class="step-action">
+                                <button class="step-button" data-action="next-step">Siguiente</button>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="step">
-                    <div class="step-icon">3</div>
-                    <div class="step-content">
-                        <h3 class="text-gana-dinero">Obtén Recompensas</h3>
-                        <p class="text-gana-dinero-desc">Si cumples el desafío, recibirás recompensas basadas en tu habilidad. Tu mérito será reconocido sin depender del azar.</p>
+                    <div class="step" data-step="2">
+                        <div class="step-icon">2</div>
+                        <div class="step-content">
+                            <h3 class="neon-text-secondary">Participa</h3>
+                            <p>Paga la entrada, entrena y realiza tu intento oficial. La práctica es clave para dominar cada desafío y maximizar tus recompensas.</p>
+                            <div class="step-action">
+                                <button class="step-button" data-action="next-step">Siguiente</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-icon">3</div>
+                        <div class="step-content">
+                            <h3 class="neon-text-secondary">Obtén Recompensas</h3>
+                            <p>Si cumples el desafío, recibirás recompensas basadas en tu habilidad. Tu mérito será reconocido sin depender del azar. ¡Conviértete en campeón!</p>
+                            <div class="step-action">
+                                <button class="step-button" data-action="download-app">Descargar App</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -193,27 +248,67 @@
 
         <!-- Características -->
         <section id="features" class="features">
-            <h2 class="text-caracteristicas-title">Características Únicas</h2>
-            <div class="feature-grid">
-                <div class="feature">
-                    <div class="feature-icon" aria-hidden="true">🎮</div>
-                    <h3 class="text-desafios-competitivos">Desafíos Competitivos</h3>
-                    <p class="text-desafios-competitivos-desc">Vive experiencias diversas: desde juegos virtuales de destreza hasta desafíos físicos reales.</p>
+            <h2 class="text-caracteristicas-title">Poderes y Habilidades</h2>
+            <div class="powers-container">
+                <div class="powers-connections">
+                    <div class="power-connection" id="connection-1-2" style="width: 40%; height: 2px; top: 25%; left: 30%; transform: rotate(0deg);"></div>
+                    <div class="power-connection" id="connection-2-4" style="width: 40%; height: 2px; top: 75%; left: 30%; transform: rotate(0deg);"></div>
+                    <div class="power-connection" id="connection-1-3" style="width: 2px; height: 50%; top: 25%; left: 30%; transform: rotate(0deg);"></div>
+                    <div class="power-connection" id="connection-3-4" style="width: 2px; height: 50%; top: 25%; left: 70%; transform: rotate(0deg);"></div>
                 </div>
-                <div class="feature">
-                    <div class="feature-icon" aria-hidden="true">📹</div>
-                    <h3 class="text-verificacion-video">Verificación por Video</h3>
-                    <p class="text-verificacion-video-desc">Graba tus intentos físicos con tu móvil y verifica tu logro ante toda la comunidad.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon" aria-hidden="true">🔒</div>
-                    <h3 class="text-seguridad">Seguridad y Privacidad</h3>
-                    <p class="text-seguridad-desc">Protegemos tu información con medidas avanzadas, respaldados por expertos en ciberseguridad.</p>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon" aria-hidden="true">🏆</div>
-                    <h3 class="text-recompensas">Recompensas Justas</h3>
-                    <p class="text-recompensas-desc">Recibe recompensas basadas en tu habilidad, sin depender del azar. El mérito y la práctica son la clave.</p>
+                <div class="powers-grid">
+                    <div class="power">
+                        <div class="power-icon-container">
+                            <i class="fas fa-gamepad power-icon"></i>
+                            <div class="power-particles">
+                                <!-- Las partículas se generan con JS -->
+                            </div>
+                        </div>
+                        <h3 class="power-title">Desafíos Competitivos</h3>
+                        <p class="power-description">Vive experiencias diversas: desde juegos virtuales de destreza hasta desafíos físicos reales. Demuestra tu habilidad en la Arena.</p>
+                        <div class="power-action">
+                            <button class="power-button" data-power="challenges">Explorar Desafíos</button>
+                        </div>
+                    </div>
+                    <div class="power">
+                        <div class="power-icon-container">
+                            <i class="fas fa-video power-icon"></i>
+                            <div class="power-particles">
+                                <!-- Las partículas se generan con JS -->
+                            </div>
+                        </div>
+                        <h3 class="power-title">Verificación por Video</h3>
+                        <p class="power-description">Graba tus intentos físicos con tu móvil y verifica tu logro ante toda la comunidad. Transparencia total en cada desafío.</p>
+                        <div class="power-action">
+                            <button class="power-button" data-power="verification">Ver Ejemplos</button>
+                        </div>
+                    </div>
+                    <div class="power">
+                        <div class="power-icon-container">
+                            <i class="fas fa-shield-alt power-icon"></i>
+                            <div class="power-particles">
+                                <!-- Las partículas se generan con JS -->
+                            </div>
+                        </div>
+                        <h3 class="power-title">Seguridad y Privacidad</h3>
+                        <p class="power-description">Protegemos tu información con medidas avanzadas, respaldados por expertos en ciberseguridad. Tu seguridad es nuestra prioridad.</p>
+                        <div class="power-action">
+                            <button class="power-button" data-power="security">Saber Más</button>
+                        </div>
+                    </div>
+                    <div class="power">
+                        <div class="power-icon-container">
+                            <i class="fas fa-trophy power-icon"></i>
+                            <div class="power-particles">
+                                <!-- Las partículas se generan con JS -->
+                            </div>
+                        </div>
+                        <h3 class="power-title">Recompensas Justas</h3>
+                        <p class="power-description">Recibe recompensas basadas en tu habilidad, sin depender del azar. El mérito y la práctica son la clave del éxito en Braves.</p>
+                        <div class="power-action">
+                            <button class="power-button" data-power="rewards">Ver Recompensas</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -260,17 +355,231 @@
 
         <!-- Desafíos activos -->
         <section id="challenges" class="challenges">
-            <h2 class="text-desafios-activos">Desafíos Activos</h2>
-            <div class="challenge-slider">
-                <!-- Los desafíos se generan con JS -->
+            <h2 class="text-desafios-activos">Mapa de la Arena</h2>
+            <div class="arena-map-container">
+                <div class="arena-map">
+                    <div class="arena-connections">
+                        <div class="connection" id="connection-1-2" style="width: 25%; height: 3px; top: 35%; left: 25%; transform: rotate(15deg);"></div>
+                        <div class="connection" id="connection-2-3" style="width: 25%; height: 3px; top: 40%; left: 50%; transform: rotate(-15deg);"></div>
+                    </div>
+                    <div class="arena-zones">
+                        <div class="arena-zone" data-challenge="super-bravey">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/FF00A0?text=Super+Bravey" alt="Super Bravey" class="zone-image">
+                            <div class="zone-content">
+                                <h3 class="zone-title">Super Bravey</h3>
+                                <div class="zone-difficulty">
+                                    <span>Dificultad:</span>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zone-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="arena-zone" data-challenge="flappy-braves">
+                            <img src="assets/bird.png" alt="Flappy Braves" class="zone-image">
+                            <div class="zone-content">
+                                <h3 class="zone-title">Flappy Braves</h3>
+                                <div class="zone-difficulty">
+                                    <span>Dificultad:</span>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zone-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                        <div class="arena-zone" data-challenge="speed-rush">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/00FFFF?text=Speed+Rush" alt="Speed Rush" class="zone-image">
+                            <div class="zone-content">
+                                <h3 class="zone-title">Speed Rush</h3>
+                                <div class="zone-difficulty">
+                                    <span>Dificultad:</span>
+                                    <div class="difficulty-indicator">
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot active"></span>
+                                        <span class="difficulty-dot"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="zone-arrow">
+                                <i class="fas fa-chevron-right"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal de vista previa del desafío -->
+            <div class="challenge-preview" id="challenge-preview">
+                <div class="preview-content">
+                    <button class="close-preview" id="close-preview">&times;</button>
+                    <div class="preview-header">
+                        <img src="" alt="" class="preview-image" id="preview-image">
+                        <div class="preview-title-container">
+                            <h3 class="preview-title" id="preview-title"></h3>
+                            <div class="preview-difficulty">
+                                <span class="preview-difficulty-text">Dificultad:</span>
+                                <div class="difficulty-indicator" id="preview-difficulty">
+                                    <!-- Los puntos de dificultad se generan dinámicamente -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="preview-description" id="preview-description"></p>
+                    <div class="preview-sections">
+                        <div class="preview-section">
+                            <h4 class="preview-section-title">Cómo Participar</h4>
+                            <ul id="preview-how-to">
+                                <!-- Los pasos se generan dinámicamente -->
+                            </ul>
+                        </div>
+                        <div class="preview-section">
+                            <h4 class="preview-section-title">Reglas del Desafío</h4>
+                            <ul id="preview-rules">
+                                <!-- Las reglas se generan dinámicamente -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="preview-action">
+                        <button class="preview-button" id="preview-button">Descargar App</button>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- Testimonios -->
-        <section id="testimonials" class="testimonials">
-            <h2 class="text-testimonios-title">Lo que Dicen Nuestros Usuarios</h2>
-            <div class="testimonial-carousel">
-                <!-- Testimonios generados con JS -->
+        <section id="testimonials" class="champions">
+            <h2 class="text-testimonios-title">Arena de Campeones</h2>
+            <div class="champions-container">
+                <div class="champions-tabs">
+                    <div class="champion-tab active" data-category="all">Todos los Campeones</div>
+                    <div class="champion-tab" data-category="virtual">Desafíos Virtuales</div>
+                    <div class="champion-tab" data-category="physical">Desafíos Físicos</div>
+                </div>
+                <div class="champions-grid">
+                    <!-- Campeón 1 -->
+                    <div class="champion-card" data-category="virtual">
+                        <div class="champion-avatar">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/00ffff?text=Alex" alt="Alex Rodríguez" loading="lazy">
+                            <div class="champion-level">42</div>
+                        </div>
+                        <h3 class="champion-name">Alex Rodríguez</h3>
+                        <p class="champion-title">Maestro de Flappy Braves</p>
+                        <div class="champion-stats">
+                            <div class="stat">
+                                <span class="stat-value">87</span>
+                                <span class="stat-label">Desafíos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">12K</span>
+                                <span class="stat-label">Puntos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">24</span>
+                                <span class="stat-label">Victorias</span>
+                            </div>
+                        </div>
+                        <div class="champion-achievements">
+                            <div class="achievement">
+                                <i class="fas fa-medal achievement-icon"></i>
+                                <span class="achievement-name">Récord Mundial: Flappy Braves</span>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-trophy achievement-icon"></i>
+                                <span class="achievement-name">Campeón de Temporada 3</span>
+                            </div>
+                        </div>
+                        <button class="champion-button" data-profile="alex">Ver Perfil</button>
+                    </div>
+                    
+                    <!-- Campeón 2 -->
+                    <div class="champion-card featured" data-category="physical">
+                        <div class="champion-avatar">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/00ffff?text=Laura" alt="Laura Martínez" loading="lazy">
+                            <div class="champion-level">38</div>
+                        </div>
+                        <h3 class="champion-name">Laura Martínez</h3>
+                        <p class="champion-title">Reina del Parkour</p>
+                        <div class="champion-stats">
+                            <div class="stat">
+                                <span class="stat-value">64</span>
+                                <span class="stat-label">Desafíos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">9.5K</span>
+                                <span class="stat-label">Puntos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">18</span>
+                                <span class="stat-label">Victorias</span>
+                            </div>
+                        </div>
+                        <div class="champion-achievements">
+                            <div class="achievement">
+                                <i class="fas fa-fire achievement-icon"></i>
+                                <span class="achievement-name">Racha de 15 victorias</span>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-star achievement-icon"></i>
+                                <span class="achievement-name">Desafío Imposible Completado</span>
+                            </div>
+                        </div>
+                        <button class="champion-button" data-profile="laura">Ver Perfil</button>
+                    </div>
+                    
+                    <!-- Campeón 3 -->
+                    <div class="champion-card" data-category="virtual">
+                        <div class="champion-avatar">
+                            <img src="https://via.placeholder.com/150x150/1a1a2e/00ffff?text=Carlos" alt="Carlos Vega" loading="lazy">
+                            <div class="champion-level">35</div>
+                        </div>
+                        <h3 class="champion-name">Carlos Vega</h3>
+                        <p class="champion-title">Estratega Supremo</p>
+                        <div class="champion-stats">
+                            <div class="stat">
+                                <span class="stat-value">72</span>
+                                <span class="stat-label">Desafíos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">8.7K</span>
+                                <span class="stat-label">Puntos</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-value">16</span>
+                                <span class="stat-label">Victorias</span>
+                            </div>
+                        </div>
+                        <div class="champion-achievements">
+                            <div class="achievement">
+                                <i class="fas fa-brain achievement-icon"></i>
+                                <span class="achievement-name">Maestro de Speed Rush</span>
+                            </div>
+                            <div class="achievement">
+                                <i class="fas fa-bolt achievement-icon"></i>
+                                <span class="achievement-name">Tiempo Récord: 12.3s</span>
+                            </div>
+                        </div>
+                        <button class="champion-button" data-profile="carlos">Ver Perfil</button>
+                    </div>
+                </div>
+                <div class="see-more-container">
+                    <button class="see-more-button">Ver Más Campeones</button>
+                </div>
             </div>
         </section>
 
@@ -324,32 +633,110 @@
         </section>
 
         <!-- Contacto -->
-        <section id="contact" class="contact">
-            <div class="contact-container">
-                <h2 class="text-tienes-dudas">¿Tienes alguna duda?</h2>
-                <p class="text-necesitas-info">Estamos aquí para ayudarte. Elige el método que prefieras para contactarnos:</p>
-                
-                <div class="contact-methods">
-                    <div class="contact-method">
-                        <i class="fas fa-envelope method-icon"></i>
-                        <h3 class="method-title">Email</h3>
-                        <p>Escríbenos a cualquier hora</p>
-                        <div class="email-address">
-                            <a href="mailto:info@bravesapp.com" class="text-email">info@bravesapp.com</a>
-                        </div>
+        <section id="contact" class="headquarters">
+            <h2 class="text-tienes-dudas">Cuartel General</h2>
+            <p class="headquarters-subtitle text-necesitas-info">Base de operaciones de Braves. Aquí puedes contactar con nuestro equipo, enviar sugerencias o reportar problemas. ¡Estamos listos para ayudarte!</p>
+            
+            <div class="headquarters-container">
+                <div class="headquarters-grid">
+                    <div class="contact-form-container">
+                        <h3 class="contact-form-title"><i class="fas fa-paper-plane"></i> Envía un Mensaje</h3>
+                        <form class="contact-form" id="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nombre</label>
+                                <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Asunto</label>
+                                <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto de tu mensaje" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Mensaje</label>
+                                <textarea id="message" name="message" class="form-control" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">Enviar Mensaje</button>
+                        </form>
                     </div>
                     
-                    <div class="contact-method">
-                        <i class="fas fa-comments method-icon"></i>
-                        <h3 class="method-title">Chat Directo</h3>
-                        <p>Mensajería instantánea</p>
-                        <div class="contact-buttons">
-                            <a href="https://wa.me/59899979007" class="contact-button whatsapp" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-whatsapp"></i>
-                                <span>WhatsApp</span>
-                            </a>
+                    <div class="contact-info-container">
+                        <h3 class="contact-info-title"><i class="fas fa-info-circle"></i> Información de Contacto</h3>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4 class="method-title">Email</h4>
+                                    <p class="method-description">Escríbenos a cualquier hora</p>
+                                    <div class="method-value">
+                                        <a href="mailto:info@bravesapp.com" class="text-email">info@bravesapp.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4 class="method-title">Chat Directo</h4>
+                                    <p class="method-description">Mensajería instantánea</p>
+                                    <div class="method-value">
+                                        <a href="https://wa.me/59899979007" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method">
+                                <div class="method-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="method-details">
+                                    <h4 class="method-title">Ubicación</h4>
+                                    <p class="method-description">Nuestra base de operaciones</p>
+                                    <div class="method-value">
+                                        Montevideo, Uruguay
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links-container">
+                            <h4 class="social-links-title">Síguenos</h4>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/bravesapp" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://www.twitter.com/bravesapp" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://www.instagram.com/bravesapp" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.linkedin.com/company/bravesapp" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
+                <div class="headquarters-map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104904.93369214946!2d-56.22899542753905!3d-34.83368489999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80ffc63bf7d3%3A0x6b321b2e355bec99!2sMontevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1ses!2s!4v1652345678901!5m2!1ses!2s" 
+                        class="headquarters-map" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="Mapa de ubicación de Braves"
+                    ></iframe>
+                    <div class="map-overlay"></div>
+                    <div class="map-marker"></div>
+                    <div class="map-pulse"></div>
                 </div>
 
                 <div class="response-time">
@@ -387,7 +774,187 @@
         </div>
     </div>
 
-    <script src="script.js" defer></script>
-    <script src="transitions.js" defer></script>
+    <!-- Navegador Gamificado de la Arena -->
+    <button class="arena-navigator-toggle" id="arena-navigator-toggle" aria-label="Abrir Mapa de la Arena">
+        <i class="fas fa-map-marked-alt"></i>
+    </button>
+    
+    <div class="arena-navigator" id="arena-navigator">
+        <div class="arena-map-wrapper">
+            <h2 class="arena-map-title">Mapa de la Arena</h2>
+            <p class="arena-map-subtitle">Explora todas las zonas de la Arena para desbloquear logros y aumentar tu nivel</p>
+            
+            <div class="arena-map-content">
+                <!-- Secciones de la Arena -->
+                <div class="arena-sections">
+                    <!-- Conexiones entre secciones -->
+                    <div class="arena-connections">
+                        <div class="arena-connection" id="connection-hero-tutorial" style="width: 20%; height: 2px; top: 35%; left: 40%; transform: rotate(-45deg);"></div>
+                        <div class="arena-connection" id="connection-hero-challenges" style="width: 20%; height: 2px; top: 35%; left: 60%; transform: rotate(45deg);"></div>
+                        <div class="arena-connection" id="connection-hero-powers" style="width: 20%; height: 2px; top: 65%; left: 40%; transform: rotate(45deg);"></div>
+                        <div class="arena-connection" id="connection-hero-champions" style="width: 20%; height: 2px; top: 65%; left: 60%; transform: rotate(-45deg);"></div>
+                        <div class="arena-connection" id="connection-hero-headquarters" style="width: 35%; height: 2px; top: 50%; left: 65%; transform: rotate(0deg);"></div>
+                    </div>
+                    
+                    <!-- Sección Hero -->
+                    <a href="#hero" class="arena-section visited active" data-section="hero">
+                        <i class="fas fa-home section-icon"></i>
+                        <span class="section-title">Arena Principal</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 100%;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Sección Tutorial -->
+                    <a href="#how-it-works" class="arena-section" data-section="tutorial">
+                        <i class="fas fa-book section-icon"></i>
+                        <span class="section-title">Tutorial</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Sección Desafíos -->
+                    <a href="#challenges" class="arena-section" data-section="challenges">
+                        <i class="fas fa-map section-icon"></i>
+                        <span class="section-title">Desafíos</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Sección Poderes -->
+                    <a href="#features" class="arena-section" data-section="powers">
+                        <i class="fas fa-bolt section-icon"></i>
+                        <span class="section-title">Poderes</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Sección Campeones -->
+                    <a href="#testimonials" class="arena-section" data-section="champions">
+                        <i class="fas fa-trophy section-icon"></i>
+                        <span class="section-title">Campeones</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </a>
+                    
+                    <!-- Sección Cuartel General -->
+                    <a href="#contact" class="arena-section" data-section="headquarters">
+                        <i class="fas fa-headset section-icon"></i>
+                        <span class="section-title">Cuartel</span>
+                        <div class="section-progress">
+                            <div class="section-progress-bar" style="width: 0%;"></div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Estadísticas del jugador -->
+                <div class="arena-stats">
+                    <h3 class="arena-stats-title"><i class="fas fa-chart-line"></i> Estadísticas</h3>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-name">Secciones Visitadas</div>
+                            <div class="stat-value">1/6</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-name">Puntuación Máxima</div>
+                            <div class="stat-value">0</div>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-details">
+                            <div class="stat-name">Puntos de Exploración</div>
+                            <div class="stat-value">10</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Logros -->
+                <div class="arena-achievements">
+                    <h3 class="arena-achievements-title"><i class="fas fa-medal"></i> Logros</h3>
+                    <div class="achievement-item">
+                        <div class="achievement-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="achievement-name">Primer Contacto</div>
+                            <div class="achievement-description">Visitar la Arena Principal</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="achievement-name">Aprendiz</div>
+                            <div class="achievement-description">Completar el Tutorial de la Arena</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-map"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="achievement-name">Explorador</div>
+                            <div class="achievement-description">Visitar todas las secciones</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="achievement-name">Jugador Novato</div>
+                            <div class="achievement-description">Conseguir 10 puntos en Flappy Braves</div>
+                        </div>
+                    </div>
+                    <div class="achievement-item locked">
+                        <div class="achievement-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="achievement-details">
+                            <div class="achievement-name">Maestro de la Arena</div>
+                            <div class="achievement-description">Desbloquear todos los logros</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Progreso -->
+                <div class="arena-progress">
+                    <h3 class="arena-progress-title"><i class="fas fa-level-up-alt"></i> Progreso</h3>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 10%;"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span>Nivel 1</span>
+                        <span class="progress-percentage">10%</span>
+                    </div>
+                    
+                    <div class="progress-level">
+                        <div class="level-icon">1</div>
+                        <div class="level-details">
+                            <div class="level-title">Visitante</div>
+                            <div class="level-description">Has comenzado tu viaje en la Arena de Braves</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

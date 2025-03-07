@@ -281,4 +281,182 @@
 
 .duration-2000 {
     animation-duration: 2s;
+}
+
+/* Animaciones para la web de Braves */
+
+/* Animación de brillo neón */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 5px var(--neon-primary), 0 0 10px var(--neon-primary);
+    }
+    50% {
+        text-shadow: 0 0 10px var(--neon-primary), 0 0 20px var(--neon-primary), 0 0 30px var(--neon-primary);
+    }
+    100% {
+        text-shadow: 0 0 5px var(--neon-primary), 0 0 10px var(--neon-primary);
+    }
+}
+
+/* Animación para el título principal */
+.hero-title {
+    animation: neonGlow 2s infinite alternate;
+}
+
+/* Animación para partículas flotantes */
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(0);
+    }
+    50% {
+        transform: translateY(-10px) translateX(5px);
+    }
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+}
+
+.particle {
+    animation: float 10s infinite ease-in-out;
+}
+
+/* Animación para el indicador de scroll */
+@keyframes scrollIndicator {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+.scroll-indicator .dot {
+    animation: scrollIndicator 1.5s infinite;
+}
+
+.scroll-indicator .dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.scroll-indicator .dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Animación para botones */
+@keyframes buttonPulse {
+    0% {
+        box-shadow: 0 0 5px var(--neon-primary);
+    }
+    50% {
+        box-shadow: 0 0 15px var(--neon-primary), 0 0 20px var(--neon-primary);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--neon-primary);
+    }
+}
+
+.power-button:hover,
+.champion-button:hover,
+.preview-button:hover,
+.submit-button:hover {
+    animation: buttonPulse 1.5s infinite;
+}
+
+/* Animación para conexiones */
+@keyframes connectionPulse {
+    0% {
+        opacity: 0.3;
+        box-shadow: 0 0 2px var(--neon-primary);
+    }
+    50% {
+        opacity: 1;
+        box-shadow: 0 0 10px var(--neon-primary), 0 0 15px var(--neon-primary);
+    }
+    100% {
+        opacity: 0.3;
+        box-shadow: 0 0 2px var(--neon-primary);
+    }
+}
+
+.connection.active,
+.power-connection.active,
+.arena-connection.active {
+    animation: connectionPulse 2s infinite;
+}
+
+/* Animación para íconos */
+@keyframes iconPulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 5px var(--neon-primary);
+    }
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0 0 10px var(--neon-primary), 0 0 15px var(--neon-primary);
+    }
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 5px var(--neon-primary);
+    }
+}
+
+.power-icon:hover,
+.section-icon:hover {
+    animation: iconPulse 1.5s infinite;
+}
+
+/* Animación para el pulso del mapa */
+@keyframes mapPulse {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px rgba(0, 255, 255, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 255, 0);
+    }
+}
+
+.map-pulse {
+    animation: mapPulse 2s infinite;
+}
+
+/* Animación para notificaciones */
+@keyframes notificationFadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes notificationFadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.notification-enter {
+    animation: notificationFadeIn 0.3s forwards;
+}
+
+.notification-exit {
+    animation: notificationFadeOut 0.3s forwards;
 } 

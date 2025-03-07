@@ -1,0 +1,396 @@
+/* Cuartel General (Contacto) - Estilos para móvil */
+.headquarters {
+    position: relative;
+    padding: 4rem 1rem;
+    background-color: var(--dark-bg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.headquarters::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, var(--dark-bg) 8px, transparent 1%) center,
+        linear-gradient(var(--dark-bg) 8px, transparent 1%) center,
+        rgba(255, 0, 160, 0.05);
+    background-size: 16px 16px;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.headquarters::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 0, 160, 0.1) 0%, transparent 70%);
+    z-index: -1;
+}
+
+.headquarters h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 0.8rem;
+    color: #fff;
+    text-shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-pink);
+    letter-spacing: 1px;
+}
+
+.headquarters-subtitle {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+}
+
+.headquarters-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headquarters-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.contact-form-container {
+    background-color: rgba(10, 10, 20, 0.7);
+    border: 1px solid rgba(255, 0, 160, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(255, 0, 160, 0.2);
+}
+
+.contact-form-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple), var(--neon-pink));
+    z-index: -1;
+    opacity: 0.3;
+    border-radius: 10px;
+}
+
+.contact-form-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-pink);
+    display: flex;
+    align-items: center;
+}
+
+.contact-form-title i {
+    margin-right: 0.6rem;
+    color: var(--neon-pink);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+    position: relative;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 160, 0.3);
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 8px rgba(255, 0, 160, 0.5);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.submit-button {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple));
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.contact-info-container {
+    background-color: rgba(10, 10, 20, 0.7);
+    border: 1px solid rgba(255, 0, 160, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(255, 0, 160, 0.2);
+}
+
+.contact-info-container::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-pink), var(--neon-purple), var(--neon-pink));
+    z-index: -1;
+    opacity: 0.3;
+    border-radius: 10px;
+}
+
+.contact-info-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 5px var(--neon-pink);
+    display: flex;
+    align-items: center;
+}
+
+.contact-info-title i {
+    margin-right: 0.6rem;
+    color: var(--neon-pink);
+}
+
+.contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-method {
+    display: flex;
+    align-items: flex-start;
+}
+
+.method-icon {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 0, 160, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.8rem;
+    color: var(--neon-pink);
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(255, 0, 160, 0.3);
+}
+
+.method-details {
+    flex: 1;
+}
+
+.method-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.2rem;
+}
+
+.method-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+}
+
+.method-value {
+    color: var(--neon-pink);
+    font-weight: bold;
+    font-size: 0.9rem;
+    word-break: break-word;
+}
+
+.social-links-container {
+    margin-top: 1.5rem;
+}
+
+.social-links-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    color: #fff;
+    margin-bottom: 0.8rem;
+    text-shadow: 0 0 5px var(--neon-pink);
+}
+
+.social-links {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.social-link {
+    width: 36px;
+    height: 36px;
+    background-color: rgba(255, 0, 160, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 0, 160, 0.3);
+}
+
+.social-link:active {
+    background-color: var(--neon-pink);
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.headquarters-map-container {
+    width: 100%;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 0, 160, 0.3);
+    box-shadow: 0 0 15px rgba(255, 0, 160, 0.2);
+    margin-top: 1rem;
+}
+
+.headquarters-map {
+    width: 100%;
+    height: 100%;
+    filter: grayscale(70%) hue-rotate(300deg);
+}
+
+.map-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 0, 160, 0.3) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.map-marker {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background-color: var(--neon-pink);
+    border-radius: 50% 50% 0 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    box-shadow: 0 0 15px var(--neon-pink);
+}
+
+.map-marker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+}
+
+.map-pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 0, 160, 0.4);
+    border-radius: 50%;
+    animation: map-pulse 2s infinite;
+}
+
+.response-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+.response-time i {
+    margin-right: 0.4rem;
+    color: var(--neon-pink);
+}
+
+/* Media queries para ajustes adicionales */
+@media (max-width: 320px) {
+    .headquarters h2 {
+        font-size: 1.6rem;
+    }
+    
+    .contact-form-title, .contact-info-title {
+        font-size: 1.1rem;
+    }
+    
+    .method-icon {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .method-title {
+        font-size: 0.9rem;
+    }
+    
+    .method-description {
+        font-size: 0.8rem;
+    }
+    
+    .method-value {
+        font-size: 0.85rem;
+    }
+} 

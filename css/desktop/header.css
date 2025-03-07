@@ -1,0 +1,169 @@
+/* Estilos del header para escritorio */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem 0;
+    background-color: rgba(10, 10, 20, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+header.scrolled {
+    background-color: rgba(10, 10, 20, 0.95);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 50px;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 160, 0.5));
+}
+
+.logo:hover img {
+    transform: scale(1.05);
+}
+
+/* Menú de navegación */
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    position: relative;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+}
+
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    box-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Botón de menú (oculto en escritorio) */
+.menu-toggle {
+    display: none;
+}
+
+/* Efecto de glitch para el logo */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.logo:hover img {
+    animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both;
+}
+
+/* Indicador de sección activa */
+nav ul li a.active {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a.active::before {
+    transform: scaleX(1);
+}
+
+/* Botón de acción en el header */
+.header-cta {
+    margin-left: 2rem;
+    padding: 0.5rem 1.5rem;
+    font-size: 0.9rem;
+    border-width: 1px;
+}
+
+/* Efecto de partículas en hover */
+nav ul li a:hover::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 10px var(--primary-color);
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    opacity: 0;
+    animation: particle-out 0.5s ease forwards;
+}
+
+@keyframes particle-out {
+    0% {
+        opacity: 1;
+        left: 50%;
+    }
+    100% {
+        opacity: 0;
+        left: -10px;
+    }
+} 

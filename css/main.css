@@ -1,26 +1,44 @@
-/* Archivo principal que importa todos los estilos */
+/* Archivo principal de estilos para Braves */
 
-/* Base y variables */
+/* Importar estilos base */
 @import 'base.css';
-
-/* Componentes de la página */
-@import 'header.css';
-@import 'hero.css';
-@import 'awards.css';
-@import 'how-it-works.css';
-@import 'features.css';
-@import 'statistics.css';
-@import 'challenges.css';
-@import 'testimonials.css';
-@import 'faq.css';
-@import 'team.css';
-@import 'contact.css';
-@import 'footer.css';
-
-/* Componentes adicionales */
-@import 'modal.css';
-
-/* Animaciones, transiciones y ajustes responsivos */
 @import 'animations.css';
 @import 'transitions.css';
-@import 'responsive.css'; 
+
+/* Estilos para escritorio */
+@import 'desktop/header.css';
+@import 'desktop/hero.css';
+@import 'desktop/awards.css';
+@import 'desktop/tutorial.css';
+@import 'desktop/challenges.css';
+@import 'desktop/powers.css';
+@import 'desktop/champions.css';
+@import 'desktop/headquarters.css';
+@import 'desktop/statistics.css';
+@import 'desktop/faq.css';
+@import 'desktop/team.css';
+@import 'desktop/footer.css';
+@import 'desktop/arena-navigator.css';
+
+/* Estilos para móvil */
+@media (max-width: 768px) {
+    @import 'mobile/header.css';
+    @import 'mobile/hero.css';
+    @import 'mobile/awards.css';
+    @import 'mobile/tutorial.css';
+    @import 'mobile/challenges.css';
+    @import 'mobile/powers.css';
+    @import 'mobile/champions.css';
+    @import 'mobile/headquarters.css';
+    @import 'mobile/statistics.css';
+    @import 'mobile/faq.css';
+    @import 'mobile/team.css';
+    @import 'mobile/footer.css';
+    @import 'mobile/arena-navigator.css';
+}
+
+/* Media queries para cambiar entre estilos de escritorio y móvil */
+@import 'responsive-controller.css';
+
+/* Optimizaciones de rendimiento */
+@import 'optimizations.css'; 

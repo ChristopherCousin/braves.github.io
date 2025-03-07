@@ -1,0 +1,330 @@
+/* Arena de Campeones (Testimonios) - Estilos para escritorio */
+.champions {
+    position: relative;
+    padding: 6rem 2rem;
+    background-color: var(--dark-bg);
+    overflow: hidden;
+    z-index: 1;
+}
+
+.champions::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        linear-gradient(90deg, var(--dark-bg) 10px, transparent 1%) center,
+        linear-gradient(var(--dark-bg) 10px, transparent 1%) center,
+        rgba(0, 255, 255, 0.1);
+    background-size: 20px 20px;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+.champions h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #fff;
+    text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+    letter-spacing: 2px;
+}
+
+.champions-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.champions-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.champion-tab {
+    padding: 0.8rem 1.5rem;
+    margin: 0 0.5rem;
+    background-color: rgba(10, 10, 20, 0.7);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.champion-tab::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.champion-tab:hover::before {
+    transform: translateX(100%);
+}
+
+.champion-tab.active {
+    background-color: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 5px var(--neon-cyan);
+    transform: translateY(-3px);
+}
+
+.champions-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.champion-card {
+    background-color: rgba(10, 10, 20, 0.7);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 8px;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.champion-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink), var(--neon-cyan));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 10px;
+}
+
+.champion-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.champion-card:hover::before {
+    opacity: 1;
+}
+
+.champion-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 1.5rem;
+    position: relative;
+    border: 2px solid var(--neon-cyan);
+    box-shadow: 0 0 15px var(--neon-cyan);
+    overflow: hidden;
+}
+
+.champion-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.champion-level {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+    box-shadow: 0 0 10px var(--neon-pink);
+}
+
+.champion-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.3rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.champion-title {
+    color: var(--neon-cyan);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.champion-stats {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.3rem;
+}
+
+.champion-achievements {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+.achievement {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.8rem;
+    padding: 0.5rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.achievement:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+}
+
+.achievement-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 0.8rem;
+    color: var(--neon-cyan);
+}
+
+.achievement-name {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+.champion-button {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(45deg, var(--neon-cyan), var(--neon-blue));
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.champion-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.champion-button:hover::before {
+    transform: translateX(100%);
+}
+
+.champion-button:hover {
+    box-shadow: 0 0 15px var(--neon-cyan);
+    transform: translateY(-2px);
+}
+
+.see-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+}
+
+.see-more-button {
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.see-more-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.see-more-button:hover::before {
+    transform: translateX(100%);
+}
+
+.see-more-button:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* Animaciones */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan);
+    }
+}
+
+.champion-card.featured {
+    animation: pulse 2s infinite;
+} 

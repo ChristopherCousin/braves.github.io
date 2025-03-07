@@ -1,23 +1,72 @@
 // Inicializar GSAP
 gsap.registerPlugin(ScrollTrigger);
 
-// Añadir al inicio del archivo después de la línea 2
-const debounce = (func, wait) => {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-};
+// Comentamos la función debounce ya que está definida en otros archivos
+// const debounce = (func, wait) => {
+//     let timeout;
+//     return function executedFunction(...args) {
+//         const later = () => {
+//             clearTimeout(timeout);
+//             func(...args);
+//         };
+//         clearTimeout(timeout);
+//         timeout = setTimeout(later, wait);
+//     };
+// };
+
+// Función para generar partículas flotantes
+function generateParticles() {
+    const particlesContainer = document.getElementById('particles');
+    if (!particlesContainer) return;
+    
+    // Limpiar partículas existentes
+    particlesContainer.innerHTML = '';
+    
+    // Determinar número de partículas basado en el ancho de la pantalla
+    const isMobile = window.innerWidth <= 768;
+    const particleCount = isMobile ? 15 : 30;
+    
+    // Crear partículas
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Posición aleatoria
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        
+        // Tamaño aleatorio
+        const size = Math.random() * 6 + 2;
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        
+        // Duración y retraso aleatorios para la animación
+        const duration = Math.random() * 15 + 10;
+        const delay = Math.random() * 5;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        // Añadir al contenedor
+        particlesContainer.appendChild(particle);
+    }
+}
 
 // Función para asegurarse de que el DOM está completamente cargado
 document.addEventListener('DOMContentLoaded', function() {
     // Detectar si es un dispositivo móvil
     const isMobile = window.innerWidth <= 768;
+    
+    // Generar partículas flotantes
+    generateParticles();
+    
+    // Regenerar partículas al cambiar el tamaño de la ventana
+    window.addEventListener('resize', debounce(generateParticles, 200));
+    
+    // Añadir atributo data-text al título para el efecto glitch
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle && !heroTitle.hasAttribute('data-text')) {
+        heroTitle.setAttribute('data-text', heroTitle.textContent);
+    }
     
     // Track store button clicks
     const appleStoreButton = document.getElementById('apple2-store-button');
@@ -48,8 +97,8 @@ document.addEventListener('DOMContentLoaded', function() {
             end: "bottom top",
             toggleActions: "play none none reverse"
         },
-        backgroundColor: "rgba(30, 30, 30, 0.98)",
-        boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+        backgroundColor: "rgba(10, 10, 20, 0.95)",
+        boxShadow: "0 0 20px rgba(0, 255, 255, 0.2)",
         duration: 0.3
     });
 
@@ -61,11 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
         delay: isMobile ? 0.3 : 0.5
     });
 
-    gsap.from(".hero-image", {
+    gsap.from(".game-container", {
         opacity: 0,
-        x: 10,
+        y: 10,
         duration: isMobile ? 0.7 : 1, // Animación más rápida en móviles
-        delay: isMobile ? 0.5 : 1
+        delay: isMobile ? 0.5 : 0.8
     });
 
     // Animación del contenido de cada sección sin afectar el fondo
@@ -151,90 +200,14 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     ];
 
-    // Generar tarjetas de desafíos
+    // Inicializar el slider de desafíos
     const challengeSlider = document.querySelector('.challenge-slider');
     if (challengeSlider) {
-        challengeData.forEach((challenge, index) => {
-            const challengeCard = document.createElement('div');
-            challengeCard.classList.add('challenge-card');
-            challengeCard.innerHTML = `
-                <div class="challenge-card-image">
-                    <img src="${challenge.image}" alt="${challenge.title}">
-                </div>
-                <div class="challenge-card-content">
-                    <h3>${challenge.title}</h3>
-                    <p>${challenge.description}</p>
-                    <button class="view-more-btn" data-challenge-index="${index}"><span>Ver más</span></button>
-                </div>
-            `;
-            challengeSlider.appendChild(challengeCard);
-        });
-
-        // Crear el popup
-        const popupOverlay = document.createElement('div');
-        popupOverlay.classList.add('popup-overlay');
-        popupOverlay.innerHTML = `
-            <div class="popup-content">
-                <button class="close-popup" aria-label="Cerrar detalles del desafío">&times;</button>
-                <h3></h3>
-                <p class="full-description"></p>
-                <div class="popup-sections">
-                    <div class="popup-section">
-                        <strong>Cómo Participar</strong>
-                        <ul class="how-to"></ul>
-                    </div>
-                    <div class="popup-section">
-                        <strong>Reglas del Desafío</strong>
-                        <ul class="rules"></ul>
-                    </div>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(popupOverlay);
-
-        // Funcionalidad para abrir y cerrar el popup
-        const viewMoreButtons = document.querySelectorAll('.view-more-btn');
-        const closePopup = popupOverlay.querySelector('.close-popup');
-
-        viewMoreButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const challengeIndex = button.getAttribute('data-challenge-index');
-                const challenge = challengeData[challengeIndex];
-
-                popupOverlay.querySelector('h3').textContent = challenge.title;
-                popupOverlay.querySelector('.full-description').textContent = challenge.fullDescription;
-
-                const howToList = popupOverlay.querySelector('.how-to');
-                howToList.innerHTML = '';
-                challenge.howTo.forEach(step => {
-                    const li = document.createElement('li');
-                    li.textContent = step;
-                    howToList.appendChild(li);
-                });
-
-                const rulesList = popupOverlay.querySelector('.rules');
-                rulesList.innerHTML = '';
-                challenge.rules.forEach(rule => {
-                    const li = document.createElement('li');
-                    li.textContent = rule;
-                    rulesList.appendChild(li);
-                });
-
-                popupOverlay.classList.add('active');
-            });
-        });
-
-        closePopup.addEventListener('click', () => {
-            popupOverlay.classList.remove('active');
-        });
-
-        popupOverlay.addEventListener('click', (e) => {
-            if (e.target === popupOverlay) {
-                popupOverlay.classList.remove('active');
-            }
-        });
+        // Código para inicializar el slider de desafíos
+        console.log('Inicializando slider de desafíos');
+        // Este código se ha reemplazado por el nuevo mapa de la arena
     } else {
-        console.warn('Elemento challenge-slider no encontrado.');
+        console.log('Elemento challenge-slider no encontrado - Esto es normal en la nueva versión');
     }
 
     // Datos de testimonios (ajustados para no mencionar dinero sino recompensas)
@@ -247,20 +220,14 @@ document.addEventListener('DOMContentLoaded', function() {
         { name: "Lucía F.", quote: "Hay desafíos que están muy buenos y te pueden dar recompensas realmente interesantes." }
     ];
 	
-    // Generar tarjetas de testimonios
+    // Inicializar el carrusel de testimonios
     const testimonialCarousel = document.querySelector('.testimonial-carousel');
     if (testimonialCarousel) {
-        testimonialData.forEach(testimonial => {
-            const testimonialCard = document.createElement('div');
-            testimonialCard.classList.add('testimonial-card');
-            testimonialCard.innerHTML = `
-                <p>"${testimonial.quote}"</p>
-                <h4>${testimonial.name}</h4>
-            `;
-            testimonialCarousel.appendChild(testimonialCard);
-        });
+        // Código para inicializar el carrusel de testimonios
+        console.log('Inicializando carrusel de testimonios');
+        // Este código se ha reemplazado por la nueva sección de campeones
     } else {
-        console.warn('Elemento testimonial-carousel no encontrado.');
+        console.log('Elemento testimonial-carousel no encontrado - Esto es normal en la nueva versión');
     }
 
     // Preguntas frecuentes (ajustadas para no mencionar ganar dinero, sino obtener recompensas)
@@ -480,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typeof THREE !== 'undefined') {
             initHeroBackground();
         } else {
-            console.warn('THREE no está disponible. El fondo 3D no se inicializará.');
+            // console.warn('THREE no está disponible. El fondo 3D no se inicializará.');
         }
     });
 

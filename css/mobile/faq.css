@@ -1,0 +1,32 @@
+/* Estilos para la sección de preguntas frecuentes - Mobile */
+
+.faq {
+    padding: 60px 0;
+}
+
+.faq h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.faq-container {
+    padding: 0 15px;
+}
+
+.faq-item {
+    margin-bottom: 15px;
+}
+
+.faq-question {
+    padding: 15px;
+    font-size: 14px;
+}
+
+.faq-answer {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.faq-item.active .faq-answer {
+    padding: 0 15px 15px;
+} 

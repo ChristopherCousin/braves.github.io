@@ -1,0 +1,206 @@
+/* Estilos del header para móvil */
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 0.8rem 0;
+    background-color: rgba(10, 10, 20, 0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+}
+
+header.scrolled {
+    background-color: rgba(10, 10, 20, 0.95);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    z-index: 1001; /* Por encima del menú móvil */
+}
+
+.logo img {
+    height: 40px;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 160, 0.5));
+}
+
+/* Botón de menú hamburguesa */
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001; /* Por encima del menú móvil */
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+/* Animación del botón hamburguesa */
+.menu-toggle::before,
+.menu-toggle::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+    transition: all 0.3s ease;
+    left: 10px;
+}
+
+.menu-toggle::before {
+    top: 15px;
+}
+
+.menu-toggle::after {
+    bottom: 15px;
+}
+
+.menu-toggle span {
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+    transition: all 0.3s ease;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Animación cuando el menú está abierto */
+.menu-toggle.active::before {
+    transform: translateY(7px) rotate(45deg);
+    background-color: var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.menu-toggle.active::after {
+    transform: translateY(-7px) rotate(-45deg);
+    background-color: var(--secondary-color);
+    box-shadow: var(--neon-shadow-secondary);
+}
+
+.menu-toggle.active span {
+    opacity: 0;
+}
+
+/* Menú de navegación móvil */
+nav ul {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    height: 100vh;
+    background-color: rgba(10, 10, 20, 0.95);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    transition: right 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    padding: 5rem 2rem 2rem;
+    border-left: 1px solid rgba(0, 255, 255, 0.1);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+nav ul.active {
+    right: 0;
+}
+
+nav ul li {
+    width: 100%;
+    text-align: center;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 1rem;
+    display: block;
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efecto de borde neón en hover */
+nav ul li a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 2px;
+    background: var(--gradient-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    box-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a:hover,
+nav ul li a:focus {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a:hover::before,
+nav ul li a:focus::before {
+    transform: scaleX(1);
+}
+
+/* Overlay para cuando el menú está abierto */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Indicador de sección activa */
+nav ul li a.active {
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+}
+
+nav ul li a.active::before {
+    transform: scaleX(1);
+} 

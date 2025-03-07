@@ -1,0 +1,72 @@
+/* Estilos para el modal - Desktop */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: var(--bg-dark);
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 0 20px var(--neon-primary);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    transform: translateY(20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    color: var(--text-light);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-button:hover {
+    color: var(--neon-primary);
+}
+
+#modal-title {
+    color: var(--neon-primary);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-shadow: 0 0 5px var(--neon-primary);
+}
+
+#modal-description {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 25px;
+} 
