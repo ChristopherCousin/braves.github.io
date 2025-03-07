@@ -1,0 +1,80 @@
+/* Estilos para la sección "Poderes y Habilidades" (móvil) */
+
+.features {
+    padding: var(--spacing-lg) 0;
+}
+
+.powers-container {
+    padding: 1rem 0;
+}
+
+.powers-connections {
+    display: none; /* Ocultar conexiones en móvil para simplificar */
+}
+
+.powers-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.power {
+    padding: 2rem;
+}
+
+.power:hover {
+    transform: translateY(-5px);
+}
+
+.power-icon-container {
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.2rem;
+}
+
+.power-icon {
+    font-size: 2rem;
+}
+
+.power-title {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+}
+
+.power-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+}
+
+.power-button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .power {
+        padding: 1.5rem;
+    }
+    
+    .power-icon-container {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .power-icon {
+        font-size: 1.8rem;
+    }
+    
+    .power-title {
+        font-size: 1.2rem;
+    }
+    
+    .power-description {
+        font-size: 0.9rem;
+    }
+    
+    .power-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+    }
+} 

@@ -362,7 +362,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }, true);
 
     function handleResourceError(error) {
-        console.error('Resource loading error:', error);
+        // Ignorar errores para imágenes SVG en línea (data:image/svg+xml)
+        if (error && error.target && error.target.src && error.target.src.startsWith('data:image/svg+xml')) {
+            return; // No mostrar error para SVG en línea
+        }
+        
+        // Ignorar errores para imágenes que ya no existen en el proyecto
+        if (error && error.target && error.target.src && 
+            (error.target.src.includes('grid-pattern.png') || 
+             error.target.src.includes('braves-app-mockup.png'))) {
+            return; // No mostrar error para imágenes que ya no existen
+        }
+        
+        console.log('Error loading image:', error.target.src);
     }
 
     // [Efecto 3D (tilt) avanzado para el HERO]

@@ -1,0 +1,73 @@
+/* Estilos para la sección "Tutorial de la Arena" (móvil) */
+
+.how-it-works {
+    padding: var(--spacing-lg) 0;
+}
+
+.steps-container {
+    padding: 1rem 0;
+}
+
+.progress-track {
+    top: 30px;
+    width: 90%;
+}
+
+.steps {
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.step {
+    padding: 0;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.step-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.step-content {
+    max-width: 100%;
+}
+
+.step-content h3 {
+    font-size: 1.3rem;
+}
+
+.step-content p {
+    font-size: 0.95rem;
+}
+
+.step-button {
+    width: 100%;
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 320px) {
+    .step-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .step-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .step-content p {
+        font-size: 0.9rem;
+    }
+    
+    .step-button {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+} 

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'super-bravey': { 
             title: "Super Bravey", 
             description: "¡Participa en Super Bravey y demuestra tu habilidad! Navega a través de obstáculos y llega al objetivo para ser uno de los ganadores. Practica tantas veces como necesites antes de tu intento oficial.",
-            image: "https://via.placeholder.com/150x150/1a1a2e/FF00A0?text=Super+Bravey",
+            image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22150%22%20viewBox%3D%220%200%20150%20150%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20fill%3D%22%23FF00A0%22%3E%3Ctext%20style%3D%22font-size%3A15px%3Bfont-family%3AHelvetica%2CArial%2Csans-serif%3Bdominant-baseline%3Acentral%3Btext-anchor%3Amiddle%3B%22%20x%3D%2275%22%20y%3D%2275%22%3ESuper%20Bravey%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
             difficulty: 2,
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'speed-rush': { 
             title: "Speed Rush", 
             description: "¡Participa en Speed Rush y muestra tu destreza! Usa la cámara de tu móvil para grabarte mientras realizas el desafío.",
-            image: "https://via.placeholder.com/150x150/1a1a2e/00FFFF?text=Speed+Rush",
+            image: "data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22150%22%20viewBox%3D%220%200%20150%20150%22%20preserveAspectRatio%3D%22none%22%3E%3Cg%20fill%3D%22%2300FFFF%22%3E%3Ctext%20style%3D%22font-size%3A15px%3Bfont-family%3AHelvetica%2CArial%2Csans-serif%3Bdominant-baseline%3Acentral%3Btext-anchor%3Amiddle%3B%22%20x%3D%2275%22%20y%3D%2275%22%3ESpeed%20Rush%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fsvg%3E",
             difficulty: 4,
             howTo: [
                 "Registro: Ingresa al desafío en Braves.",
