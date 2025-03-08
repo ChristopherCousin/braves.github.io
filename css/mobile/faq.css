@@ -1,12 +1,61 @@
 /* Estilos para la sección de preguntas frecuentes - Mobile */
 
 .faq {
-    padding: 60px 0;
+    padding: 60px 0 70px;
+    overflow: hidden;
 }
 
 .faq h2 {
     font-size: 28px;
+    margin-bottom: 35px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.faq h2::after {
+    bottom: -8px;
+    height: 2px;
+}
+
+/* Ajustes para el buscador en móvil */
+.faq-search-container {
+    padding: 0 15px;
     margin-bottom: 30px;
+}
+
+.faq-search {
+    padding: 12px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+}
+
+.faq-search-icon {
+    right: 25px;
+    font-size: 14px;
+}
+
+/* Ajustes para las categorías en móvil */
+.faq-categories {
+    padding: 0 10px;
+    margin-bottom: 30px;
+    overflow-x: auto;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.faq-categories::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.faq-category {
+    padding: 6px 15px;
+    font-size: 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .faq-container {
@@ -15,18 +64,83 @@
 
 .faq-item {
     margin-bottom: 15px;
+    border-radius: 10px;
+    animation-delay: calc(var(--item-index, 0) * 0.08s);
 }
 
 .faq-question {
     padding: 15px;
     font-size: 14px;
+    line-height: 1.4;
+    gap: 10px;
+}
+
+/* Ajustes para los iconos de categoría en móvil */
+.faq-question::before {
+    margin-right: 10px;
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+}
+
+.faq-question:hover {
+    padding-left: 18px;
+}
+
+.faq-question i {
+    font-size: 16px;
 }
 
 .faq-answer {
     font-size: 14px;
     line-height: 1.5;
+    padding: 0 15px;
+}
+
+.faq-answer::before {
+    left: 15px;
+    right: 15px;
 }
 
 .faq-item.active .faq-answer {
-    padding: 0 15px 15px;
+    padding: 5px 15px 15px;
+}
+
+/* Ajustes para "no se encontraron resultados" en móvil */
+.faq-no-results {
+    padding: 30px 15px;
+    font-size: 14px;
+}
+
+.faq-no-results i {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+/* Ajustes para el botón "Ver más" en móvil */
+.faq-more-container {
+    margin-top: 30px;
+}
+
+.faq-more-button {
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+/* Hack para evitar problemas de rendimiento con animaciones en móvil */
+@media (max-width: 480px) {
+    .faq::before, .faq::after {
+        animation: none;
+        opacity: 0.5;
+    }
+    
+    .faq-item {
+        animation-duration: 0.4s;
+    }
+    
+    /* Optimización para mejorar el rendimiento de las transiciones */
+    .faq-answer {
+        transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+    }
 } 

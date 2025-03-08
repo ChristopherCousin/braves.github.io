@@ -90,6 +90,7 @@
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
     <!-- Scripts propios -->
+    <script defer src="js/particles.min.js"></script>
     <script defer src="js/braves-character.js"></script>
     <script defer src="js/game.js"></script>
     <script defer src="js/background3d.js"></script>
@@ -100,8 +101,10 @@
     <script defer src="js/champions.js"></script>
     <script defer src="js/headquarters.js"></script>
     <script defer src="js/arena-navigator.js"></script>
+    <script defer src="js/awards.js"></script>
     <script defer src="js/faq.js"></script>
     <script defer src="js/performance-optimizer.js"></script>
+    <script defer src="js/team.js"></script>
     <script defer src="script.js"></script>
     <script defer src="transitions.js"></script>
 
@@ -153,17 +156,19 @@
                     <h2 class="game-title">Flappy Braves</h2>
                     <p class="game-description">¡Prueba ahora mismo uno de nuestros desafíos! Toca o haz clic para mantener a la cabrita volando y evita los obstáculos. Cada tubo que pases te dará un punto.</p>
                     <div class="game-instructions">
-                        <p><i class="fas fa-mouse-pointer"></i> <strong>PC:</strong> Haz clic o pulsa Espacio/Flecha Arriba</p>
-                        <p><i class="fas fa-mobile-alt"></i> <strong>Móvil:</strong> Toca la pantalla para saltar</p>
+                        <p id="pc-instructions"><i class="fas fa-mouse-pointer"></i> <strong>PC:</strong> Haz clic o pulsa Espacio/Flecha Arriba</p>
+                        <p id="mobile-instructions"><i class="fas fa-mobile-alt"></i> <strong>Móvil:</strong> Toca la pantalla para saltar</p>
                     </div>
                     <button class="play-button" id="play-button">Jugar</button>
                 </div>
                 <div class="game-ui">
-                    <div class="game-score">Puntos: <span id="score">0</span></div>
                     <div class="game-lives" id="lives">
                         <div class="life-icon"></div>
                         <div class="life-icon"></div>
                         <div class="life-icon"></div>
+                    </div>
+                    <div class="game-score-container">
+                        <div class="game-score">Puntos: <span id="score">0</span></div>
                     </div>
                 </div>
                 <canvas id="game-canvas"></canvas>
@@ -194,14 +199,42 @@
         <section id="awards" class="awards">
             <h2 class="text-reconocimientos">Reconocimientos</h2>
             <div class="award-container">
-                <div class="award-logo">
-                    <img src="assets/logo_ANDE.png" alt="Logo ANDE" loading="lazy">
+                <!-- Logos de los premios en un contenedor separado -->
+                <div class="award-logos">
+                    <div class="award-logo" data-award="0">
+                        <img src="assets/logo_ANDE.png" alt="Logo ANDE" loading="lazy">
+                        <div class="award-logo-title">ANDE</div>
+                    </div>
+                    <div class="award-logo" data-award="1">
+                        <img src="assets/logo_ANII.png" alt="Logo ANII" loading="lazy">
+                        <div class="award-logo-title">ANII</div>
+                    </div>
                 </div>
-                <div class="award-logo">
-                    <img src="assets/logo_ANII.png" alt="Logo ANII" loading="lazy">
-                </div>
+                
+                <!-- Descripción con información adicional -->
                 <div class="award-description">
-                    <p class="text-premio">Ganadores del Premio de Innovación otorgado por ANDE (Agencia Nacional de Desarrollo) y ANII (Agencia Nacional de Investigación e Innovación) de Uruguay.</p>
+                    <p class="text-premio">Ganadores del Premio de Innovación otorgado por ANDE (Agencia Nacional de Desarrollo) y ANII (Agencia Nacional de Investigación e Innovación) de Uruguay por nuestro enfoque revolucionario en desafíos de habilidad y sistema de recompensas justas.</p>
+                    
+                    <div class="award-quote">
+                        <p>"Braves representa un enfoque innovador en la industria de juegos, combinando tecnología avanzada con un modelo de negocio centrado en recompensas por habilidad real. Su impacto potencial en el ecosistema de entretenimiento digital es significativo."</p>
+                        <div class="award-quote-author">Comité de Innovación ANDE-ANII</div>
+                    </div>
+                </div>
+                
+                <!-- Navegación entre reconocimientos -->
+                <div class="award-navigation">
+                    <button class="award-nav-button" id="award-prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="award-nav-button" id="award-next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Indicadores de reconocimientos -->
+                <div class="award-indicators">
+                    <div class="award-indicator active" data-index="0"></div>
+                    <div class="award-indicator" data-index="1"></div>
                 </div>
             </div>
         </section>
@@ -209,41 +242,155 @@
         <!-- Cómo funciona -->
         <section id="how-it-works" class="how-it-works">
             <h2 class="text-como-funciona-title">Tutorial de la Arena</h2>
+            
+            <!-- Partículas de fondo -->
+            <div class="tutorial-particles" id="tutorial-particles"></div>
+            
             <div class="steps-container">
+                <!-- Barra de progreso mejorada -->
                 <div class="progress-track">
                     <div class="progress-bar" id="tutorial-progress"></div>
+                    <div class="progress-glow"></div>
+                    <div class="progress-markers">
+                        <div class="progress-marker" data-step="1"></div>
+                        <div class="progress-marker" data-step="2"></div>
+                        <div class="progress-marker" data-step="3"></div>
+                    </div>
                 </div>
+                
                 <div class="steps">
                     <div class="step" data-step="1">
-                        <div class="step-icon">1</div>
+                        <div class="step-icon">
+                            <span class="step-number">1</span>
+                            <div class="step-icon-glow"></div>
+                            <div class="step-icon-complete">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
                         <div class="step-content">
                             <h3 class="neon-text-secondary">Elige un Desafío</h3>
                             <p>Explora la Arena y descubre desafíos virtuales y físicos. Selecciona el que más te interese y prepárate para demostrar tu destreza.</p>
+                            
+                            <!-- Ilustración animada -->
+                            <div class="step-illustration">
+                                <div class="illustration-container">
+                                    <div class="illustration-icon">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </div>
+                                    <div class="illustration-animation">
+                                        <div class="map-point point-1"></div>
+                                        <div class="map-point point-2"></div>
+                                        <div class="map-point point-3"></div>
+                                        <div class="map-selector"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="step-action">
-                                <button class="step-button" data-action="next-step">Siguiente</button>
+                                <button class="step-button" data-action="next-step">
+                                    <span class="button-text">Siguiente</span>
+                                    <span class="button-icon"><i class="fas fa-arrow-right"></i></span>
+                                    <span class="button-ripple"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="step" data-step="2">
-                        <div class="step-icon">2</div>
+                        <div class="step-icon">
+                            <span class="step-number">2</span>
+                            <div class="step-icon-glow"></div>
+                            <div class="step-icon-complete">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
                         <div class="step-content">
                             <h3 class="neon-text-secondary">Participa</h3>
                             <p>Paga la entrada, entrena y realiza tu intento oficial. La práctica es clave para dominar cada desafío y maximizar tus recompensas.</p>
+                            
+                            <!-- Ilustración animada -->
+                            <div class="step-illustration">
+                                <div class="illustration-container">
+                                    <div class="illustration-icon">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <div class="illustration-animation">
+                                        <div class="game-character"></div>
+                                        <div class="game-obstacle"></div>
+                                        <div class="game-score">+100</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="step-action">
-                                <button class="step-button" data-action="next-step">Siguiente</button>
+                                <button class="step-button" data-action="next-step">
+                                    <span class="button-text">Siguiente</span>
+                                    <span class="button-icon"><i class="fas fa-arrow-right"></i></span>
+                                    <span class="button-ripple"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
+                    
                     <div class="step" data-step="3">
-                        <div class="step-icon">3</div>
+                        <div class="step-icon">
+                            <span class="step-number">3</span>
+                            <div class="step-icon-glow"></div>
+                            <div class="step-icon-complete">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </div>
                         <div class="step-content">
                             <h3 class="neon-text-secondary">Obtén Recompensas</h3>
                             <p>Si cumples el desafío, recibirás recompensas basadas en tu habilidad. Tu mérito será reconocido sin depender del azar. ¡Conviértete en campeón!</p>
+                            
+                            <!-- Ilustración animada -->
+                            <div class="step-illustration">
+                                <div class="illustration-container">
+                                    <div class="illustration-icon">
+                                        <i class="fas fa-trophy"></i>
+                                    </div>
+                                    <div class="illustration-animation">
+                                        <div class="reward-coin coin-1">+</div>
+                                        <div class="reward-coin coin-2">+</div>
+                                        <div class="reward-coin coin-3">+</div>
+                                        <div class="reward-sparkle sparkle-1"></div>
+                                        <div class="reward-sparkle sparkle-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <div class="step-action">
-                                <button class="step-button" data-action="download-app">Descargar App</button>
+                                <button class="step-button download-button" data-action="download-app">
+                                    <span class="button-text">Descargar App</span>
+                                    <span class="button-icon"><i class="fas fa-download"></i></span>
+                                    <span class="button-ripple"></span>
+                                </button>
                             </div>
                         </div>
                     </div>
+                </div>
+                
+                <!-- Sistema de premios virtuales -->
+                <div class="tutorial-rewards" id="tutorial-rewards">
+                    <div class="reward-badge">
+                        <div class="badge-icon">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <div class="badge-info">
+                            <h4>¡Tutorial Completado!</h4>
+                            <p>Has desbloqueado el logro "Aprendiz de la Arena"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Indicador de navegación -->
+            <div class="tutorial-navigation">
+                <div class="nav-dots">
+                    <button class="nav-dot" data-step="1"></button>
+                    <button class="nav-dot" data-step="2"></button>
+                    <button class="nav-dot" data-step="3"></button>
                 </div>
             </div>
         </section>
@@ -588,8 +735,37 @@
         <!-- Preguntas Frecuentes -->
         <section id="faq" class="faq">
             <h2 class="text-faq-title">Preguntas Frecuentes</h2>
+            
+            <!-- Nuevo buscador de preguntas -->
+            <div class="faq-search-container">
+                <input type="text" class="faq-search" id="faq-search" placeholder="Buscar pregunta..." aria-label="Buscar en preguntas frecuentes">
+                <i class="fas fa-search faq-search-icon" aria-hidden="true"></i>
+            </div>
+            
+            <!-- Nuevas categorías de preguntas -->
+            <div class="faq-categories" id="faq-categories">
+                <button class="faq-category active" data-category="all">Todas</button>
+                <button class="faq-category" data-category="general">General</button>
+                <button class="faq-category" data-category="gameplay">Desafíos</button>
+                <button class="faq-category" data-category="rewards">Recompensas</button>
+                <button class="faq-category" data-category="security">Seguridad</button>
+            </div>
+            
             <div class="faq-container">
                 <!-- Preguntas frecuentes generadas con JS -->
+            </div>
+            
+            <!-- Mensaje de "no se encontraron resultados" -->
+            <div class="faq-no-results" id="faq-no-results">
+                <i class="fas fa-search-minus" aria-hidden="true"></i>
+                <p>No se encontraron preguntas que coincidan con tu búsqueda</p>
+            </div>
+            
+            <!-- Botón para ver más preguntas -->
+            <div class="faq-more-container">
+                <button class="faq-more-button" id="faq-more-button">
+                    Ver más preguntas <i class="fas fa-arrow-right"></i>
+                </button>
             </div>
         </section>
 
@@ -599,38 +775,153 @@
             <div class="team-intro">
                 <p class="text-team-intro">Detrás de Braves hay un equipo que combina experiencia emprendedora con excelencia técnica. Unimos conocimiento en desarrollo de productos móviles, seguridad y tecnologías emergentes para crear una plataforma innovadora y confiable.</p>
             </div>
-            <div class="team-container">
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="assets/chris-face.jpeg" alt="Foto de Christopher Cousin, Co-Fundador" loading="lazy">
-                    </div>
-                    <div class="member-info">
-                        <h3>Christopher Cousin</h3>
-                        <p class="member-role text-cofundador">Co-Fundador</p>
-                        <p class="member-description text-christopher-desc">Emprendedor tecnológico con una sólida trayectoria en el desarrollo de productos digitales. Fundador de múltiples startups exitosas, incluyendo Virai. Su experiencia en Banco Santander y su dominio en ciberseguridad garantizan soluciones seguras y escalables.</p>
-                        <div class="member-social">
-                            <a href="https://www.linkedin.com/in/christopher-alexandre-cousin-35bb58195/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Christopher">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
+            
+            <!-- Contenedor del equipo con efecto de partículas -->
+            <div class="team-particles-container">
+                <div class="team-particles" id="team-particles"></div>
+                
+                <div class="team-container">
+                    <!-- Miembro 1 -->
+                    <div class="team-member" data-animation="fade-right">
+                        <div class="member-photo">
+                            <img src="assets/chris-face.jpeg" alt="Foto de Christopher Cousin, Co-Fundador" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="member-quote">"La seguridad y la experiencia de usuario deben ir de la mano para crear productos excepcionales."</div>
+                            </div>
                         </div>
+                        <div class="member-info">
+                            <h3>Christopher Cousin</h3>
+                            <p class="member-role text-cofundador">Co-Fundador</p>
+                            <div class="member-expand-btn" aria-expanded="false" aria-controls="chris-expanded">
+                                <span class="expand-icon"></span>
+                            </div>
+                            
+                            <div class="member-content-wrapper">
+                                <p class="member-description text-christopher-desc">Emprendedor tecnológico con una sólida trayectoria en el desarrollo de productos digitales. Fundador de múltiples startups exitosas, incluyendo Virai. Su experiencia en Banco Santander y su dominio en ciberseguridad garantizan soluciones seguras y escalables.</p>
+                                
+                                <!-- Contenido expandible -->
+                                <div class="member-expanded" id="chris-expanded">
+                                    <div class="member-skills">
+                                        <h4>Habilidades</h4>
+                                        <div class="skills-container">
+                                            <div class="skill-item">
+                                                <div class="skill-name">Ciberseguridad</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 95%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="skill-item">
+                                                <div class="skill-name">Desarrollo de Producto</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 90%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="skill-item">
+                                                <div class="skill-name">Emprendimiento</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 92%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="member-achievements">
+                                        <h4>Logros</h4>
+                                        <ul>
+                                            <li><i class="fas fa-trophy"></i> Fundador de múltiples startups exitosas</li>
+                                            <li><i class="fas fa-award"></i> Especialista en soluciones de seguridad</li>
+                                            <li><i class="fas fa-star"></i> Líder en innovación tecnológica</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="member-social">
+                                <a href="https://www.linkedin.com/in/christopher-alexandre-cousin-35bb58195/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Christopher" class="social-hover-effect">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-hover-effect" aria-label="Twitter de Christopher" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-glow"></div>
                     </div>
-                </div>
 
-                <div class="team-member">
-                    <div class="member-photo">
-                        <img src="assets/santi-face.jpg" alt="Foto de Santiago Farriols, Co-Fundador" loading="lazy">
-                    </div>
-                    <div class="member-info">
-                        <h3>Santiago Farriols</h3>
-                        <p class="member-role text-cofundador">Co-Fundador</p>
-                        <p class="member-description text-santiago-desc">Ingeniero (École Polytechnique & Télécom Paris), con experiencia en Orange como Mobile Product Manager. Especialista en productos móviles y tecnologías emergentes (5G). Su visión estratégica e innovadora impulsa el desarrollo y crecimiento de Braves.</p>
-                        <div class="member-social">
-                            <a href="https://linkedin.com/in/santiago-farriols" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Santiago">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
+                    <!-- Miembro 2 -->
+                    <div class="team-member" data-animation="fade-left">
+                        <div class="member-photo">
+                            <img src="assets/santi-face.jpg" alt="Foto de Santiago Farriols, Co-Fundador" loading="lazy">
+                            <div class="member-overlay">
+                                <div class="member-quote">"La innovación nace cuando combinamos tecnología con una visión clara de las necesidades del usuario."</div>
+                            </div>
                         </div>
+                        <div class="member-info">
+                            <h3>Santiago Farriols</h3>
+                            <p class="member-role text-cofundador">Co-Fundador</p>
+                            <div class="member-expand-btn" aria-expanded="false" aria-controls="santiago-expanded">
+                                <span class="expand-icon"></span>
+                            </div>
+                            
+                            <div class="member-content-wrapper">
+                                <p class="member-description text-santiago-desc">Ingeniero (École Polytechnique & Télécom Paris), con experiencia en Orange como Mobile Product Manager. Especialista en productos móviles y tecnologías emergentes (5G). Su visión estratégica e innovadora impulsa el desarrollo y crecimiento de Braves.</p>
+                                
+                                <!-- Contenido expandible -->
+                                <div class="member-expanded" id="santiago-expanded">
+                                    <div class="member-skills">
+                                        <h4>Habilidades</h4>
+                                        <div class="skills-container">
+                                            <div class="skill-item">
+                                                <div class="skill-name">Gestión de Producto</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 94%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="skill-item">
+                                                <div class="skill-name">Tecnologías Móviles</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 96%"></div>
+                                                </div>
+                                            </div>
+                                            <div class="skill-item">
+                                                <div class="skill-name">Estrategia de Negocio</div>
+                                                <div class="skill-bar">
+                                                    <div class="skill-level" style="width: 88%"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="member-achievements">
+                                        <h4>Logros</h4>
+                                        <ul>
+                                            <li><i class="fas fa-graduation-cap"></i> Graduado de prestigiosas instituciones europeas</li>
+                                            <li><i class="fas fa-mobile-alt"></i> Experto en desarrollo de productos móviles</li>
+                                            <li><i class="fas fa-lightbulb"></i> Visionario en tecnologías emergentes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="member-social">
+                                <a href="https://linkedin.com/in/santiago-farriols" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn de Santiago" class="social-hover-effect">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="social-hover-effect" aria-label="Twitter de Santiago" target="_blank" rel="noopener noreferrer">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="member-glow"></div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Indicadores de conexión entre miembros del equipo -->
+            <div class="team-connections">
+                <div class="connection-line"></div>
+                <div class="connection-node node-1"></div>
+                <div class="connection-node node-2"></div>
             </div>
         </section>
 
@@ -639,69 +930,111 @@
             <h2 class="text-tienes-dudas">Cuartel General</h2>
             <p class="headquarters-subtitle text-necesitas-info">Base de operaciones de Braves. Aquí puedes contactar con nuestro equipo, enviar sugerencias o reportar problemas. ¡Estamos listos para ayudarte!</p>
             
+            <!-- Partículas de fondo -->
+            <div class="headquarters-particles" id="headquarters-particles"></div>
+            
             <div class="headquarters-container">
                 <div class="headquarters-grid">
-                    <div class="contact-form-container">
+                    <div class="contact-form-container" data-animation="fade-right">
                         <h3 class="contact-form-title"><i class="fas fa-paper-plane"></i> Envía un Mensaje</h3>
                         <form class="contact-form" id="contact-form">
                             <div class="form-group">
                                 <label for="name">Nombre</label>
                                 <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required>
+                                <div class="form-validation-icon">
+                                    <i class="fas fa-check-circle valid-icon"></i>
+                                    <i class="fas fa-exclamation-circle invalid-icon"></i>
+                                </div>
+                                <span class="validation-message"></span>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
                                 <input type="email" id="email" name="email" class="form-control" placeholder="tu@email.com" required>
+                                <div class="form-validation-icon">
+                                    <i class="fas fa-check-circle valid-icon"></i>
+                                    <i class="fas fa-exclamation-circle invalid-icon"></i>
+                                </div>
+                                <span class="validation-message"></span>
                             </div>
                             <div class="form-group">
                                 <label for="subject">Asunto</label>
                                 <input type="text" id="subject" name="subject" class="form-control" placeholder="Asunto de tu mensaje" required>
+                                <div class="form-validation-icon">
+                                    <i class="fas fa-check-circle valid-icon"></i>
+                                    <i class="fas fa-exclamation-circle invalid-icon"></i>
+                                </div>
+                                <span class="validation-message"></span>
                             </div>
                             <div class="form-group">
                                 <label for="message">Mensaje</label>
                                 <textarea id="message" name="message" class="form-control" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                                <div class="form-validation-icon">
+                                    <i class="fas fa-check-circle valid-icon"></i>
+                                    <i class="fas fa-exclamation-circle invalid-icon"></i>
+                                </div>
+                                <span class="validation-message"></span>
                             </div>
-                            <button type="submit" class="submit-button">Enviar Mensaje</button>
+                            <button type="submit" class="submit-button">
+                                <span class="button-text">Enviar Mensaje</span>
+                                <span class="button-icon"><i class="fas fa-paper-plane"></i></span>
+                                <div class="button-loader"></div>
+                            </button>
+                            
+                            <!-- Contenedor para el estado del formulario -->
+                            <div class="form-status" id="form-status"></div>
                         </form>
                     </div>
                     
-                    <div class="contact-info-container">
+                    <div class="contact-info-container" data-animation="fade-left">
                         <h3 class="contact-info-title"><i class="fas fa-info-circle"></i> Información de Contacto</h3>
                         <div class="contact-methods">
-                            <div class="contact-method">
+                            <div class="contact-method" data-animation="fade-up">
                                 <div class="method-icon">
                                     <i class="fas fa-envelope"></i>
+                                    <div class="method-icon-glow"></div>
                                 </div>
                                 <div class="method-details">
                                     <h4 class="method-title">Email</h4>
                                     <p class="method-description">Escríbenos a cualquier hora</p>
                                     <div class="method-value">
-                                        <a href="mailto:info@bravesapp.com" class="text-email">info@bravesapp.com</a>
+                                        <a href="mailto:info@bravesapp.com" class="text-email method-link">
+                                            info@bravesapp.com
+                                            <span class="method-link-hover"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="contact-method">
+                            <div class="contact-method" data-animation="fade-up" data-delay="100">
                                 <div class="method-icon">
                                     <i class="fas fa-comments"></i>
+                                    <div class="method-icon-glow"></div>
                                 </div>
                                 <div class="method-details">
                                     <h4 class="method-title">Chat Directo</h4>
                                     <p class="method-description">Mensajería instantánea</p>
                                     <div class="method-value">
-                                        <a href="https://wa.me/59899979007" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+                                        <a href="https://wa.me/59899979007" target="_blank" rel="noopener noreferrer" class="method-link">
+                                            WhatsApp
+                                            <span class="method-link-hover"></span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="contact-method">
+                            <div class="contact-method" data-animation="fade-up" data-delay="200">
                                 <div class="method-icon">
                                     <i class="fas fa-map-marker-alt"></i>
+                                    <div class="method-icon-glow"></div>
                                 </div>
                                 <div class="method-details">
                                     <h4 class="method-title">Ubicación</h4>
                                     <p class="method-description">Nuestra base de operaciones</p>
-                                    <div class="method-value">
-                                        Montevideo, Uruguay
+                                    <div class="method-value location-value">
+                                        <span class="method-link" id="zoom-map">
+                                            Montevideo, Uruguay
+                                            <span class="method-link-hover"></span>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -712,38 +1045,77 @@
                             <div class="social-links">
                                 <a href="https://www.facebook.com/bravesapp" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-facebook-f"></i>
+                                    <span class="social-link-ripple"></span>
                                 </a>
                                 <a href="https://www.twitter.com/bravesapp" class="social-link" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-twitter"></i>
+                                    <span class="social-link-ripple"></span>
                                 </a>
                                 <a href="https://www.instagram.com/bravesapp" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-instagram"></i>
+                                    <span class="social-link-ripple"></span>
                                 </a>
                                 <a href="https://www.linkedin.com/company/bravesapp" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                                     <i class="fab fa-linkedin-in"></i>
+                                    <span class="social-link-ripple"></span>
                                 </a>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="headquarters-map-container">
+                <div class="headquarters-map-container" data-animation="fade-up">
+                    <div class="map-controls">
+                        <button id="map-zoom-in" class="map-control" aria-label="Acercar mapa">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                        <button id="map-zoom-out" class="map-control" aria-label="Alejar mapa">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button id="map-fullscreen" class="map-control" aria-label="Ver mapa en pantalla completa">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                    
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d104904.93369214946!2d-56.22899542753905!3d-34.83368489999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x959f80ffc63bf7d3%3A0x6b321b2e355bec99!2sMontevideo%2C%20Departamento%20de%20Montevideo%2C%20Uruguay!5e0!3m2!1ses!2s!4v1652345678901!5m2!1ses!2s" 
                         class="headquarters-map" 
+                        id="headquarters-map"
                         allowfullscreen="" 
                         loading="lazy" 
                         referrerpolicy="no-referrer-when-downgrade"
                         title="Mapa de ubicación de Braves"
                     ></iframe>
                     <div class="map-overlay"></div>
-                    <div class="map-marker"></div>
-                    <div class="map-pulse"></div>
+                    <div class="map-marker">
+                        <div class="marker-icon"></div>
+                        <div class="marker-pulse"></div>
+                    </div>
+                    
+                    <!-- Información emergente del mapa -->
+                    <div class="map-tooltip" id="map-tooltip">
+                        <h4>Oficinas de Braves</h4>
+                        <p>Montevideo, Uruguay</p>
+                        <div class="tooltip-arrow"></div>
+                    </div>
                 </div>
 
-                <div class="response-time">
+                <div class="response-time" data-animation="fade-up" data-delay="300">
                     <i class="fas fa-clock"></i>
                     <span class="text-respuesta-24h">Te responderemos en menos de 24 horas</span>
+                    <div class="response-time-highlight"></div>
+                </div>
+            </div>
+            
+            <!-- Modal de confirmación -->
+            <div class="contact-success-modal" id="contact-success-modal">
+                <div class="success-modal-content">
+                    <div class="success-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3>¡Mensaje Enviado!</h3>
+                    <p>Gracias por contactarnos. Hemos recibido tu mensaje y te responderemos lo antes posible.</p>
+                    <button id="success-modal-close">Entendido</button>
                 </div>
             </div>
         </section>

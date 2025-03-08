@@ -368,29 +368,178 @@ textarea.form-control {
 }
 
 /* Media queries para ajustes adicionales */
-@media (max-width: 320px) {
-    .headquarters h2 {
-        font-size: 1.6rem;
+@media (max-width: 768px) {
+    .headquarters {
+        padding: 60px 0 40px;
     }
     
-    .contact-form-title, .contact-info-title {
-        font-size: 1.1rem;
+    .headquarters h2 {
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+    
+    .headquarters-subtitle {
+        font-size: 14px;
+        padding: 0 20px;
+        margin-bottom: 30px;
+    }
+    
+    .headquarters-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .contact-form-container,
+    .contact-info-container {
+        padding: 25px 20px;
+        border-radius: 8px;
+    }
+    
+    .contact-form-container[data-animation="fade-right"],
+    .contact-info-container[data-animation="fade-left"],
+    .contact-method[data-animation="fade-up"],
+    .headquarters-map-container[data-animation="fade-up"],
+    .response-time[data-animation="fade-up"] {
+        animation-name: fadeInUp;
     }
     
     .method-icon {
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+
+    .contact-form-title,
+    .contact-info-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .form-control {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    .form-validation-icon {
+        right: 12px;
+        top: 35px;
+        font-size: 14px;
+    }
+    
+    .form-group:has(textarea) .form-validation-icon {
+        top: 40px;
+    }
+    
+    .validation-message {
+        font-size: 11px;
+    }
+    
+    .submit-button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    textarea.form-control {
+        min-height: 100px;
     }
     
     .method-title {
-        font-size: 0.9rem;
+        font-size: 16px;
     }
     
     .method-description {
-        font-size: 0.8rem;
+        font-size: 12px;
     }
     
     .method-value {
-        font-size: 0.85rem;
+        font-size: 14px;
+    }
+    
+    .social-links-title {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .social-links {
+        gap: 12px;
+    }
+    
+    .social-link {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+    
+    .headquarters-map-container {
+        height: 300px;
+        margin-bottom: 25px;
+    }
+    
+    .map-controls {
+        top: 8px;
+        right: 8px;
+        gap: 4px;
+    }
+    
+    .map-control {
+        width: 26px;
+        height: 26px;
+        font-size: 12px;
+    }
+    
+    .map-tooltip {
+        min-width: 160px;
+        padding: 8px 12px;
+        bottom: 60px;
+    }
+    
+    .map-tooltip h4 {
+        font-size: 14px;
+    }
+    
+    .map-tooltip p {
+        font-size: 12px;
+    }
+    
+    .response-time {
+        padding: 10px 20px;
+        font-size: 12px;
+        border-radius: 30px;
+    }
+    
+    .response-time i {
+        font-size: 14px;
+    }
+    
+    /* Modal de éxito en móvil */
+    .success-modal-content {
+        padding: 25px 20px;
+        max-width: 90%;
+    }
+    
+    .success-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        margin-bottom: 15px;
+    }
+    
+    .success-modal-content h3 {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+    
+    .success-modal-content p {
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+    
+    .success-modal-content button {
+        padding: 8px 20px;
+        font-size: 14px;
     }
 } 

@@ -166,19 +166,32 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    z-index: 5;
+    z-index: 15;
+    pointer-events: none;
+}
+
+.game-score-container {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .game-score {
     font-family: var(--font-display);
     font-size: 1.5rem;
-    color: var(--secondary-color);
-    text-shadow: var(--neon-shadow-secondary);
-    background-color: rgba(10, 10, 20, 0.7);
+    color: white;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
     padding: 0.5rem 1rem;
-    border-radius: var(--border-radius-sm);
-    border: 1px solid var(--secondary-color);
-    box-shadow: var(--neon-shadow-secondary);
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    z-index: 20;
+    transition: transform 0.2s ease;
+}
+
+.game-score #score {
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF;
 }
 
 .game-lives {
@@ -187,11 +200,11 @@
 }
 
 .life-icon {
-    width: 24px;
-    height: 24px;
-    background-color: var(--accent-color);
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
     border-radius: 50%;
-    box-shadow: var(--neon-shadow-accent);
 }
 
 /* Contenido del hero */
@@ -497,4 +510,34 @@
         opacity: 0;
         border-radius: 50%;
     }
+}
+
+/* Mensaje de nivel */
+.level-message {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-shadow: var(--neon-shadow-primary);
+    background-color: rgba(10, 10, 20, 0.7);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius-md);
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--neon-shadow-primary);
+    z-index: 200;
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    pointer-events: none;
+    width: auto;
+    max-width: 80%;
+    text-align: center;
+}
+
+.level-message.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.9;
 } 

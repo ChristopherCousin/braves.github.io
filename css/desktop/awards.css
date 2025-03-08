@@ -1,12 +1,14 @@
 /* Estilos para la sección de reconocimientos - Desktop */
 
 .awards {
-    padding: 60px 0;
+    padding: 80px 0;
     background-color: var(--bg-dark);
     position: relative;
     overflow: hidden;
+    transition: all 0.5s ease;
 }
 
+/* Efecto de fondo mejorado */
 .awards::before {
     content: '';
     position: absolute;
@@ -14,23 +16,57 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background: 
+        linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
     z-index: 0;
     pointer-events: none;
+    animation: gridPulse 15s infinite alternate;
+}
+
+/* Capa de fondo adicional con efecto de brillo */
+.awards::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+    animation: glowPulse 10s infinite alternate;
 }
 
 .awards h2 {
     text-align: center;
     color: var(--neon-primary);
-    margin-bottom: 40px;
-    font-size: 36px;
-    text-shadow: 0 0 10px var(--neon-primary);
+    margin-bottom: 50px;
+    font-size: 40px;
+    text-shadow: 0 0 15px var(--neon-primary);
     position: relative;
     z-index: 1;
+    /* Efecto de subrayado animado */
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
+.awards h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-primary), transparent);
+    animation: underlineExpand 2s forwards ease-in-out;
+}
+
+/* Contenedor de premios con mejor layout */
 .award-container {
     max-width: 1200px;
     margin: 0 auto;
@@ -38,26 +74,62 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-    gap: 30px;
+    align-items: stretch;
+    gap: 40px;
     position: relative;
     z-index: 1;
 }
 
+/* Contenedor de logos */
+.award-logos {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+/* Logo de premio mejorado con efectos */
 .award-logo {
     flex: 0 0 200px;
     text-align: center;
-    padding: 20px;
+    padding: 25px;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards;
+}
+
+/* Efecto de resplandor en el borde al hacer hover */
+.award-logo::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 17px;
+    background: linear-gradient(45deg, var(--neon-primary), transparent, var(--neon-primary));
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .award-logo:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    transform: translateY(-8px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 255, 255, 0.2);
+}
+
+.award-logo:hover::before {
+    opacity: 0.5;
+    animation: rotateBorder 2s linear infinite;
 }
 
 .award-logo img {
@@ -65,26 +137,247 @@
     height: auto;
     max-height: 80px;
     filter: brightness(0.9) contrast(1.1);
-    transition: filter 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .award-logo:hover img {
-    filter: brightness(1) contrast(1.2);
+    filter: brightness(1.1) contrast(1.2);
+    transform: scale(1.05);
 }
 
+/* Contenedor para el título del premio */
+.award-logo-title {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--text-light);
+    font-weight: 600;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.award-logo:hover .award-logo-title {
+    color: var(--neon-primary);
+    opacity: 1;
+}
+
+/* Diseño mejorado para la descripción */
 .award-description {
     flex: 1;
     min-width: 300px;
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
-    border: 1px solid rgba(0, 255, 255, 0.1);
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+    border: 1px solid rgba(0, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+    /* Animación de entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1s forwards 0.3s;
+}
+
+/* Efecto de brillo en la esquina */
+.award-description::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent 70%);
+    opacity: 0.5;
 }
 
 .award-description p {
     color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.6;
+    font-size: 18px;
+    line-height: 1.7;
     margin: 0;
+    position: relative;
+    /* Efecto inicial de texto desenfocado */
+    filter: blur(0);
+    transition: all 0.3s ease;
+}
+
+.award-description p::first-letter {
+    font-size: 24px;
+    color: var(--neon-primary);
+    text-shadow: 0 0 5px var(--neon-primary);
+}
+
+/* Apartado para la cita de reconocimiento */
+.award-quote {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0, 255, 255, 0.1);
+    font-style: italic;
+    position: relative;
+}
+
+.award-quote::before {
+    content: '"';
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 40px;
+    color: var(--neon-primary);
+    opacity: 0.5;
+    font-family: Georgia, serif;
+}
+
+.award-quote p {
+    padding-left: 25px;
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.award-quote-author {
+    text-align: right;
+    font-size: 14px;
+    margin-top: 10px;
+    color: var(--neon-primary);
+    font-weight: 600;
+}
+
+/* Botones para intercambiar entre reconocimientos */
+.award-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.award-nav-button {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    color: var(--text-light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.award-nav-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, rgba(0, 255, 255, 0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.award-nav-button:hover {
+    border-color: var(--neon-primary);
+    transform: scale(1.1);
+}
+
+.award-nav-button:hover::before {
+    opacity: 1;
+}
+
+.award-nav-button i {
+    font-size: 16px;
+    color: var(--neon-primary);
+    position: relative;
+    z-index: 1;
+}
+
+/* Indicadores de navegación entre premios */
+.award-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.award-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 255, 255, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.award-indicator.active {
+    background: var(--neon-primary);
+    box-shadow: 0 0 10px var(--neon-primary);
+}
+
+.award-indicator:hover {
+    background: rgba(0, 255, 255, 0.3);
+}
+
+/* Animaciones */
+@keyframes gridPulse {
+    0% {
+        opacity: 0.3;
+        background-size: 50px 50px;
+    }
+    100% {
+        opacity: 0.5;
+        background-size: 55px 55px;
+    }
+}
+
+@keyframes glowPulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+@keyframes underlineExpand {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 60%;
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateBorder {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Clases para la visibilidad controlada por JS */
+.awards-visible .award-logo,
+.awards-visible .award-description {
+    animation-play-state: running;
+}
+
+.awards:not(.awards-visible) .award-logo,
+.awards:not(.awards-visible) .award-description {
+    animation-play-state: paused;
+    opacity: 0;
 } 

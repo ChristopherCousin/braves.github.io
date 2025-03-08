@@ -16,30 +16,40 @@ class BravesCharacter {
         this.jumpTime = 0;
         this.jumpDuration = 300; // ms
         
-        // Obtener colores de las variables CSS
+        // Obtener colores de las variables CSS para partículas
         const computedStyle = getComputedStyle(document.documentElement);
-        this.color = computedStyle.getPropertyValue('--character-primary').trim() || '#FF0000';
-        this.secondaryColor = computedStyle.getPropertyValue('--character-secondary').trim() || '#FF3333';
-        this.outlineColor = computedStyle.getPropertyValue('--character-outline').trim() || '#FF6666';
-        this.glowColor = computedStyle.getPropertyValue('--character-glow').trim() || 'rgba(255, 0, 0, 0.8)';
+        this.color = computedStyle.getPropertyValue('--character-primary').trim() || '#FF3B3B';
+        this.glowColor = computedStyle.getPropertyValue('--character-glow').trim() || 'rgba(255, 59, 59, 0.8)';
         
         // Sistema de partículas
         this.particlesArray = [];
-        this.maxParticles = 20; // Aumentado para más efecto visual
-        
-        // Frames de animación
-        this.frameCount = 0;
-        this.frameDelay = 4; // Actualizar cada 4 frames (más rápido)
-        this.currentFrame = 0;
-        this.totalFrames = 4; // 4 frames de animación
+        this.maxParticles = 20;
         
         // Estado de invulnerabilidad
         this.invulnerable = false;
         this.blinkCounter = 0;
         
-        // Efectos visuales adicionales
-        this.eyeBlink = 0; // Contador para parpadeo de ojos
-        this.eyeBlinkInterval = Math.floor(Math.random() * 100) + 50; // Intervalo aleatorio para parpadeo
+        // Cargar la imagen del logo
+        this.image = new Image();
+        this.image.src = 'assets/Logo2.png';
+        this.imageLoaded = false;
+        
+        // Evento para cuando la imagen se carga
+        this.image.onload = () => {
+            this.imageLoaded = true;
+            console.log('Logo cargado correctamente como personaje');
+        };
+        
+        // Evento para manejar errores de carga
+        this.image.onerror = () => {
+            console.error('Error al cargar el logo como personaje');
+            // Fallback a dibujar el personaje con código si la imagen no carga
+            this.imageLoaded = false;
+        };
+        
+        // Animación de ojos
+        this.eyeBlink = 0;
+        this.eyeBlinkInterval = Math.floor(Math.random() * 100) + 50;
     }
     
     update(isPlaying, deltaTime) {
@@ -70,12 +80,8 @@ class BravesCharacter {
                 this.blinkCounter += 1;
             }
             
-            // Actualizar frames de animación
-            this.frameCount++;
-            if (this.frameCount >= this.frameDelay) {
-                this.frameCount = 0;
-                this.currentFrame = (this.currentFrame + 1) % this.totalFrames;
-            }
+            // Actualizar animación de ojos
+            this.eyeBlink++;
         } else {
             // Efecto de flotación cuando no está jugando
             this.floatOffset += this.floatSpeed;
@@ -92,11 +98,11 @@ class BravesCharacter {
     
     createJumpParticles() {
         // Añadir partículas de impulso
-        const particleCount = 10; // Más partículas para un efecto más vistoso
+        const particleCount = 10;
         
         // Obtener el color de partículas de las variables CSS
         const computedStyle = getComputedStyle(document.documentElement);
-        const particleColor = computedStyle.getPropertyValue('--particle-color').trim() || 'rgba(255, 50, 0, 0.7)';
+        const particleColor = computedStyle.getPropertyValue('--particle-color').trim() || 'rgba(255, 59, 59, 0.7)';
         
         for (let i = 0; i < particleCount; i++) {
             // Calcular posición aleatoria alrededor del personaje
@@ -109,13 +115,13 @@ class BravesCharacter {
             this.particlesArray.push({
                 x: this.x + this.width / 2 + offsetX,
                 y: this.y + this.height / 2 + offsetY,
-                size: Math.random() * 4 + 2, // Tamaño ligeramente mayor
-                speedX: (Math.random() - 0.5) * 3, // Velocidad horizontal mayor
-                speedY: Math.random() * 3 + 1, // Velocidad vertical mayor
+                size: Math.random() * 4 + 2,
+                speedX: (Math.random() - 0.5) * 3,
+                speedY: Math.random() * 3 + 1,
                 color: particleColor,
-                life: Math.floor(Math.random() * 15) + 10, // Vida variable
+                life: Math.floor(Math.random() * 15) + 10,
                 opacity: 1,
-                rotation: Math.random() * Math.PI * 2 // Rotación aleatoria para partículas no circulares
+                rotation: Math.random() * Math.PI * 2
             });
         }
     }
@@ -131,7 +137,7 @@ class BravesCharacter {
             
             // Reducir vida y opacidad gradualmente
             p.life--;
-            p.opacity = p.life / 20; // Desvanecer gradualmente
+            p.opacity = p.life / 20;
             
             // Reducir tamaño gradualmente
             p.size = Math.max(0.5, p.size * 0.95);
@@ -179,14 +185,72 @@ class BravesCharacter {
         // Dibujar partículas
         this.drawParticles();
         
-        // Dibujar la cabrita (forma básica)
-        this.drawGoatBody();
-        
-        // Dibujar cuernos
-        this.drawHorns();
-        
-        // Dibujar cara
-        this.drawFace();
+        // Dibujar el logo como personaje
+        if (this.imageLoaded) {
+            // Calcular dimensiones para mantener la proporción de la imagen
+            const aspectRatio = this.image.width / this.image.height;
+            let drawWidth = this.width;
+            let drawHeight = this.width / aspectRatio;
+            
+            // Si la altura calculada es mayor que la altura deseada, ajustar
+            if (drawHeight > this.height * 0.8) { // Usar más espacio para el logo
+                drawHeight = this.height * 0.8;
+                drawWidth = drawHeight * aspectRatio;
+            }
+            
+            // Efecto de brillo neón mejorado para el logo más grande
+            this.ctx.shadowColor = this.glowColor;
+            this.ctx.shadowBlur = 20;
+            
+            // Dibujar la imagen centrada (sin desplazamiento hacia arriba)
+            this.ctx.drawImage(
+                this.image,
+                -drawWidth / 2,
+                -drawHeight / 2, // Centrado sin desplazamiento
+                drawWidth,
+                drawHeight
+            );
+            
+            // Resetear sombra
+            this.ctx.shadowBlur = 0;
+            
+            // Dibujar ojos dentro del logo
+            this.drawEyes(drawWidth, drawHeight);
+        } else {
+            // Intentar cargar la imagen de nuevo si no está cargada
+            if (!this.retryLoading) {
+                this.retryLoading = true;
+                this.image = new Image();
+                this.image.src = 'assets/Logo2.png';
+                this.image.onload = () => {
+                    this.imageLoaded = true;
+                    console.log('Logo cargado correctamente en segundo intento');
+                };
+            }
+            
+            // Mientras tanto, dibujar un logo más estilizado en lugar de un círculo simple
+            this.ctx.fillStyle = this.color;
+            this.ctx.shadowColor = this.glowColor;
+            this.ctx.shadowBlur = 20;
+            
+            // Dibujar un logo simplificado (forma de B estilizada)
+            this.ctx.beginPath();
+            const size = this.width / 2;
+            this.ctx.moveTo(-size/2, -size);
+            this.ctx.lineTo(size/2, -size);
+            this.ctx.quadraticCurveTo(size, -size, size, -size/2);
+            this.ctx.quadraticCurveTo(size, 0, size/2, 0);
+            this.ctx.quadraticCurveTo(size, 0, size, size/2);
+            this.ctx.quadraticCurveTo(size, size, size/2, size);
+            this.ctx.lineTo(-size/2, size);
+            this.ctx.closePath();
+            this.ctx.fill();
+            
+            this.ctx.shadowBlur = 0;
+            
+            // Dibujar ojos simples
+            this.drawEyes(this.width, this.height);
+        }
         
         // Restaurar el contexto
         this.ctx.restore();
@@ -248,230 +312,67 @@ class BravesCharacter {
         }
     }
     
-    drawGoatBody() {
-        // Cuerpo principal de la cabrita
-        this.ctx.fillStyle = this.color;
-        
-        // Efecto de brillo neón
-        this.ctx.shadowColor = this.color;
-        this.ctx.shadowBlur = 15;
-        
-        // Dibujar forma de cabeza de cabra más parecida al logo
-        this.ctx.beginPath();
-        
-        // Forma más redondeada y estilizada como el logo
-        this.ctx.moveTo(0, -this.height * 0.4); // Parte superior
-        
-        // Lado izquierdo
-        this.ctx.bezierCurveTo(
-            -this.width * 0.4, -this.height * 0.4, // Control 1
-            -this.width * 0.5, -this.height * 0.1, // Control 2
-            -this.width * 0.4, this.height * 0.2  // Punto final
-        );
-        
-        // Parte inferior
-        this.ctx.bezierCurveTo(
-            -this.width * 0.3, this.height * 0.4, // Control 1
-            this.width * 0.3, this.height * 0.4,  // Control 2
-            this.width * 0.4, this.height * 0.2   // Punto final
-        );
-        
-        // Lado derecho
-        this.ctx.bezierCurveTo(
-            this.width * 0.5, -this.height * 0.1, // Control 1
-            this.width * 0.4, -this.height * 0.4, // Control 2
-            0, -this.height * 0.4                // Punto final (volver al inicio)
-        );
-        
-        this.ctx.fill();
-        
-        // Contorno neón
-        this.ctx.strokeStyle = '#FF6666';
-        this.ctx.lineWidth = 2;
-        this.ctx.stroke();
-        
-        // Resetear sombra
-        this.ctx.shadowBlur = 0;
-    }
-    
-    drawHorns() {
-        // Dibujar cuernos curvados característicos del logo
-        this.ctx.fillStyle = this.color;
-        this.ctx.shadowColor = this.color;
-        this.ctx.shadowBlur = 12;
-        
-        // Cuerno izquierdo - más curvo como en el logo
-        this.ctx.beginPath();
-        this.ctx.moveTo(-this.width * 0.2, -this.height * 0.35);
-        this.ctx.bezierCurveTo(
-            -this.width * 0.4, -this.height * 0.6,  // Control 1
-            -this.width * 0.6, -this.height * 0.5,  // Control 2
-            -this.width * 0.5, -this.height * 0.3   // Punto final
-        );
-        this.ctx.bezierCurveTo(
-            -this.width * 0.45, -this.height * 0.2, // Control 1
-            -this.width * 0.3, -this.height * 0.25, // Control 2
-            -this.width * 0.2, -this.height * 0.35  // Punto final (volver al inicio)
-        );
-        this.ctx.fill();
-        
-        // Cuerno derecho - más curvo como en el logo
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.width * 0.2, -this.height * 0.35);
-        this.ctx.bezierCurveTo(
-            this.width * 0.4, -this.height * 0.6,  // Control 1
-            this.width * 0.6, -this.height * 0.5,  // Control 2
-            this.width * 0.5, -this.height * 0.3   // Punto final
-        );
-        this.ctx.bezierCurveTo(
-            this.width * 0.45, -this.height * 0.2, // Control 1
-            this.width * 0.3, -this.height * 0.25, // Control 2
-            this.width * 0.2, -this.height * 0.35  // Punto final (volver al inicio)
-        );
-        this.ctx.fill();
-        
-        // Contorno de los cuernos
-        this.ctx.strokeStyle = '#FF6666';
-        this.ctx.lineWidth = 1.5;
-        
-        // Contorno cuerno izquierdo
-        this.ctx.beginPath();
-        this.ctx.moveTo(-this.width * 0.2, -this.height * 0.35);
-        this.ctx.bezierCurveTo(
-            -this.width * 0.4, -this.height * 0.6,  // Control 1
-            -this.width * 0.6, -this.height * 0.5,  // Control 2
-            -this.width * 0.5, -this.height * 0.3   // Punto final
-        );
-        this.ctx.bezierCurveTo(
-            -this.width * 0.45, -this.height * 0.2, // Control 1
-            -this.width * 0.3, -this.height * 0.25, // Control 2
-            -this.width * 0.2, -this.height * 0.35  // Punto final (volver al inicio)
-        );
-        this.ctx.stroke();
-        
-        // Contorno cuerno derecho
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.width * 0.2, -this.height * 0.35);
-        this.ctx.bezierCurveTo(
-            this.width * 0.4, -this.height * 0.6,  // Control 1
-            this.width * 0.6, -this.height * 0.5,  // Control 2
-            this.width * 0.5, -this.height * 0.3   // Punto final
-        );
-        this.ctx.bezierCurveTo(
-            this.width * 0.45, -this.height * 0.2, // Control 1
-            this.width * 0.3, -this.height * 0.25, // Control 2
-            this.width * 0.2, -this.height * 0.35  // Punto final (volver al inicio)
-        );
-        this.ctx.stroke();
-        
-        // Resetear sombra
-        this.ctx.shadowBlur = 0;
-    }
-    
-    drawFace() {
+    drawEyes(width, height) {
         // Actualizar contador de parpadeo
-        this.eyeBlink++;
         const isBlinking = this.eyeBlink > this.eyeBlinkInterval && this.eyeBlink < this.eyeBlinkInterval + 5;
         
         // Si es tiempo de reiniciar el contador de parpadeo
         if (this.eyeBlink >= this.eyeBlinkInterval + 10) {
             this.eyeBlink = 0;
-            this.eyeBlinkInterval = Math.floor(Math.random() * 100) + 50; // Nuevo intervalo aleatorio
+            this.eyeBlinkInterval = Math.floor(Math.random() * 100) + 50;
         }
         
-        // Dibujar ojos - más grandes y expresivos como en el logo
+        // Tamaño y posición de los ojos - Posición intermedia dentro del logo
+        const eyeWidth = 5; // Ancho del ojo (más pequeño)
+        const eyeHeight = 3; // Alto del ojo (más pequeño y alargado horizontalmente como cabra)
+        const eyeDistance = width * 0.12; // Distancia horizontal entre ojos (más juntos)
+        const eyeY = height * 0.0; // Posición vertical centrada (ni muy arriba ni muy abajo)
+        
+        // Dibujar ojos
         this.ctx.fillStyle = '#FFFFFF';
         
-        // Ojo izquierdo
+        // Ojo izquierdo - forma ovalada como cabra
         this.ctx.beginPath();
         if (isBlinking) {
             // Ojo cerrado (línea)
-            this.ctx.lineWidth = 2;
+            this.ctx.lineWidth = 1;
             this.ctx.strokeStyle = '#FFFFFF';
-            this.ctx.moveTo(-this.width * 0.22, -this.height * 0.1);
-            this.ctx.lineTo(-this.width * 0.08, -this.height * 0.1);
+            this.ctx.moveTo(-eyeDistance - eyeWidth * 0.5, eyeY);
+            this.ctx.lineTo(-eyeDistance + eyeWidth * 0.5, eyeY);
             this.ctx.stroke();
         } else {
-            // Ojo abierto (círculo)
-            this.ctx.arc(-this.width * 0.15, -this.height * 0.1, this.width * 0.12, 0, Math.PI * 2);
+            // Ojo abierto (óvalo horizontal como cabra)
+            this.ctx.ellipse(-eyeDistance, eyeY, eyeWidth, eyeHeight, 0, 0, Math.PI * 2);
             this.ctx.fill();
-        }
-        
-        // Ojo derecho
-        this.ctx.beginPath();
-        if (isBlinking) {
-            // Ojo cerrado (línea)
-            this.ctx.lineWidth = 2;
-            this.ctx.strokeStyle = '#FFFFFF';
-            this.ctx.moveTo(this.width * 0.08, -this.height * 0.1);
-            this.ctx.lineTo(this.width * 0.22, -this.height * 0.1);
-            this.ctx.stroke();
-        } else {
-            // Ojo abierto (círculo)
-            this.ctx.arc(this.width * 0.15, -this.height * 0.1, this.width * 0.12, 0, Math.PI * 2);
-            this.ctx.fill();
-        }
-        
-        // Pupilas - solo si los ojos están abiertos
-        if (!isBlinking) {
+            
+            // Pupila - alargada horizontalmente
             this.ctx.fillStyle = '#000000';
-            
-            // Calcular dirección de la mirada basada en la velocidad
-            const eyeOffsetX = this.velocity * 0.5; // Mirar hacia arriba/abajo según velocidad
-            
-            // Pupila izquierda
             this.ctx.beginPath();
-            this.ctx.arc(-this.width * 0.15, -this.height * 0.1 + eyeOffsetX, this.width * 0.06, 0, Math.PI * 2);
-            this.ctx.fill();
-            
-            // Pupila derecha
-            this.ctx.beginPath();
-            this.ctx.arc(this.width * 0.15, -this.height * 0.1 + eyeOffsetX, this.width * 0.06, 0, Math.PI * 2);
-            this.ctx.fill();
-            
-            // Brillo en los ojos
-            this.ctx.fillStyle = '#FFFFFF';
-            this.ctx.beginPath();
-            this.ctx.arc(-this.width * 0.18, -this.height * 0.13, this.width * 0.03, 0, Math.PI * 2);
-            this.ctx.fill();
-            this.ctx.beginPath();
-            this.ctx.arc(this.width * 0.18, -this.height * 0.13, this.width * 0.03, 0, Math.PI * 2);
+            this.ctx.ellipse(-eyeDistance, eyeY, eyeWidth * 0.4, eyeHeight * 0.6, 0, 0, Math.PI * 2);
             this.ctx.fill();
         }
         
-        // Boca/sonrisa sutil como en el logo
-        this.ctx.strokeStyle = this.secondaryColor;
-        this.ctx.lineWidth = 2;
-        this.ctx.lineCap = 'round';
-        
-        // Expresión basada en la velocidad (sonrisa cuando sube, neutral/preocupado cuando cae)
-        if (this.velocity < 0) {
-            // Sonrisa cuando sube
-            this.ctx.beginPath();
-            this.ctx.moveTo(-this.width * 0.15, this.height * 0.15);
-            this.ctx.quadraticCurveTo(
-                0, this.height * 0.25,
-                this.width * 0.15, this.height * 0.15
-            );
-        } else if (this.velocity > 2) {
-            // Preocupado cuando cae rápido
-            this.ctx.beginPath();
-            this.ctx.moveTo(-this.width * 0.15, this.height * 0.2);
-            this.ctx.quadraticCurveTo(
-                0, this.height * 0.1,
-                this.width * 0.15, this.height * 0.2
-            );
+        // Ojo derecho - forma ovalada como cabra
+        this.ctx.fillStyle = '#FFFFFF';
+        this.ctx.beginPath();
+        if (isBlinking) {
+            // Ojo cerrado (línea)
+            this.ctx.lineWidth = 1;
+            this.ctx.strokeStyle = '#FFFFFF';
+            this.ctx.moveTo(eyeDistance - eyeWidth * 0.5, eyeY);
+            this.ctx.lineTo(eyeDistance + eyeWidth * 0.5, eyeY);
+            this.ctx.stroke();
         } else {
-            // Neutral/ligera sonrisa en otros casos
+            // Ojo abierto (óvalo horizontal como cabra)
+            this.ctx.ellipse(eyeDistance, eyeY, eyeWidth, eyeHeight, 0, 0, Math.PI * 2);
+            this.ctx.fill();
+            
+            // Pupila - alargada horizontalmente
+            this.ctx.fillStyle = '#000000';
             this.ctx.beginPath();
-            this.ctx.moveTo(-this.width * 0.15, this.height * 0.18);
-            this.ctx.quadraticCurveTo(
-                0, this.height * 0.22,
-                this.width * 0.15, this.height * 0.18
-            );
+            this.ctx.ellipse(eyeDistance, eyeY, eyeWidth * 0.4, eyeHeight * 0.6, 0, 0, Math.PI * 2);
+            this.ctx.fill();
         }
-        
-        this.ctx.stroke();
     }
     
     setInvulnerable(value) {

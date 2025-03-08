@@ -1,7 +1,7 @@
 /* Estilos para la sección del equipo - Mobile */
 
 .team {
-    padding: 60px 0;
+    padding: 60px 0 40px;
 }
 
 .team h2 {
@@ -28,9 +28,33 @@
     max-width: 350px;
 }
 
+.team-member[data-animation="fade-right"],
+.team-member[data-animation="fade-left"] {
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .member-photo {
     width: 100%;
-    height: 250px;
+    height: 220px;
+}
+
+.member-overlay {
+    padding: 15px;
+}
+
+.member-quote {
+    font-size: 13px;
 }
 
 .member-info {
@@ -39,6 +63,7 @@
 
 .member-info h3 {
     font-size: 20px;
+    padding-right: 30px; /* Espacio para el botón de expandir */
 }
 
 .member-role {
@@ -51,7 +76,95 @@
     margin-bottom: 15px;
 }
 
+/* Botón de expandir ajustado para móvil */
+.member-expand-btn {
+    top: 20px;
+    right: 20px;
+    width: 22px;
+    height: 22px;
+}
+
+.expand-icon {
+    width: 10px;
+    height: 10px;
+}
+
+.expand-icon::before {
+    top: 4px;
+    width: 10px;
+}
+
+.expand-icon::after {
+    left: 4px;
+    height: 10px;
+}
+
+/* Contenido expandible */
+.member-expanded.active {
+    margin-top: 15px;
+}
+
+/* Habilidades */
+.member-skills h4,
+.member-achievements h4 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.skills-container {
+    gap: 8px;
+}
+
+.skill-name {
+    font-size: 12px;
+}
+
+.skill-bar {
+    height: 5px;
+}
+
+/* Logros */
+.member-achievements li {
+    font-size: 12px;
+    margin-bottom: 6px;
+    gap: 8px;
+}
+
+.member-achievements i {
+    font-size: 12px;
+}
+
+/* Redes sociales */
+.member-social {
+    gap: 12px;
+}
+
 .member-social a {
     width: 32px;
     height: 32px;
+    font-size: 14px;
+}
+
+/* Conexiones entre miembros del equipo */
+.team-connections {
+    height: 20px;
+    margin-top: -10px;
+}
+
+.connection-line {
+    left: 10%;
+    width: 80%;
+}
+
+.connection-node {
+    width: 8px;
+    height: 8px;
+}
+
+.connection-node.node-1 {
+    left: 10%;
+}
+
+.connection-node.node-2 {
+    left: 90%;
 } 

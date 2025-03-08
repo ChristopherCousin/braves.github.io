@@ -230,51 +230,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Elemento testimonial-carousel no encontrado - Esto es normal en la nueva versión');
     }
 
-    // Preguntas frecuentes (ajustadas para no mencionar ganar dinero, sino obtener recompensas)
-    const faqData = [
-        {
-            question: "¿Cómo funciona Braves?",
-            answer: "Braves es una plataforma donde puedes participar en desafíos de habilidad, tanto virtuales como físicos. Eliges un desafío, pagas una entrada, demuestras tu destreza y, si cumples el objetivo, obtienes una recompensa justa."
-        },
-        {
-            question: "¿Es legal obtener recompensas en Braves?",
-            answer: "Sí, Braves se basa en la habilidad del jugador, no en el azar. Esto la diferencia de los juegos de apuestas. Cumplimos con las regulaciones aplicables a juegos de habilidad."
-        },
-        {
-            question: "¿Cómo se garantiza la seguridad y justicia en los desafíos?",
-            answer: "Utilizamos tecnología de verificación por video para los desafíos físicos y sistemas de detección de trampas para los juegos virtuales. Además, nuestro equipo de seguridad, liderado por expertos en ciberseguridad, monitorea constantemente la plataforma."
-        },
-        {
-            question: "¿Puedo practicar antes de participar en un desafío oficial?",
-            answer: "¡Absolutamente! Fomentamos la práctica. Puedes entrenar en los desafíos tantas veces como quieras antes de hacer tu intento oficial."
-        },
-        {
-            question: "¿Cómo recibo mis recompensas?",
-            answer: "Las recompensas se acreditan a tu cuenta de Braves inmediatamente después de la verificación del desafío. Puedes retirarlas a tu cuenta bancaria o usarlas para participar en más desafíos."
-        }
-    ];
-
-    // Generar preguntas frecuentes
-    const faqContainer = document.querySelector('.faq-container');
-    if (faqContainer) {
-        faqData.forEach((faq, index) => {
-            const faqItem = document.createElement('div');
-            faqItem.classList.add('faq-item');
-            faqItem.innerHTML = `
-                <div class="faq-question">${faq.question}</div>
-                <div class="faq-answer">${faq.answer}</div>
-            `;
-            faqContainer.appendChild(faqItem);
-
-            const question = faqItem.querySelector('.faq-question');
-            question.addEventListener('click', () => {
-                faqItem.classList.toggle('active');
-            });
-        });
-    } else {
-        console.warn('Elemento faq-container no encontrado.');
-    }
-
     // Desplazamiento suave para la navegación
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
