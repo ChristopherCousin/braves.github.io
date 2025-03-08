@@ -5,7 +5,7 @@
 @import 'animations.css';
 @import 'transitions.css';
 
-/* Estilos para escritorio */
+/* Importar estilos de componentes para escritorio */
 @import 'desktop/header.css';
 @import 'desktop/hero.css';
 @import 'desktop/awards.css';
@@ -19,25 +19,25 @@
 @import 'desktop/team.css';
 @import 'desktop/footer.css';
 @import 'desktop/arena-navigator.css';
+@import 'desktop/modal.css';
 
-/* Estilos para móvil */
-@media (max-width: 768px) {
-    @import 'mobile/header.css';
-    @import 'mobile/hero.css';
-    @import 'mobile/awards.css';
-    @import 'mobile/tutorial.css';
-    @import 'mobile/challenges.css';
-    @import 'mobile/powers.css';
-    @import 'mobile/champions.css';
-    @import 'mobile/headquarters.css';
-    @import 'mobile/statistics.css';
-    @import 'mobile/faq.css';
-    @import 'mobile/team.css';
-    @import 'mobile/footer.css';
-    @import 'mobile/arena-navigator.css';
-}
+/* Importar estilos de componentes para móvil */
+@import 'mobile/header.css';
+@import 'mobile/hero.css';
+@import 'mobile/awards.css';
+@import 'mobile/tutorial.css';
+@import 'mobile/challenges.css';
+@import 'mobile/powers.css';
+@import 'mobile/champions.css';
+@import 'mobile/headquarters.css';
+@import 'mobile/statistics.css';
+@import 'mobile/faq.css';
+@import 'mobile/team.css';
+@import 'mobile/footer.css';
+@import 'mobile/arena-navigator.css';
+@import 'mobile/modal.css';
 
-/* Media queries para cambiar entre estilos de escritorio y móvil */
+/* Controlador responsivo para mostrar/ocultar estilos según el dispositivo */
 @import 'responsive-controller.css';
 
 /* Optimizaciones de rendimiento */

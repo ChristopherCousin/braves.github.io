@@ -1,0 +1,43 @@
+/* Variables CSS específicas para el juego Flappy Braves */
+
+:root {
+    /* Colores del personaje */
+    --character-primary: #FF0000;
+    --character-secondary: #FF3333;
+    --character-glow: rgba(255, 0, 0, 0.8);
+    --character-outline: #FF6666;
+    
+    /* Colores de los obstáculos */
+    --obstacle-primary: var(--neon-secondary);
+    --obstacle-secondary: rgba(0, 200, 255, 0.6);
+    --obstacle-glow: rgba(0, 255, 255, 0.8);
+    
+    /* Efectos visuales */
+    --particle-color: rgba(255, 50, 0, 0.7);
+    --damage-color: rgba(255, 0, 0, 0.3);
+    --score-color: var(--neon-secondary);
+    
+    /* Animaciones */
+    --float-duration: 3s;
+    --jump-duration: 0.3s;
+    --collision-duration: 0.5s;
+    --blink-duration: 0.2s;
+    --glow-pulse-duration: 1.5s;
+    
+    /* Dimensiones */
+    --character-size-desktop: 45px;
+    --character-size-mobile: 40px;
+    --obstacle-width-desktop: 60px;
+    --obstacle-width-mobile: 50px;
+    
+    /* Física del juego */
+    --gravity: 0.15;
+    --jump-force: -4;
+    --game-speed-initial: 1.2;
+    --game-speed-max: 2.5;
+    
+    /* Efectos de neón */
+    --glow-intensity-low: 5px;
+    --glow-intensity-medium: 10px;
+    --glow-intensity-high: 15px;
+} 

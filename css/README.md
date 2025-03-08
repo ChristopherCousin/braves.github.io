@@ -1,33 +1,44 @@
-# Estructura CSS Modular para Braves
+# Estructura de CSS para Braves
 
-Este directorio contiene la estructura CSS modular para el sitio web de Braves. La organización modular facilita el mantenimiento y la escalabilidad del código.
+Este directorio contiene todos los archivos CSS utilizados en el sitio web de Braves.
 
 ## Estructura de Archivos
 
-- **main.css**: Archivo principal que importa todos los demás archivos CSS.
-- **base.css**: Estilos base, variables, reset y elementos generales.
-- **header.css**: Estilos del encabezado y navegación.
-- **hero.css**: Estilos de la sección hero.
-- **awards.css**: Estilos de la sección de reconocimientos.
-- **how-it-works.css**: Estilos de la sección de cómo funciona.
-- **features.css**: Estilos de la sección de características.
-- **statistics.css**: Estilos de la sección de estadísticas.
-- **challenges.css**: Estilos de la sección de desafíos.
-- **testimonials.css**: Estilos de la sección de testimonios.
-- **faq.css**: Estilos de la sección de preguntas frecuentes.
-- **team.css**: Estilos de la sección del equipo.
-- **contact.css**: Estilos de la sección de contacto.
-- **footer.css**: Estilos del pie de página.
-- **modal.css**: Estilos para modales y popups.
-- **animations.css**: Animaciones básicas y keyframes.
-- **transitions.css**: Efectos de transición avanzados.
-- **responsive.css**: Media queries y ajustes responsivos.
+- `main.css`: Archivo principal que importa todos los demás archivos CSS.
+- `base.css`: Estilos base, variables, reset y utilidades.
+- `animations.css`: Animaciones y keyframes.
+- `transitions.css`: Transiciones y efectos.
+- `responsive-controller.css`: Controlador para mostrar/ocultar estilos según el dispositivo.
+- `optimizations.css`: Optimizaciones de rendimiento.
+
+### Carpetas
+
+- `desktop/`: Contiene estilos específicos para dispositivos de escritorio.
+- `mobile/`: Contiene estilos específicos para dispositivos móviles.
+- `assets/`: Contiene recursos utilizados por los archivos CSS.
+
+## Organización
+
+Los estilos están organizados por componente, con versiones específicas para escritorio y móvil. El archivo `responsive-controller.css` se encarga de mostrar u ocultar los estilos según el tamaño de la pantalla.
 
 ## Convenciones de Nomenclatura
 
-- Se utiliza kebab-case para los nombres de clases (ej. `.feature-grid`).
-- Se utilizan nombres descriptivos que indican la función del elemento.
-- Se evitan selectores demasiado específicos para mantener la especificidad baja.
+- Los nombres de clase siguen la metodología BEM (Block, Element, Modifier).
+- Los archivos CSS están nombrados según el componente que estilizan.
+
+## Cómo Añadir Nuevos Estilos
+
+1. Determina si los estilos son para un componente existente o uno nuevo.
+2. Si es para un componente nuevo, crea archivos en las carpetas `desktop/` y `mobile/`.
+3. Añade las importaciones en `main.css`.
+4. Asegúrate de que los selectores en los archivos de escritorio y móvil sean idénticos para que `responsive-controller.css` funcione correctamente.
+
+## Optimización
+
+- Evita la duplicación de código entre los archivos de escritorio y móvil.
+- Utiliza variables CSS para mantener la coherencia.
+- Minimiza el uso de !important.
+- Utiliza selectores específicos para evitar conflictos.
 
 ## Variables CSS
 

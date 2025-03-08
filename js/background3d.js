@@ -95,7 +95,7 @@ class Background3D {
         const colors = new Float32Array(particleCount * 3);
         const sizes = new Float32Array(particleCount);
         
-        const color1 = new THREE.Color(0xFF00A0); // Rosa neón
+        const color1 = new THREE.Color(0xFF0000); // Rojo neón
         const color2 = new THREE.Color(0x00FFFF); // Cian neón
         const color3 = new THREE.Color(0xFF3300); // Naranja neón
         const color4 = new THREE.Color(0x00FF66); // Verde neón

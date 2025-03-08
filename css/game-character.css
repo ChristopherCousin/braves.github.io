@@ -1,0 +1,159 @@
+/* Estilos para el personaje de la cabrita en el juego Flappy Braves */
+
+/* Efectos de neón para el personaje */
+.braves-character {
+    filter: drop-shadow(0 0 var(--glow-intensity-medium) var(--character-primary));
+    animation: pulse var(--glow-pulse-duration) infinite alternate;
+}
+
+/* Animación de pulso para el efecto neón */
+@keyframes pulse {
+    0% { filter: drop-shadow(0 0 var(--glow-intensity-low) var(--character-primary)); }
+    50% { filter: drop-shadow(0 0 var(--glow-intensity-medium) var(--character-primary)); }
+    100% { filter: drop-shadow(0 0 var(--glow-intensity-high) var(--character-primary)); }
+}
+
+/* Efecto de daño */
+.game-container.damage {
+    animation: damage-effect 0.2s ease;
+}
+
+@keyframes damage-effect {
+    0% { background-color: rgba(255, 0, 0, 0); }
+    50% { background-color: var(--damage-color); }
+    100% { background-color: rgba(255, 0, 0, 0); }
+}
+
+/* Estilos para las partículas */
+.particle {
+    position: absolute;
+    background-color: var(--character-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: drop-shadow(0 0 3px var(--character-glow));
+}
+
+/* Estilos para los indicadores de vida */
+.life-icon {
+    width: 15px;
+    height: 15px;
+    background-color: var(--character-primary);
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+    box-shadow: 0 0 10px var(--character-glow);
+    position: relative;
+}
+
+/* Añadir cuernitos a los iconos de vida para que se parezcan al logo */
+.life-icon::before,
+.life-icon::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background-color: var(--character-primary);
+    border-radius: 50% 50% 0 50%;
+    top: -3px;
+}
+
+.life-icon::before {
+    left: 2px;
+    transform: rotate(-30deg);
+}
+
+.life-icon::after {
+    right: 2px;
+    transform: rotate(30deg);
+}
+
+/* Animación de flotación */
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0); }
+}
+
+/* Animación para el salto */
+@keyframes jump {
+    0% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-10px) scale(1.05); }
+    100% { transform: translateY(0) scale(1); }
+}
+
+/* Animación para colisión */
+@keyframes collision {
+    0% { opacity: 1; transform: scale(1); filter: brightness(1); }
+    25% { opacity: 0.8; transform: scale(1.1); filter: brightness(1.5); }
+    50% { opacity: 0.6; transform: scale(0.9); filter: brightness(1.2); }
+    75% { opacity: 0.8; transform: scale(1.05); filter: brightness(1.3); }
+    100% { opacity: 1; transform: scale(1); filter: brightness(1); }
+}
+
+/* Estilos para el contador de puntos */
+.game-score {
+    font-family: var(--font-secondary);
+    color: var(--score-color);
+    text-shadow: 0 0 5px var(--score-color);
+    font-size: 1.2rem;
+    font-weight: 700;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 10;
+    letter-spacing: 1px;
+}
+
+/* Estilos para el contenedor de vidas */
+.game-lives {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+}
+
+/* Efecto de invulnerabilidad */
+.invulnerable {
+    animation: blink 0.5s infinite alternate;
+}
+
+@keyframes blink {
+    0% { opacity: 1; filter: brightness(1); }
+    100% { opacity: 0.3; filter: brightness(1.5); }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .game-score {
+        font-size: 1rem;
+    }
+    
+    .life-icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .life-icon::before,
+    .life-icon::after {
+        width: 5px;
+        height: 5px;
+        top: -2px;
+    }
+}
+
+/* Animación para el efecto de victoria */
+@keyframes victory {
+    0% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+    25% { transform: scale(1.1) rotate(-5deg); filter: brightness(1.3); }
+    50% { transform: scale(1.2) rotate(5deg); filter: brightness(1.5); }
+    75% { transform: scale(1.1) rotate(-5deg); filter: brightness(1.3); }
+    100% { transform: scale(1) rotate(0deg); filter: brightness(1); }
+}
+
+/* Animación para los cuernos */
+@keyframes horn-pulse {
+    0% { filter: drop-shadow(0 0 3px var(--character-primary)); }
+    50% { filter: drop-shadow(0 0 6px var(--character-primary)); }
+    100% { filter: drop-shadow(0 0 3px var(--character-primary)); }
+} 

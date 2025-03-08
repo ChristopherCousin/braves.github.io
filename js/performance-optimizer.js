@@ -447,7 +447,7 @@ function applyEmergencyOptimizations() {
     reloadButton.textContent = 'Recargar página';
     reloadButton.style.marginLeft = '10px';
     reloadButton.style.padding = '5px 10px';
-    reloadButton.style.background = '#FF00A0';
+    reloadButton.style.background = '#FF0000';
     reloadButton.style.border = 'none';
     reloadButton.style.borderRadius = '3px';
     reloadButton.style.color = '#fff';

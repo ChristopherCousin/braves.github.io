@@ -2,7 +2,7 @@
 
 :root {
     /* Colores principales */
-    --neon-primary: #FF00A0;
+    --neon-primary: #FF0000;
     --neon-secondary: #00FFFF;
     --neon-tertiary: #FF3300;
     --neon-quaternary: #00FF66;
@@ -171,23 +171,26 @@ img {
     left: 0;
     background: var(--neon-primary);
     color: var(--bg-dark);
-    padding: 8px;
+    padding: 10px 15px;
     z-index: var(--z-index-max);
     transition: top 0.3s;
+    font-weight: 600;
+    border-radius: 0 0 5px 0;
 }
 
 .skip-to-main-content:focus {
     top: 0;
+    outline: 3px solid var(--neon-secondary);
 }
 
 /* Estilos para focus */
 :focus {
-    outline: 2px solid var(--neon-secondary);
+    outline: 3px solid var(--neon-primary);
     outline-offset: 2px;
 }
 
 button:focus, a:focus {
-    box-shadow: 0 0 0 2px var(--neon-secondary);
+    box-shadow: 0 0 0 3px var(--neon-primary);
 }
 
 /* Estilos para selección de texto */
@@ -204,7 +207,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(-45deg, #0A0A14, #12121F, #1A1A2E, #22223A);
+    background: linear-gradient(-45deg, #0A0A14, #1A0A0A, #1A1A2E, #2A0A0A);
     background-size: 400% 400%;
     z-index: -1;
     animation: cyberpunkGradient 60s ease infinite;
@@ -394,13 +397,13 @@ main {
     transition: all var(--transition-normal);
     position: relative;
     overflow: hidden;
-    box-shadow: 0 0 10px rgba(255, 0, 160, 0.5), 0 0 20px rgba(255, 0, 160, 0.3);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3);
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
 .btn:hover, .btn:focus {
     background-color: var(--neon-primary);
-    box-shadow: 0 0 15px var(--neon-primary);
+    box-shadow: 0 0 15px var(--neon-primary), 0 0 25px var(--neon-primary);
     transform: translateY(-2px);
 }
 
@@ -442,27 +445,27 @@ main {
 /* Clases de utilidad para efectos neón */
 .neon-text-primary {
     color: var(--neon-primary);
-    text-shadow: 0 0 5px var(--neon-primary);
+    text-shadow: 0 0 5px var(--neon-primary), 0 0 10px var(--neon-primary);
 }
 
 .neon-text-secondary {
     color: var(--neon-secondary);
-    text-shadow: 0 0 5px var(--neon-secondary);
+    text-shadow: 0 0 5px var(--neon-secondary), 0 0 10px var(--neon-secondary);
 }
 
 .neon-text-accent {
     color: var(--neon-tertiary);
-    text-shadow: 0 0 5px var(--neon-tertiary);
+    text-shadow: 0 0 5px var(--neon-tertiary), 0 0 10px var(--neon-tertiary);
 }
 
 .neon-text-accent-2 {
     color: var(--neon-quaternary);
-    text-shadow: 0 0 5px var(--neon-quaternary);
+    text-shadow: 0 0 5px var(--neon-quaternary), 0 0 10px var(--neon-quaternary);
 }
 
 .neon-border {
     border: 2px solid var(--neon-primary);
-    box-shadow: 0 0 10px rgba(255, 0, 160, 0.5), 0 0 20px rgba(255, 0, 160, 0.3);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
 .neon-border-secondary {

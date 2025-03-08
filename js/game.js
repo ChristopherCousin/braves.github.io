@@ -26,16 +26,16 @@ class FlappyBraves {
         this.invulnerable = false;
         this.floatOffset = 0; // Para el efecto de flotación
         this.floatSpeed = 0.05; // Velocidad del efecto de flotación
+        this.lastTimestamp = 0;
         
-        // Objetos del juego
-        this.bird = {
-            x: this.gameWidth / 4,
-            y: this.gameHeight / 2,
-            width: 30,
-            height: 30,
-            velocity: 0,
-            color: '#FF00A0' // Color rosa neón
-        };
+        // Crear el personaje de Braves (cabrita)
+        this.character = new BravesCharacter(
+            this.ctx,
+            this.gameWidth / 4,
+            this.gameHeight / 2,
+            40, // ancho
+            40  // alto
+        );
         
         this.pipes = [];
         this.pipeWidth = 60;
@@ -67,7 +67,7 @@ class FlappyBraves {
         this.drawInitialState();
         
         // Debug info
-        console.log('FlappyBraves inicializado');
+        console.log('FlappyBraves inicializado con el nuevo personaje');
     }
     
     resizeCanvas() {
@@ -76,8 +76,8 @@ class FlappyBraves {
         this.gameCanvas.width = this.gameWidth;
         this.gameCanvas.height = this.gameHeight;
         
-        // Reposicionar el pájaro
-        this.bird.x = this.gameWidth / 4;
+        // Reposicionar el personaje
+        this.character.x = this.gameWidth / 4;
         
         // Si no está jugando, redibujar el estado inicial
         if (!this.isPlaying) {
@@ -98,22 +98,19 @@ class FlappyBraves {
             const animate = () => {
                 if (!this.isPlaying) {
                     this.floatOffset += this.floatSpeed;
-                    if (this.floatOffset > Math.PI * 2) {
-                        this.floatOffset = 0;
-                    }
-                    this.drawBird();
+                    this.character.floatOffset = this.floatOffset;
+                    this.character.draw(false);
                     requestAnimationFrame(animate);
                 }
             };
             animate();
-        } else {
-            // Dibujar el pájaro en posición inicial
-            this.drawBird();
         }
+        
+        // Dibujar el personaje en estado inicial
+        this.character.draw(false);
     }
     
     startGame() {
-        console.log('Juego iniciado');
         // Ocultar overlay
         this.gameOverlay.classList.add('hidden');
         
@@ -121,119 +118,109 @@ class FlappyBraves {
         this.isPlaying = true;
         this.score = 0;
         this.lives = 3;
+        this.pipes = [];
+        this.lastPipeTime = 0;
+        this.character.velocity = 0;
+        this.character.y = this.gameHeight / 2;
+        this.character.setInvulnerable(false);
+        
+        // Actualizar UI
         this.updateScore();
         this.updateLives();
-        this.pipes = [];
-        this.bird.y = this.gameHeight / 2;
-        this.bird.velocity = 0;
         
-        // Iniciar bucle del juego
-        this.lastPipeTime = performance.now();
+        // Iniciar loop del juego
         requestAnimationFrame((timestamp) => this.gameLoop(timestamp));
     }
     
     gameLoop(timestamp) {
-        // Limpiar el canvas
+        if (!this.isPlaying) return;
+        
+        // Calcular delta time
+        const deltaTime = this.lastTimestamp ? timestamp - this.lastTimestamp : 0;
+        this.lastTimestamp = timestamp;
+        
+        // Limpiar canvas
         this.ctx.clearRect(0, 0, this.gameWidth, this.gameHeight);
         
         // Dibujar fondo
         this.drawBackground();
         
-        // Actualizar efecto de flotación
-        this.floatOffset += this.floatSpeed;
-        if (this.floatOffset > Math.PI * 2) {
-            this.floatOffset = 0;
+        // Actualizar personaje
+        this.character.velocity += this.gravity;
+        this.character.update(true, deltaTime);
+        
+        // Comprobar colisiones con los bordes
+        if (this.character.y <= 0) {
+            this.character.y = 0;
+            this.character.velocity = 0;
         }
         
-        // Actualizar posición del pájaro
-        this.bird.velocity += this.gravity;
-        this.bird.y += this.bird.velocity;
+        if (this.character.y + this.character.height >= this.gameHeight) {
+            this.character.y = this.gameHeight - this.character.height;
+            this.character.velocity = 0;
+            this.loseLife();
+        }
         
         // Generar nuevos tubos
         if (timestamp - this.lastPipeTime > this.pipeInterval) {
             this.generatePipe();
             this.lastPipeTime = timestamp;
-            console.log('Nuevo tubo generado');
         }
         
         // Actualizar y dibujar tubos
         this.updatePipes();
         
-        // Dibujar el pájaro
-        this.drawBird();
-        
-        // Comprobar colisiones
+        // Comprobar colisiones con tubos
         this.checkCollisions();
         
-        // Comprobar si el pájaro sale de la pantalla
-        if (this.bird.y > this.gameHeight || this.bird.y < 0) {
-            this.loseLife();
-        }
+        // Dibujar personaje
+        this.character.draw(true);
         
-        // Continuar el bucle si el juego sigue activo
-        if (this.isPlaying) {
-            requestAnimationFrame((timestamp) => this.gameLoop(timestamp));
-        }
+        // Continuar el loop
+        requestAnimationFrame((timestamp) => this.gameLoop(timestamp));
     }
     
     jump() {
-        if (this.isPlaying) {
-            this.bird.velocity = this.jumpForce;
-            console.log('Salto: velocidad = ' + this.bird.velocity);
-        }
+        if (!this.isPlaying) return;
+        
+        this.character.velocity = this.jumpForce;
+        this.character.jump();
     }
     
     generatePipe() {
-        // Asegurar que el hueco no esté demasiado arriba o abajo
-        const minGapPosition = 100; // Aumentado de 80 a 100 para evitar tubos muy arriba
-        const maxGapPosition = this.gameHeight - this.pipeGap - 100; // Aumentado de 80 a 100 para evitar tubos muy abajo
-        
-        // Calcular posición del hueco
-        const gapPosition = Math.random() * (maxGapPosition - minGapPosition) + minGapPosition;
+        const gapPosition = Math.random() * (this.gameHeight - this.pipeGap - 100) + 50;
         
         this.pipes.push({
             x: this.gameWidth,
-            topHeight: gapPosition,
-            bottomY: gapPosition + this.pipeGap,
-            width: this.pipeWidth,
-            passed: false,
-            color: '#00FFFF' // Color cian neón
+            gapStart: gapPosition,
+            gapEnd: gapPosition + this.pipeGap,
+            passed: false
         });
-        
-        console.log('Tubo generado en posición Y: ' + gapPosition);
     }
     
     updatePipes() {
-        // Si no hay tubos y estamos jugando, generar uno inmediatamente
-        if (this.pipes.length === 0 && this.isPlaying) {
-            this.generatePipe();
-        }
-        
         for (let i = 0; i < this.pipes.length; i++) {
             const pipe = this.pipes[i];
             
             // Mover el tubo
-            pipe.x -= this.gameSpeed;
+            pipe.x -= this.gameSpeed * 2;
             
             // Dibujar el tubo
             this.drawPipe(pipe);
             
-            // Comprobar si el pájaro ha pasado el tubo
-            if (!pipe.passed && pipe.x + pipe.width < this.bird.x) {
+            // Comprobar si el personaje ha pasado el tubo
+            if (!pipe.passed && pipe.x + this.pipeWidth < this.character.x) {
                 pipe.passed = true;
                 this.score++;
                 this.updateScore();
-                console.log('Punto conseguido: ' + this.score);
                 
-                // Aumentar velocidad gradualmente, pero no demasiado y con menos frecuencia
-                if (this.score % 10 === 0 && this.gameSpeed < 2.5) {
-                    this.gameSpeed += 0.1; // Reducido de 0.2 a 0.1
-                    console.log('Velocidad aumentada a: ' + this.gameSpeed);
-                }
+                // Aumentar velocidad gradualmente
+                this.gameSpeed += 0.01;
+                this.gameSpeed = Math.min(this.gameSpeed, 2.5); // Limitar velocidad máxima
             }
             
-            // Eliminar tubos que salen de la pantalla
-            if (pipe.x + pipe.width < 0) {
+            // Eliminar tubos que ya no son visibles
+            if (pipe.x + this.pipeWidth < 0) {
                 this.pipes.splice(i, 1);
                 i--;
             }
@@ -244,24 +231,22 @@ class FlappyBraves {
         if (this.invulnerable) return;
         
         for (const pipe of this.pipes) {
-            const hitboxMargin = 5;
-            
+            // Comprobar colisión con el tubo superior
             if (
-                this.bird.x + this.bird.width - hitboxMargin > pipe.x &&
-                this.bird.x + hitboxMargin < pipe.x + pipe.width &&
-                this.bird.y + hitboxMargin < pipe.topHeight
+                this.character.x + this.character.width > pipe.x &&
+                this.character.x < pipe.x + this.pipeWidth &&
+                this.character.y < pipe.gapStart
             ) {
-                console.log('Colisión con tubo superior');
                 this.loseLife();
                 break;
             }
             
+            // Comprobar colisión con el tubo inferior
             if (
-                this.bird.x + this.bird.width - hitboxMargin > pipe.x &&
-                this.bird.x + hitboxMargin < pipe.x + pipe.width &&
-                this.bird.y + this.bird.height - hitboxMargin > pipe.bottomY
+                this.character.x + this.character.width > pipe.x &&
+                this.character.x < pipe.x + this.pipeWidth &&
+                this.character.y + this.character.height > pipe.gapEnd
             ) {
-                console.log('Colisión con tubo inferior');
                 this.loseLife();
                 break;
             }
@@ -273,50 +258,40 @@ class FlappyBraves {
         
         this.lives--;
         this.updateLives();
-        console.log('Vida perdida. Vidas restantes: ' + this.lives);
         
+        // Hacer al personaje invulnerable temporalmente
+        this.invulnerable = true;
+        this.character.setInvulnerable(true);
+        
+        // Efecto visual de daño
+        this.gameCanvas.parentElement.classList.add('damage');
+        setTimeout(() => {
+            this.gameCanvas.parentElement.classList.remove('damage');
+        }, 200);
+        
+        // Si no quedan vidas, game over
         if (this.lives <= 0) {
             this.gameOver();
-        } else {
-            this.bird.y = this.gameHeight / 2;
-            this.bird.velocity = 0;
-            
-            const currentPipes = [...this.pipes];
-            this.pipes = [];
-            this.invulnerable = true;
-            
-            let blinkCount = 0;
-            const blinkInterval = setInterval(() => {
-                if (this.isPlaying) {
-                    this.bird.color = blinkCount % 2 === 0 ? '#FF00A0' : '#FFFFFF';
-                    blinkCount++;
-                    
-                    if (blinkCount >= 6) {
-                        clearInterval(blinkInterval);
-                        this.bird.color = '#FF00A0';
-                        this.invulnerable = false;
-                    }
-                } else {
-                    clearInterval(blinkInterval);
-                }
-            }, 200);
-            
-            setTimeout(() => {
-                if (this.isPlaying) {
-                    this.pipes = currentPipes.filter(pipe => pipe.x > this.gameWidth / 2);
-                }
-            }, 1000);
+            return;
         }
+        
+        // Quitar invulnerabilidad después de un tiempo
+        setTimeout(() => {
+            this.invulnerable = false;
+            this.character.setInvulnerable(false);
+        }, 1500);
     }
     
     gameOver() {
         this.isPlaying = false;
-        console.log('Juego terminado. Puntuación final: ' + this.score);
         
-        this.gameOverlay.querySelector('.game-title').textContent = '¡Juego Terminado!';
-        this.gameOverlay.querySelector('.game-description').textContent = `Has conseguido ${this.score} puntos. ¡Descarga la app para desbloquear más desafíos y obtener recompensas!`;
-        this.gameOverlay.querySelector('.play-button').textContent = 'Jugar de nuevo';
+        // Mostrar overlay con puntuación
         this.gameOverlay.classList.remove('hidden');
+        const gameTitle = this.gameOverlay.querySelector('.game-title');
+        gameTitle.textContent = `¡Juego terminado! Puntuación: ${this.score}`;
+        
+        // Cambiar texto del botón
+        this.playButton.textContent = 'Jugar de nuevo';
     }
     
     updateScore() {
@@ -324,32 +299,36 @@ class FlappyBraves {
     }
     
     updateLives() {
-        const lifeIcons = this.livesContainer.querySelectorAll('.life-icon');
+        // Actualizar indicador de vidas
+        this.livesContainer.innerHTML = '';
         
-        for (let i = 0; i < lifeIcons.length; i++) {
-            if (i < this.lives) {
-                lifeIcons[i].style.opacity = '1';
-            } else {
-                lifeIcons[i].style.opacity = '0.3';
-            }
+        for (let i = 0; i < this.lives; i++) {
+            const lifeIcon = document.createElement('div');
+            lifeIcon.className = 'life-icon';
+            this.livesContainer.appendChild(lifeIcon);
         }
     }
     
     drawBackground() {
-        this.ctx.fillStyle = 'rgba(10, 10, 20, 0.2)';
+        // Fondo oscuro
+        this.ctx.fillStyle = 'rgba(10, 10, 20, 1)';
         this.ctx.fillRect(0, 0, this.gameWidth, this.gameHeight);
         
+        // Efecto de grid con líneas neón
         this.ctx.strokeStyle = 'rgba(0, 255, 255, 0.1)';
         this.ctx.lineWidth = 1;
         
-        for (let y = 0; y < this.gameHeight; y += 20) {
+        // Líneas horizontales
+        const gridSize = 30;
+        for (let y = 0; y < this.gameHeight; y += gridSize) {
             this.ctx.beginPath();
             this.ctx.moveTo(0, y);
             this.ctx.lineTo(this.gameWidth, y);
             this.ctx.stroke();
         }
         
-        for (let x = 0; x < this.gameWidth; x += 20) {
+        // Líneas verticales
+        for (let x = 0; x < this.gameWidth; x += gridSize) {
             this.ctx.beginPath();
             this.ctx.moveTo(x, 0);
             this.ctx.lineTo(x, this.gameHeight);
@@ -357,139 +336,57 @@ class FlappyBraves {
         }
     }
     
-    drawBird() {
-        // Calcular efecto de flotación (solo cuando no está jugando)
-        let floatY = 0;
-        if (!this.isPlaying) {
-            floatY = Math.sin(this.floatOffset) * 5; // Movimiento suave arriba y abajo
-        }
-        
-        // Dibujar trayectoria predictiva (solo cuando está cayendo)
-        if (this.isPlaying && this.bird.velocity > 0) {
-            this.ctx.strokeStyle = 'rgba(255, 0, 160, 0.2)';
-            this.ctx.setLineDash([5, 5]);
-            this.ctx.beginPath();
-            this.ctx.moveTo(this.bird.x + this.bird.width / 2, this.bird.y + this.bird.height / 2);
-            
-            // Calcular posición futura aproximada
-            const futureY = this.bird.y + this.bird.velocity * 10;
-            this.ctx.lineTo(this.bird.x + this.bird.width / 2 + 50, futureY);
-            
-            this.ctx.stroke();
-            this.ctx.setLineDash([]);
-        }
-        
-        // Dibujar el pájaro con efecto neón
-        this.ctx.fillStyle = this.bird.color;
-        this.ctx.beginPath();
-        this.ctx.arc(
-            this.bird.x + this.bird.width / 2,
-            this.bird.y + this.bird.height / 2 + floatY,
-            this.bird.width / 2,
-            0,
-            Math.PI * 2
-        );
-        this.ctx.fill();
-        
-        // Efecto de brillo neón
-        this.ctx.strokeStyle = this.bird.color;
-        this.ctx.shadowColor = this.bird.color;
-        this.ctx.shadowBlur = 10;
-        this.ctx.beginPath();
-        this.ctx.arc(
-            this.bird.x + this.bird.width / 2,
-            this.bird.y + this.bird.height / 2 + floatY,
-            this.bird.width / 2,
-            0,
-            Math.PI * 2
-        );
-        this.ctx.stroke();
-        this.ctx.shadowBlur = 0;
-        
-        // Dibujar ojo
-        this.ctx.fillStyle = '#FFFFFF';
-        this.ctx.beginPath();
-        this.ctx.arc(
-            this.bird.x + this.bird.width * 0.7,
-            this.bird.y + this.bird.height * 0.4 + floatY,
-            this.bird.width * 0.15,
-            0,
-            Math.PI * 2
-        );
-        this.ctx.fill();
-        
-        // Pupila
-        this.ctx.fillStyle = '#000000';
-        this.ctx.beginPath();
-        this.ctx.arc(
-            this.bird.x + this.bird.width * 0.75,
-            this.bird.y + this.bird.height * 0.4 + floatY,
-            this.bird.width * 0.05,
-            0,
-            Math.PI * 2
-        );
-        this.ctx.fill();
-        
-        // Añadir una pequeña estela cuando el pájaro está en movimiento
-        if (this.isPlaying && Math.abs(this.bird.velocity) > 1) {
-            const trailLength = Math.min(Math.abs(this.bird.velocity) * 2, 20);
-            const trailDirection = this.bird.velocity > 0 ? -1 : 1;
-            
-            this.ctx.fillStyle = 'rgba(255, 0, 160, 0.3)';
-            this.ctx.beginPath();
-            this.ctx.arc(
-                this.bird.x + this.bird.width / 2,
-                this.bird.y + this.bird.height / 2 + (trailDirection * trailLength) + floatY,
-                this.bird.width / 3,
-                0,
-                Math.PI * 2
-            );
-            this.ctx.fill();
-        }
-    }
-    
     drawPipe(pipe) {
-        // Dibujar tubo superior
-        this.ctx.fillStyle = pipe.color;
-        this.ctx.fillRect(pipe.x, 0, pipe.width, pipe.topHeight);
+        // Estilo de los tubos con efecto neón
+        const gradient = this.ctx.createLinearGradient(
+            pipe.x, 0,
+            pipe.x + this.pipeWidth, 0
+        );
+        gradient.addColorStop(0, 'rgba(0, 255, 255, 0.8)');
+        gradient.addColorStop(0.5, 'rgba(0, 200, 255, 0.6)');
+        gradient.addColorStop(1, 'rgba(0, 255, 255, 0.8)');
         
-        // Dibujar tubo inferior
-        this.ctx.fillRect(pipe.x, pipe.bottomY, pipe.width, this.gameHeight - pipe.bottomY);
-        
-        // Efecto de brillo neón
-        this.ctx.strokeStyle = pipe.color;
+        this.ctx.fillStyle = 'rgba(10, 10, 30, 0.9)';
+        this.ctx.strokeStyle = gradient;
         this.ctx.lineWidth = 2;
-        this.ctx.shadowColor = pipe.color;
+        this.ctx.shadowColor = 'rgba(0, 255, 255, 0.8)';
         this.ctx.shadowBlur = 10;
         
-        // Contorno tubo superior
-        this.ctx.strokeRect(pipe.x, 0, pipe.width, pipe.topHeight);
+        // Tubo superior
+        this.ctx.fillRect(pipe.x, 0, this.pipeWidth, pipe.gapStart);
+        this.ctx.strokeRect(pipe.x, 0, this.pipeWidth, pipe.gapStart);
         
-        // Contorno tubo inferior
-        this.ctx.strokeRect(pipe.x, pipe.bottomY, pipe.width, this.gameHeight - pipe.bottomY);
+        // Tubo inferior
+        this.ctx.fillRect(pipe.x, pipe.gapEnd, this.pipeWidth, this.gameHeight - pipe.gapEnd);
+        this.ctx.strokeRect(pipe.x, pipe.gapEnd, this.pipeWidth, this.gameHeight - pipe.gapEnd);
         
-        // Añadir borde inferior al tubo superior para mejor visibilidad
-        this.ctx.lineWidth = 3;
-        this.ctx.beginPath();
-        this.ctx.moveTo(pipe.x, pipe.topHeight);
-        this.ctx.lineTo(pipe.x + pipe.width, pipe.topHeight);
-        this.ctx.stroke();
-        
-        // Añadir borde superior al tubo inferior para mejor visibilidad
-        this.ctx.beginPath();
-        this.ctx.moveTo(pipe.x, pipe.bottomY);
-        this.ctx.lineTo(pipe.x + pipe.width, pipe.bottomY);
-        this.ctx.stroke();
-        
+        // Resetear sombra
         this.ctx.shadowBlur = 0;
+        
+        // Añadir detalles a los tubos
+        this.ctx.fillStyle = 'rgba(0, 255, 255, 0.3)';
+        
+        // Detalles tubo superior
+        this.ctx.fillRect(pipe.x + 10, 0, this.pipeWidth - 20, pipe.gapStart);
+        
+        // Detalles tubo inferior
+        this.ctx.fillRect(pipe.x + 10, pipe.gapEnd, this.pipeWidth - 20, this.gameHeight - pipe.gapEnd);
+        
+        // Borde inferior del tubo superior
+        this.ctx.fillStyle = gradient;
+        this.ctx.fillRect(pipe.x - 5, pipe.gapStart - 10, this.pipeWidth + 10, 10);
+        
+        // Borde superior del tubo inferior
+        this.ctx.fillRect(pipe.x - 5, pipe.gapEnd, this.pipeWidth + 10, 10);
     }
 }
 
+// Inicializar el juego cuando el DOM esté cargado
 document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('game-canvas')) {
-        console.log('Inicializando FlappyBraves...');
-        const game = new FlappyBraves();
+    // Comprobar si el script de BravesCharacter está cargado
+    if (typeof BravesCharacter !== 'undefined') {
+        new FlappyBraves();
     } else {
-        console.error('No se encontró el elemento game-canvas');
+        console.error('Error: BravesCharacter no está definido. Asegúrate de cargar braves-character.js antes que game.js');
     }
 }); 
