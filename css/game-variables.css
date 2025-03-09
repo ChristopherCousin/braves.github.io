@@ -40,4 +40,153 @@
     --glow-intensity-low: 5px;
     --glow-intensity-medium: 10px;
     --glow-intensity-high: 15px;
+
+    /* Colores principales */
+    --obstacle-normal: #4CAF50;
+    --obstacle-normal-border: #388E3C;
+    --obstacle-moving: #FF9800;
+    --obstacle-moving-border: #F57C00;
+    --obstacle-narrow: #F44336;
+    --obstacle-narrow-border: #D32F2F;
+    --obstacle-wide: #2196F3;
+    --obstacle-wide-border: #1976D2;
+    
+    /* Efectos visuales */
+    --game-background: #1E1E1E;
+    --game-grid: rgba(255, 255, 255, 0.05);
+    --game-score: #FFFFFF;
+    --game-score-shadow: rgba(0, 255, 255, 0.8);
+}
+
+/* Estilos para el mensaje de nivel */
+.level-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--obstacle-moving);
+    border-radius: 10px;
+    padding: 15px 25px;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.5);
+    pointer-events: none;
+}
+
+.level-message.show {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.level-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: var(--obstacle-moving);
+    animation: pulse 1s infinite alternate;
+}
+
+.level-text h3 {
+    margin: 0 0 5px 0;
+    font-size: 18px;
+    color: var(--obstacle-moving);
+}
+
+.level-text p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    to {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Estilos para las vidas */
+.game-lives {
+    display: flex;
+    gap: 5px;
+}
+
+.life-icon {
+    width: 20px;
+    height: 20px;
+    background-color: var(--character-primary);
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 0 10px var(--character-glow);
+}
+
+.life-icon::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.life-icon.lost {
+    background-color: rgba(255, 59, 59, 0.3);
+    box-shadow: none;
+}
+
+.life-icon.lost::before {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Animación para el efecto de daño */
+@keyframes damage-flash {
+    0% {
+        filter: none;
+    }
+    25% {
+        filter: brightness(2) saturate(2);
+    }
+    100% {
+        filter: none;
+    }
+}
+
+.damage-effect {
+    animation: damage-flash 0.3s ease;
+}
+
+/* Animación para el efecto de puntuación */
+.score-popup {
+    position: absolute;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+    pointer-events: none;
+    animation: score-float 1s ease-out forwards;
+}
+
+@keyframes score-float {
+    0% {
+        opacity: 0;
+        transform: translateY(0);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
 } 

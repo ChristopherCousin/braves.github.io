@@ -459,4 +459,51 @@
 
 .notification-exit {
     animation: notificationFadeOut 0.3s forwards;
+}
+
+/* Animación de sacudida de pantalla para colisiones */
+@keyframes screen-shake {
+    0% { transform: translate(0, 0); }
+    10% { transform: translate(-5px, -5px); }
+    20% { transform: translate(5px, 5px); }
+    30% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    50% { transform: translate(-5px, 0); }
+    60% { transform: translate(5px, 0); }
+    70% { transform: translate(0, 5px); }
+    80% { transform: translate(0, -5px); }
+    90% { transform: translate(-3px, 3px); }
+    100% { transform: translate(0, 0); }
+}
+
+.screen-shake {
+    animation: screen-shake 0.3s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Mejorar el efecto de daño existente */
+.damage {
+    position: relative;
+}
+
+.damage::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 0, 0, 0.3);
+    box-shadow: 0 0 20px 10px rgba(255, 0, 0, 0.5) inset;
+    z-index: 10;
+    pointer-events: none;
+    animation: damage-pulse 0.3s ease-out;
+}
+
+@keyframes damage-pulse {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
 } 
