@@ -27,7 +27,7 @@ class FlappyBraves {
         this.lives = 3;
         this.gameSpeed = 2.0; // Velocidad base
         this.gravity = 0.25; // Gravedad aumentada para que el personaje caiga más rápido
-        this.jumpForce = -2.2; // Aumentado para un salto más potente pero controlable
+        this.jumpForce = -3.5; // Aumentado para un salto mucho más potente
         this.invulnerable = false;
         this.floatOffset = 0; // Para el efecto de flotación
         this.floatSpeed = 0.05; // Velocidad del efecto de flotación
@@ -835,23 +835,45 @@ class FlappyBraves {
     }
     
     // Restaurar la función para mostrar un indicador flotante de puntos
-    showScoreIndicator() {
+    showScoreIndicator(points = 1, isBonus = false) {
         // Crear elemento para mostrar el indicador
         const indicator = document.createElement('div');
         indicator.className = 'score-indicator';
         
-        // Texto según si hay puntos dobles activos
-        if (this.doublePointsActive) {
+        // Texto según si hay puntos dobles activos o es una bonificación
+        if (isBonus) {
+            indicator.textContent = `+${points}`;
+            indicator.classList.add('bonus');
+        } else if (this.doublePointsActive) {
             indicator.textContent = '+2';
             indicator.classList.add('double');
         } else {
             indicator.textContent = '+1';
         }
         
-        // Posicionar cerca del personaje
+        // Calcular posición para que esté siempre visible dentro de la pantalla
+        // Posición base cerca del personaje
+        let posX = this.character.x + this.character.width;
+        let posY = this.character.y - 20;
+        
+        // Asegurar que no se salga de los límites de la pantalla
+        const indicatorWidth = 40; // Ancho aproximado del indicador
+        const indicatorHeight = 30; // Alto aproximado del indicador
+        
+        // Ajustar posición X si se sale por la derecha
+        if (posX + indicatorWidth > this.gameWidth) {
+            posX = this.gameWidth - indicatorWidth;
+        }
+        
+        // Ajustar posición Y si se sale por arriba
+        if (posY < 0) {
+            posY = 0;
+        }
+        
+        // Posicionar el indicador
         indicator.style.position = 'absolute';
-        indicator.style.left = `${this.character.x + this.character.width}px`;
-        indicator.style.top = `${this.character.y - 20}px`;
+        indicator.style.left = `${posX}px`;
+        indicator.style.top = `${posY}px`;
         
         // Añadir al contenedor del juego
         this.gameCanvas.parentElement.appendChild(indicator);

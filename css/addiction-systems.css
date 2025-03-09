@@ -1,0 +1,194 @@
+/**
+ * Estilos para los sistemas de adicción
+ * Contiene animaciones y estilos para los elementos visuales de los sistemas
+ */
+
+/* Animaciones básicas */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes float-up {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-50px); opacity: 0; }
+}
+
+@keyframes scale-up {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+@keyframes camera-shake {
+    0%, 100% { transform: translate(0, 0); }
+    10%, 30%, 50%, 70%, 90% { transform: translate(-var(--shake-intensity, 5px), var(--shake-intensity, 5px)); }
+    20%, 40%, 60%, 80% { transform: translate(var(--shake-intensity, 5px), -var(--shake-intensity, 5px)); }
+}
+
+@keyframes currency-update {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); color: #FFFFFF; }
+}
+
+@keyframes fade-out {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Clases de animación */
+.camera-shake {
+    animation: camera-shake 0.5s ease-in-out;
+}
+
+.currency-update {
+    animation: currency-update 0.5s ease-in-out;
+}
+
+.notification-fade-out {
+    animation: fade-out 0.5s forwards;
+}
+
+/* Estilos para partículas */
+.reward-particle, .feedback-particle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    z-index: 900;
+    pointer-events: none;
+}
+
+/* Estilos para notificaciones */
+.limited-event-notification, .expiring-item-notification {
+    animation: pulse 1s infinite alternate;
+}
+
+/* Estilos para mensajes de confirmación */
+.confirmation-message, .event-confirmation-message, .boost-confirmation {
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 10px;
+    padding: 20px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+}
+
+/* Estilos para overlays */
+.progress-loss-overlay, .recovery-offer-overlay, .daily-reward-overlay,
+.event-details-overlay, .continue-offer-overlay, .post-game-offers-overlay {
+    position: absolute;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+}
+
+/* Estilos para botones */
+.addiction-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.addiction-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+}
+
+.addiction-button:active {
+    transform: scale(0.95);
+}
+
+/* Estilos para indicadores de combo */
+.combo-milestone {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 1000;
+    text-align: center;
+    transition: transform 0.3s ease-out;
+    pointer-events: none;
+}
+
+/* Estilos para recompensas diarias */
+.daily-reward-dialog {
+    background-color: rgba(50, 50, 50, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    text-align: center;
+    max-width: 80%;
+    color: white;
+}
+
+/* Estilos para animaciones de recompensa */
+.reward-animation {
+    position: absolute;
+    z-index: 1000;
+    text-align: center;
+    pointer-events: none;
+}
+
+.reward-collect {
+    animation: float-up 0.5s forwards;
+}
+
+/* Estilos para el indicador de moneda */
+.player-currency {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: #FFD700;
+    text-shadow: 0 0 5px #FFD700;
+    z-index: 1000;
+}
+
+/* Estilos adicionales para el indicador de puntos */
+.score-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    transform-origin: center;
+    will-change: transform, opacity;
+}
+
+.score-indicator.bonus {
+    animation: pulse 0.3s infinite alternate !important;
+}
+
+/* Asegurar que el indicador de puntos sea visible en pantallas pequeñas */
+@media (max-width: 480px) {
+    .score-indicator {
+        font-size: 14px !important;
+        padding: 1px 3px !important;
+        min-width: 20px !important;
+    }
+    
+    .score-indicator.double,
+    .score-indicator.bonus {
+        font-size: 16px !important;
+    }
+} 
