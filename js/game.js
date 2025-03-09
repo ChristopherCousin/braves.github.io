@@ -26,8 +26,8 @@ class FlappyBraves {
         this.score = 0;
         this.lives = 3;
         this.gameSpeed = 2.0; // Velocidad base
-        this.gravity = 0.25; // Aumentada para que el personaje caiga más rápido
-        this.jumpForce = -1.8; // Ajustado para compensar la mayor gravedad
+        this.gravity = 0.25; // Gravedad aumentada para que el personaje caiga más rápido
+        this.jumpForce = -2.2; // Aumentado para un salto más potente pero controlable
         this.invulnerable = false;
         this.floatOffset = 0; // Para el efecto de flotación
         this.floatSpeed = 0.05; // Velocidad del efecto de flotación
